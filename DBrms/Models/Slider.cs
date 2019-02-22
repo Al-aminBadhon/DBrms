@@ -11,7 +11,6 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
     
     public partial class Slider
     {
@@ -20,6 +19,5 @@ namespace DBrms.Models
         public string Image { get; set; }
         public string Details { get; set; }
         public bool IsActive { get; set; }
-        public HttpPostedFileBase imageFile { get; set; };
     }
 }

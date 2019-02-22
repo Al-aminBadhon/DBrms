@@ -10,7 +10,7 @@ namespace DBrms.Controllers
 {
     public class AdminController : Controller
     {
-        dbrmsEntities1 bd = new dbrmsEntities1();
+        dbrmsEntities1 db = new dbrmsEntities1();
 
         public ActionResult Index()
         {
@@ -21,7 +21,7 @@ namespace DBrms.Controllers
         {
            
 
-            return View();
+            return View(db.Slider.ToList());
         }
 
         [HttpGet]
@@ -32,17 +32,19 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SliderAdd([Bind(Include ="SliderId,Name,Details")] Slider slider, Slider imagemodel)
+        public ActionResult SliderAdd([Bind(Include ="Name,Image,Details,IsActive")] Slider slider, Slider imagemodel)
         {
            if (imagemodel != null)
             {
-                String filename = Path.GetFileNameWithoutExtension(imagemodel.ImageFile.FileName);
+                String fileName = Path.GetFileNameWithoutExtension(imagemodel.ImageFile.FileName);
                 String extension = Path.GetExtension(imagemodel.ImageFile.FileName);
-                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                slider.Image = "~/Image" + imagemodel;
-                filename = Path.Combine(Server.MapPath("~/Image"), filename);
-                imagemodel.ImageFile.SaveAs(filename);
-                db.Sliders.Add(slider);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                slider.Image = "~/Image/" + imagemodel;
+                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                imagemodel.ImageFile.SaveAs(fileName);
+
+                db.Slider.Add(slider);
+
                 db.SaveChanges();
                 ModelState.Clear();
                 return RedirectToAction("Slider");
@@ -76,14 +78,31 @@ namespace DBrms.Controllers
 
             return View();
         }
-        [HttpPost]
-        public ActionResult NewspanelAdd([Bind(Include = "")])
+        //[HttpPost]
+        ////public ActionResult NewspanelAdd([Bind(Include = "")])
+        ////{
+
+
+        ////    return View();
+        ////}
+        ///
+        public ActionResult TradingRestaurant()
         {
-          
+
 
             return View();
         }
 
+        public ActionResult Review()
+        {
 
+
+            return View();
+        }
+
+        public ActionResult Magazine()
+        {
+            return View();
+        }
     }
 }
