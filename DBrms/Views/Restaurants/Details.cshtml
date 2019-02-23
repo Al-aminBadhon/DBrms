@@ -1,0 +1,131 @@
+﻿@model DBrms.Models.Restaurant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Restaurant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PopularMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PopularMenu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostPerOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostPerOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuisine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuisine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RatingUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatingUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RatingNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatingNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodOrder.FoodOrderId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodOrder.FoodOrderId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

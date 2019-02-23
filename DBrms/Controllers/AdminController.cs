@@ -21,7 +21,7 @@ namespace DBrms.Controllers
         {
            
 
-            return View(db.Slider.ToList());
+            return View(db.Sliders.ToList());
         }
 
         [HttpGet]
@@ -36,18 +36,18 @@ namespace DBrms.Controllers
         {
            if (imagemodel != null)
             {
-                String fileName = Path.GetFileNameWithoutExtension(imagemodel.ImageFile.FileName);
-                String extension = Path.GetExtension(imagemodel.ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                slider.Image = "~/Image/" + imagemodel;
-                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                imagemodel.ImageFile.SaveAs(fileName);
+                //String fileName = Path.GetFileNameWithoutExtension(imagemodel.ImageFile.FileName);
+                //String extension = Path.GetExtension(imagemodel.ImageFile.FileName);
+                //fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                //slider.Image = "~/Image/" + imagemodel;
+                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                //imagemodel.ImageFile.SaveAs(fileName);
 
-                db.Slider.Add(slider);
+                //db.Sliders.Add(slider);
 
-                db.SaveChanges();
-                ModelState.Clear();
-                return RedirectToAction("Slider");
+                //db.SaveChanges();
+                //ModelState.Clear();
+                //return RedirectToAction("Slider");
 
             }
 
