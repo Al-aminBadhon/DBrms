@@ -104,5 +104,9 @@ namespace DBrms.Controllers
         {
             return View();
         }
+        public ActionResult MagazineAdd()
+        {
+            return View();
+        }
     }
 }

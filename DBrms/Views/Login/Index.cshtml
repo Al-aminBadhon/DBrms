@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="~/Content/LoginCss.css" rel="stylesheet" />
+</head>
+<body>
+
+    <p><center><b>Login Form</b></center></p>
+
+    <form action="/action_page.php">
+        <div class="imgcontainer">
+          
+            <img src="~/Image/images.png" alt="Avatar" class="avatar"/>
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="UT"><b>User type</b></label>
+            <select>
+                <option value="0">Select</option>
+                <option value="1">Admin</option>
+                <option value="2">Restaurant Admin</option>
+                <option value="3">Customer</option>
+            </select>
+
+            <button type="submit" >Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+
+        
+
+</body>
+</html>

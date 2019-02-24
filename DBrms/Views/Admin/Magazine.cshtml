@@ -1,14 +1,14 @@
-﻿@model IEnumerable<DBrms.Models.Slider>
+﻿@model IEnumerable<DBrms.Models.Magazine>
 
 @{
-    ViewBag.Title = "Slider";
+    ViewBag.Title = "Magazine";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Slider</h2>
+<h2>Magazine</h2>
 
 <p>
-    @Html.ActionLink("Add Slider", "SliderAdd")
+    @Html.ActionLink("Add New Magazine", "MagazineAdd")
 </p>
 <table class="table">
     <tr>
@@ -20,9 +20,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Details)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th></th>
     </tr>
@@ -39,12 +36,9 @@
             @Html.DisplayFor(modelItem => item.Details)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SliderId }) 
-            @Html.ActionLink("Details", "Details", new { id=item.SliderId }) 
-            @Html.ActionLink("Delete", "Delete", new { id=item.SliderId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.MagazineId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MagazineId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MagazineId })
         </td>
     </tr>
 }
