@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            <img src="@item.Image" height="200" width="400" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Details)
@@ -43,7 +43,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SliderId }) 
-            @Html.ActionLink("Details", "Details", new { id=item.SliderId }) 
+            
             @Html.ActionLink("Delete", "Delete", new { id=item.SliderId })
         </td>
     </tr>

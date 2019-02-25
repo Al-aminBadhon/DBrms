@@ -27,31 +27,30 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult SliderAdd()
         {
-            ViewBag.Message = "Your application description page.";
+          
 
             return View();
         }
         [HttpPost]
-        public ActionResult SliderAdd([Bind(Include ="Name,Image,Details,IsActive")] Slider slider, Slider imagemodel)
+        public ActionResult SliderAdd([Bind(Include = "Name,Image,Details,IsActive")] Slider slider , HttpPostedFileBase ImageFile)
+
         {
-           if (imagemodel != null)
+            if (ImageFile != null )
             {
-                //String fileName = Path.GetFileNameWithoutExtension(imagemodel.ImageFile.FileName);
-                //String extension = Path.GetExtension(imagemodel.ImageFile.FileName);
-                //fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                //slider.Image = "~/Image/" + imagemodel;
-                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                //imagemodel.ImageFile.SaveAs(fileName);
+                String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                slider.Image = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
+                ImageFile.SaveAs(filename);
 
-                //db.Sliders.Add(slider);
-
-                //db.SaveChanges();
-                //ModelState.Clear();
-                //return RedirectToAction("Slider");
+                db.Sliders.Add(slider);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Slider");
 
             }
-
-            return View();
+                return View();
         }
 
 
@@ -102,10 +101,31 @@ namespace DBrms.Controllers
 
         public ActionResult Magazine()
         {
-            return View();
+            return View(db.Magazines.ToList());
         }
+
+        [HttpGet]
         public ActionResult MagazineAdd()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MagazineAdd ([Bind(Include ="Name,Image,Details")] Magazine magazine, HttpPostedFileBase ImageFile )
+        {
+            if(ImageFile != null)
+            {
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                magazine.Image = "/Image/" + ImageFile;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
+
+                db.Magazines.Add(magazine);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Magazine");
+            }
             return View();
         }
     }

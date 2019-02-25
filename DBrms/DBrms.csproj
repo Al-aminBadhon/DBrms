@@ -2521,10 +2521,10 @@
     <Content Include="Views\Restaurants\Index.cshtml" />
     <Content Include="Views\Admin\Review.cshtml" />
     <Content Include="Views\Admin\Magazine.cshtml" />
-    <Content Include="Views\Admin\MagazineAdd.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
     <Content Include="Views\Website\Index.cshtml" />
+    <Content Include="Views\Admin\MagazineAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

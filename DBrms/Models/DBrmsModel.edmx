@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="CartId" />
           </Key>
-          <Property Name="CartId" Type="int" Nullable="false" />
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="varchar" MaxLength="50" Nullable="false" />
@@ -21,7 +21,7 @@
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" />
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="FoodId" />
           </Key>
-          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="FoodCartId" />
           </Key>
-          <Property Name="FoodCartId" Type="int" Nullable="false" />
+          <Property Name="FoodCartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FoodId" Type="int" Nullable="false" />
           <Property Name="CartId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="varchar" MaxLength="50" Nullable="false" />
@@ -54,7 +54,7 @@
           <Key>
             <PropertyRef Name="FoodOrderId" />
           </Key>
-          <Property Name="FoodOrderId" Type="int" Nullable="false" />
+          <Property Name="FoodOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FoodId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Qunatity" Type="int" Nullable="false" />
@@ -65,16 +65,16 @@
           <Key>
             <PropertyRef Name="MagazineId" />
           </Key>
-          <Property Name="MagazineId" Type="int" Nullable="false" />
+          <Property Name="MagazineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Details" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Details" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
@@ -105,7 +105,7 @@
           <Key>
             <PropertyRef Name="ReviewId" />
           </Key>
-          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestautantId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Desscription" Type="varchar" MaxLength="200" Nullable="false" />
@@ -114,10 +114,10 @@
           <Key>
             <PropertyRef Name="SliderId" />
           </Key>
-          <Property Name="SliderId" Type="int" Nullable="false" />
+          <Property Name="SliderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Details" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Details" Type="varchar(max)" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -134,7 +134,7 @@
           <Key>
             <PropertyRef Name="TransactionId" />
           </Key>
-          <Property Name="TransactionId" Type="int" Nullable="false" />
+          <Property Name="TransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="PaidAmount" Type="float" Nullable="false" />
@@ -408,8 +408,8 @@
           </Key>
           <Property Name="MagazineId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -465,8 +465,8 @@
           </Key>
           <Property Name="SliderId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
