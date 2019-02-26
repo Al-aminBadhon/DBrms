@@ -1,14 +1,14 @@
-﻿@model IEnumerable<DBrms.Models.Magazine>
+﻿@model IEnumerable<DBrms.Models.TradingRestaurant>
 
 @{
-    ViewBag.Title = "Newspanel";
+    ViewBag.Title = "TradingRestaurant";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Newspanel</h2>
+<h2>Trading Restaurant</h2>
 
 <p>
-    @Html.ActionLink("Add News", "NewspanelAdd")
+    @Html.ActionLink("Add Restaurant", "TradingRestaurantAdd")
 </p>
 <table class="table">
     <tr>
@@ -17,9 +17,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Details)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
@@ -36,15 +33,12 @@
             <img src="@item.Image" height="200" width="400" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MagazineId }) |
-            
-            @Html.ActionLink("Delete", "Delete", new { id=item.MagazineId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.TradingRestaurantId }) |
+          
+            @Html.ActionLink("Delete", "Delete", new { id=item.TradingRestaurantId })
         </td>
     </tr>
 }

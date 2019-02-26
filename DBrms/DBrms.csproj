@@ -212,6 +212,9 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TradingRestaurant.cs">
+      <DependentUpon>DBrmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Transaction.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
@@ -2508,7 +2511,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Newspanel.cshtml" />
     <Content Include="Views\Admin\Slider.cshtml" />
     <Content Include="Views\Admin\SliderAdd.cshtml" />
     <Content Include="Views\Shared\_RestaurantLayout.cshtml" />
@@ -2524,7 +2526,11 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
     <Content Include="Views\Website\Index.cshtml" />
+    <Content Include="Views\Admin\TradingRestaurant.cshtml" />
+    <Content Include="Views\Admin\TradingRestaurantAdd.cshtml" />
     <Content Include="Views\Admin\MagazineAdd.cshtml" />
+    <Content Include="Views\Admin\NewspanelAdd.cshtml" />
+    <Content Include="Views\Admin\Newspanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

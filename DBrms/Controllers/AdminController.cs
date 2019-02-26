@@ -58,7 +58,7 @@ namespace DBrms.Controllers
 
         public ActionResult CategoryBuffet()
         {
-            ViewBag.Message = "Your contact page.";
+            
 
             return View();
         }
@@ -66,7 +66,7 @@ namespace DBrms.Controllers
         {
             
 
-            return View();
+            return View(db.Magazines.ToList());
         }
 
 
@@ -77,26 +77,65 @@ namespace DBrms.Controllers
 
             return View();
         }
-        //[HttpPost]
-        ////public ActionResult NewspanelAdd([Bind(Include = "")])
-        ////{
-
-
-        ////    return View();
-        ////}
-        ///
-        public ActionResult TradingRestaurant()
+        [HttpPost]
+        public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive") ])
         {
+            //if (ImageFile != null)
+            //{
+            //    String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+            //    String extension = Path.GetExtension(ImageFile.FileName);
+            //    filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+            //    slider.Image = "/Image/" + filename;
+            //    filename = Path.Combine(Server.MapPath("/Image/"), filename);
+            //    ImageFile.SaveAs(filename);
 
+            //    db.Sliders.Add(slider);
+            //    db.SaveChanges();
+            //    ModelState.Clear();
+            //    return RedirectToAction("Slider");
+
+            //}
 
             return View();
         }
 
+        public ActionResult TradingRestaurant()
+        {
+
+
+            return View(db.TradingRestaurants.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult TradingRestaurantAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult TradingRestaurantAdd([Bind(Include ="Name,Image,IsActive")] TradingRestaurant tradingRestaurant, HttpPostedFileBase Imagefile)
+        {
+            if(Imagefile != null)
+            {
+                String filename = Path.GetFileNameWithoutExtension(Imagefile.FileName);
+                String extension = Path.GetExtension(Imagefile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                tradingRestaurant.Image = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
+                Imagefile.SaveAs(filename);
+
+                db.TradingRestaurants.Add(tradingRestaurant);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("TradingRestaurant");
+
+            }
+            return View();
+        }
         public ActionResult Review()
         {
 
 
-            return View();
+            return View(db.Reviews.ToList());
         }
 
         public ActionResult Magazine()
@@ -117,7 +156,7 @@ namespace DBrms.Controllers
                 String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                magazine.Image = "/Image/" + ImageFile;
+                magazine.Image = "/Image/" + fileName;
                 fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
                 ImageFile.SaveAs(fileName);
 

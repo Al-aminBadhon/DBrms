@@ -28,6 +28,7 @@
         <AssociationConnector Association="dbrmsModel.FK_FoodOrder_Order" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Transaction_Order" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Review_Restaurant" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbrmsModel.TradingRestaurant" Width="2" PointX="8.125" PointY="3.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
