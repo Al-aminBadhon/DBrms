@@ -1,4 +1,4 @@
-﻿@model DBrms.Models.Magazine
+﻿@model DBrms.Models.Newspanel
 
 @{
     ViewBag.Title = "NewspanelAdd";
@@ -7,16 +7,14 @@
 
 <h2>NewspanelAdd</h2>
 
-@using (Html.BeginForm("NewspanelAdd", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("NewspanelAdd","Admin", FormMethod.Post, new { enctype ="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>News Panel</h4>
+        <h4>Newspanel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,5 +57,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Newspanel")
 </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -119,6 +120,53 @@ namespace DBrms.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Menu ()
+        {
+            return View(db.Foods.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult MenuAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MenuAdd([Bind(Include ="RestaurantId,Name,Image,Price,Details")] Food food , HttpPostedFileBase ImageFile)
+        {
+            if (ImageFile != null)
+            {
+                String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                food.Image = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
+                ImageFile.SaveAs(filename);
+
+                db.Foods.Add(food);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Menu");
+
+            }
+            return View();
+        }
+
+        public ActionResult PopularMenu()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PopularMenuAdd()
+        {
+            return View();
+        }
+        //[HttpPost]
+        //public ActionResult PopularMenuAdd([Bind(Include = "Name,Image,Price,Details")] Food food, HttpPostedFileBase ImageFile)
+        //{
+        //    return View();
+        //}
 
         protected override void Dispose(bool disposing)
         {

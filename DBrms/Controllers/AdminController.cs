@@ -66,7 +66,7 @@ namespace DBrms.Controllers
         {
             
 
-            return View(db.Magazines.ToList());
+            return View(db.Newspanels.ToList());
         }
 
 
@@ -78,23 +78,23 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive") ])
+        public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive")] Newspanel newspanel , HttpPostedFileBase ImageFile )
         {
-            //if (ImageFile != null)
-            //{
-            //    String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-            //    String extension = Path.GetExtension(ImageFile.FileName);
-            //    filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            //    slider.Image = "/Image/" + filename;
-            //    filename = Path.Combine(Server.MapPath("/Image/"), filename);
-            //    ImageFile.SaveAs(filename);
+            if (ImageFile != null)
+            {
+                String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                newspanel.Image = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
+                ImageFile.SaveAs(filename);
 
-            //    db.Sliders.Add(slider);
-            //    db.SaveChanges();
-            //    ModelState.Clear();
-            //    return RedirectToAction("Slider");
+                db.Newspanels.Add(newspanel);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Newspanel");
 
-            //}
+            }
 
             return View();
         }
@@ -164,6 +164,39 @@ namespace DBrms.Controllers
                 db.SaveChanges();
                 ModelState.Clear();
                 return RedirectToAction("Magazine");
+            }
+            return View();
+        }
+
+        public ActionResult ManageRsetaurant()
+        {
+
+            return View(db.Restaurants.ToList());
+        }
+
+
+        [HttpGet]
+        public ActionResult RestaurantAdd()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RestaurantAdd([Bind(Include = "Name,Address,Phone,picture,Location,CostPerFood,Cuisine")] Restaurant restaurant , HttpPostedFileBase ImageFile )
+        {
+            if (ImageFile != null)
+            {
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                restaurant.picture = "/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
+
+                db.Restaurants.Add(restaurant);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("Restaurants");
             }
             return View();
         }

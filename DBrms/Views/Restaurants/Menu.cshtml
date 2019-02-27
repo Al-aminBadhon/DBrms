@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DBrms.Models.Food>
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>Menu</h2>
+
+<p>
+    @Html.ActionLink("Add menu", "MenuAdd")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurant.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restaurant.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FoodId }) 
+   
+            @Html.ActionLink("Delete", "Delete", new { id=item.FoodId })
+        </td>
+    </tr>
+}
+
+</table>

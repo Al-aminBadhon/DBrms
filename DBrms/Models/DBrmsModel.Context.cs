@@ -38,5 +38,6 @@ namespace DBrms.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TradingRestaurant> TradingRestaurants { get; set; }
+        public virtual DbSet<Newspanel> Newspanels { get; set; }
     }
 }

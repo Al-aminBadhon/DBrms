@@ -197,6 +197,9 @@
     <Compile Include="Models\Magazine.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Newspanel.cs">
+      <DependentUpon>DBrmsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
@@ -2529,8 +2532,12 @@
     <Content Include="Views\Admin\TradingRestaurant.cshtml" />
     <Content Include="Views\Admin\TradingRestaurantAdd.cshtml" />
     <Content Include="Views\Admin\MagazineAdd.cshtml" />
-    <Content Include="Views\Admin\NewspanelAdd.cshtml" />
     <Content Include="Views\Admin\Newspanel.cshtml" />
+    <Content Include="Views\Admin\NewspanelAdd.cshtml" />
+    <Content Include="Views\Admin\ManageRsetaurant.cshtml" />
+    <Content Include="Views\Admin\RestaurantAdd.cshtml" />
+    <Content Include="Views\Restaurants\Menu.cshtml" />
+    <Content Include="Views\Restaurants\MenuAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

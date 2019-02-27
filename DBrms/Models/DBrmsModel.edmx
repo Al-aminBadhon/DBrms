@@ -36,7 +36,7 @@
           <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RestaurantId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="Details" Type="varchar" MaxLength="150" />
         </EntityType>
@@ -69,7 +69,16 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" Nullable="false" />
           <Property Name="Details" Type="varchar(max)" Nullable="false" />
-          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Newspanel">
+          <Key>
+            <PropertyRef Name="NewspanelId" />
+          </Key>
+          <Property Name="NewspanelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Details" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -90,11 +99,11 @@
           <Property Name="RestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
-          <Property Name="picture" Type="varchar" MaxLength="300" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="picture" Type="varchar(max)" />
           <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PopularMenu" Type="varchar" MaxLength="100" />
-          <Property Name="CostPerOrder" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostPerOrder" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Time" Type="varchar" MaxLength="50" />
           <Property Name="Cuisine" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Extra" Type="varchar" MaxLength="50" />
@@ -288,6 +297,7 @@
           <EntitySet Name="FoodCart" EntityType="Self.FoodCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodOrder" EntityType="Self.FoodOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magazine" EntityType="Self.Magazine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Newspanel" EntityType="Self.Newspanel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
@@ -381,7 +391,7 @@
           <Property Name="FoodId" Type="Int32" Nullable="false" />
           <Property Name="RestaurantId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Details" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Food_Restaurant" FromRole="Food" ToRole="Restaurant" />
@@ -421,7 +431,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -444,11 +453,11 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
-          <Property Name="picture" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" />
+          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PopularMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CostPerOrder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostPerOrder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cuisine" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Extra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -691,6 +700,7 @@
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <EntitySet Name="TradingRestaurants" EntityType="dbrmsModel.TradingRestaurant" />
+          <EntitySet Name="Newspanels" EntityType="dbrmsModel.Newspanel" />
         </EntityContainer>
         <EntityType Name="TradingRestaurant">
           <Key>
@@ -700,6 +710,16 @@
           <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Newspanel">
+          <Key>
+            <PropertyRef Name="NewspanelId" />
+          </Key>
+          <Property Name="NewspanelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -771,7 +791,6 @@
           <EntitySetMapping Name="Magazines">
             <EntityTypeMapping TypeName="dbrmsModel.Magazine">
               <MappingFragment StoreEntitySet="Magazine">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="MagazineId" ColumnName="MagazineId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -861,6 +880,17 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="TradingRestaurantId" ColumnName="TradingRestaurantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Newspanels">
+            <EntityTypeMapping TypeName="dbrmsModel.Newspanel">
+              <MappingFragment StoreEntitySet="Newspanel">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NewspanelId" ColumnName="NewspanelId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,11 +12,12 @@ namespace DBrms.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Magazine
+    public partial class Newspanel
     {
-        public int MagazineId { get; set; }
+        public int NewspanelId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string Details { get; set; }
+        public bool IsActive { get; set; }
     }
 }

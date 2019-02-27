@@ -29,6 +29,7 @@
         <AssociationConnector Association="dbrmsModel.FK_Transaction_Order" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Review_Restaurant" ManuallyRouted="false" />
         <EntityTypeShape EntityType="dbrmsModel.TradingRestaurant" Width="2" PointX="8.125" PointY="3.5" />
+        <EntityTypeShape EntityType="dbrmsModel.Newspanel" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
