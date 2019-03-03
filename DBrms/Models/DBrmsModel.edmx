@@ -28,6 +28,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="50" />
           <Property Name="TotalOrder" Type="int" />
           <Property Name="TotalReviews" Type="int" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
@@ -60,6 +61,15 @@
           <Property Name="Qunatity" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Magazine">
           <Key>
@@ -110,6 +120,7 @@
           <Property Name="Discount" Type="varchar" MaxLength="50" />
           <Property Name="RatingUser" Type="int" />
           <Property Name="RatingNum" Type="int" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -179,6 +190,18 @@
             </Principal>
             <Dependent Role="Cart">
               <PropertyRef Name="RestaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Login">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -254,6 +277,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Restaurant_Login">
+          <End Role="Login" Type="Self.Login" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Review_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -296,6 +331,7 @@
           <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodCart" EntityType="Self.FoodCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodOrder" EntityType="Self.FoodOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magazine" EntityType="Self.Magazine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Newspanel" EntityType="Self.Newspanel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
@@ -312,6 +348,10 @@
           <AssociationSet Name="FK_Cart_Restaurant" Association="Self.FK_Cart_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Login" Association="Self.FK_Customer_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
           <AssociationSet Name="FK_Food_Restaurant" Association="Self.FK_Food_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
@@ -336,6 +376,10 @@
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Login" Association="Self.FK_Restaurant_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
           </AssociationSet>
           <AssociationSet Name="FK_Review_Customer" Association="Self.FK_Review_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -383,6 +427,8 @@
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Customer" FromRole="Customer" ToRole="Cart" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Customer" FromRole="Customer" ToRole="Review" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="dbrmsModel.FK_Customer_Login" FromRole="Customer" ToRole="Login" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
@@ -453,7 +499,7 @@
           <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PopularMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -468,6 +514,8 @@
           <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Restaurant" FromRole="Restaurant" ToRole="Food" />
           <NavigationProperty Name="FoodOrder" Relationship="Self.FK_FoodOrder_Order" FromRole="Restaurant" ToRole="FoodOrder" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Login" Relationship="dbrmsModel.FK_Restaurant_Login" FromRole="Restaurant" ToRole="Login" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -701,6 +749,15 @@
           </AssociationSet>
           <EntitySet Name="TradingRestaurants" EntityType="dbrmsModel.TradingRestaurant" />
           <EntitySet Name="Newspanels" EntityType="dbrmsModel.Newspanel" />
+          <EntitySet Name="Logins" EntityType="dbrmsModel.Login" />
+          <AssociationSet Name="FK_Customer_Login" Association="dbrmsModel.FK_Customer_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Login" Association="dbrmsModel.FK_Restaurant_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Restaurant" EntitySet="Restaurants" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TradingRestaurant">
           <Key>
@@ -721,6 +778,41 @@
           <Property Name="Details" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="dbrmsModel.FK_Customer_Login" FromRole="Login" ToRole="Customer" />
+          <NavigationProperty Name="Restaurants" Relationship="dbrmsModel.FK_Restaurant_Login" FromRole="Login" ToRole="Restaurant" />
+        </EntityType>
+        <Association Name="FK_Customer_Login">
+          <End Type="dbrmsModel.Login" Role="Login" Multiplicity="1" />
+          <End Type="dbrmsModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Login">
+          <End Type="dbrmsModel.Login" Role="Login" Multiplicity="1" />
+          <End Type="dbrmsModel.Restaurant" Role="Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -743,6 +835,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="dbrmsModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -814,6 +907,7 @@
           <EntitySetMapping Name="Restaurants">
             <EntityTypeMapping TypeName="dbrmsModel.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -891,6 +985,16 @@
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NewspanelId" ColumnName="NewspanelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="dbrmsModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

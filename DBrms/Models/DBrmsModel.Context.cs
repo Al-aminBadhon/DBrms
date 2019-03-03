@@ -39,5 +39,6 @@ namespace DBrms.Models
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<TradingRestaurant> TradingRestaurants { get; set; }
         public virtual DbSet<Newspanel> Newspanels { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     }
 }

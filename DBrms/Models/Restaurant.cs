@@ -36,6 +36,7 @@ namespace DBrms.Models
         public string Discount { get; set; }
         public Nullable<int> RatingUser { get; set; }
         public Nullable<int> RatingNum { get; set; }
+        public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
@@ -44,5 +45,6 @@ namespace DBrms.Models
         public virtual FoodOrder FoodOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual Login Login { get; set; }
     }
 }

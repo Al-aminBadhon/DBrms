@@ -12,31 +12,23 @@ namespace DBrms.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Login
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Login()
         {
-            this.Carts = new HashSet<Cart>();
-            this.Orders = new HashSet<Order>();
-            this.Reviews = new HashSet<Review>();
+            this.Customers = new HashSet<Customer>();
+            this.Restaurants = new HashSet<Restaurant>();
         }
     
-        public int CustomerId { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Image { get; set; }
-        public string Phone { get; set; }
-        public Nullable<int> TotalOrder { get; set; }
-        public Nullable<int> TotalReviews { get; set; }
         public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public int UserRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual Login Login { get; set; }
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="931cfae552e44e87bde24ddb67ef6e42" Name="Diagram1">
+      <Diagram DiagramId="931cfae552e44e87bde24ddb67ef6e42" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="dbrmsModel.Cart" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Food" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.FoodCart" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.FoodOrder" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Magazine" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Order" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Order" Width="1.5" PointX="1.875" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Restaurant" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Review" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.Slider" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="dbrmsModel.sysdiagram" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Transaction" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Transaction" Width="1.5" PointX="5.625" PointY="12.625" IsExpanded="true" />
         <AssociationConnector Association="dbrmsModel.FK_Cart_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Cart_Restaurant" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_FoodCart_Cart" ManuallyRouted="false" />
@@ -30,6 +30,9 @@
         <AssociationConnector Association="dbrmsModel.FK_Review_Restaurant" ManuallyRouted="false" />
         <EntityTypeShape EntityType="dbrmsModel.TradingRestaurant" Width="2" PointX="8.125" PointY="3.5" />
         <EntityTypeShape EntityType="dbrmsModel.Newspanel" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="dbrmsModel.Login" Width="1.5" PointX="9.375" PointY="9.75" />
+        <AssociationConnector Association="dbrmsModel.FK_Customer_Login" />
+        <AssociationConnector Association="dbrmsModel.FK_Restaurant_Login" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

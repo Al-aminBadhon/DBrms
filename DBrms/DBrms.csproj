@@ -184,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBrmsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extended\Login.cs" />
     <Compile Include="Models\Extended\Slider.cs" />
     <Compile Include="Models\Food.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
@@ -192,6 +193,9 @@
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodOrder.cs">
+      <DependentUpon>DBrmsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login.cs">
       <DependentUpon>DBrmsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Magazine.cs">
@@ -2526,7 +2530,6 @@
     <Content Include="Views\Restaurants\Index.cshtml" />
     <Content Include="Views\Admin\Review.cshtml" />
     <Content Include="Views\Admin\Magazine.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
     <Content Include="Views\Website\Index.cshtml" />
     <Content Include="Views\Admin\TradingRestaurant.cshtml" />
@@ -2538,6 +2541,8 @@
     <Content Include="Views\Admin\RestaurantAdd.cshtml" />
     <Content Include="Views\Restaurants\Menu.cshtml" />
     <Content Include="Views\Restaurants\MenuAdd.cshtml" />
+    <Content Include="Views\Login\Logged.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
