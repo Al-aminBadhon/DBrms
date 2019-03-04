@@ -10,13 +10,13 @@ namespace DBrms.Controllers
 {
     public class AdminController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
 
         public ActionResult Index()
         {
             return View();
         }
-
+         
         public ActionResult Slider()
         {
            
@@ -32,25 +32,29 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SliderAdd([Bind(Include = "Name,Image,Details,IsActive")] Slider slider , HttpPostedFileBase ImageFile)
 
         {
-            if (ImageFile != null )
-            {
+            
                 String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
                 slider.Image = "/Image/" + filename;
-                filename = Path.Combine(Server.MapPath("/Image/"), filename);
-                ImageFile.SaveAs(filename);
+                
 
+               
+            if (ModelState.IsValid)
+            {
+                 ImageFile.SaveAs(filename);
                 db.Sliders.Add(slider);
                 db.SaveChanges();
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
                 ModelState.Clear();
                 return RedirectToAction("Slider");
 
             }
-                return View();
+            return View();
         }
 
 

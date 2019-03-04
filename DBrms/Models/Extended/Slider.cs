@@ -15,11 +15,11 @@ namespace DBrms.Models
 
     public class MetadataSlider
     {
-        [Required]
+        [Required(ErrorMessage ="Enter Name")]
         public string Name { get; set; }
         [Required]
         public string Image { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter Details")]
         public string Details { get; set; }
         [Required]
         public bool IsActive { get; set; }

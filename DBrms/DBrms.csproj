@@ -164,66 +164,66 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBrmsModel.Context.cs">
+    <Compile Include="Models\DBrms.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBrmsModel.Context.tt</DependentUpon>
+      <DependentUpon>DBrms.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBrmsModel.cs">
+    <Compile Include="Models\DBrms.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBrmsModel.Designer.cs">
+    <Compile Include="Models\DBrms.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBrmsModel.edmx</DependentUpon>
+      <DependentUpon>DBrms.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Login.cs" />
     <Compile Include="Models\Extended\Slider.cs" />
     <Compile Include="Models\Food.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodCart.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodOrder.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Magazine.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Newspanel.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Restaurant.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Slider.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TradingRestaurant.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transaction.cs">
-      <DependentUpon>DBrmsModel.tt</DependentUpon>
+      <DependentUpon>DBrms.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2006,7 +2006,44 @@
     <Content Include="Content\jvectormap\tests\markers.html" />
     <Content Include="Content\jvectormap\tests\memory.html" />
     <Content Include="Content\jvectormap\tests\reverse-projection.html" />
-    <Content Include="Content\LoginCss.css" />
+    <Content Include="Content\Login\dist\css\site.min.css" />
+    <Content Include="Content\Login\dist\fonts\angularicons.svg" />
+    <Content Include="Content\Login\dist\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Login\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Login\dist\img\ascii-logo.gif" />
+    <Content Include="Content\Login\dist\img\bootflat-ui-kit.jpg" />
+    <Content Include="Content\Login\dist\img\check_flat\default.png" />
+    <Content Include="Content\Login\dist\img\design.png" />
+    <Content Include="Content\Login\dist\img\divider.png" />
+    <Content Include="Content\Login\dist\img\fast.png" />
+    <Content Include="Content\Login\dist\img\feature-bootstrap.png" />
+    <Content Include="Content\Login\dist\img\feature-css.png" />
+    <Content Include="Content\Login\dist\img\feature-lightweight.png" />
+    <Content Include="Content\Login\dist\img\feature-mobile.png" />
+    <Content Include="Content\Login\dist\img\footer-logo.png" />
+    <Content Include="Content\Login\dist\img\github.png" />
+    <Content Include="Content\Login\dist\img\index.png" />
+    <Content Include="Content\Login\dist\img\Jumbotron.jpg" />
+    <Content Include="Content\Login\dist\img\logo-index.png" />
+    <Content Include="Content\Login\dist\img\logo.png" />
+    <Content Include="Content\Login\dist\img\photo-1.jpg" />
+    <Content Include="Content\Login\dist\img\photo-2.jpg" />
+    <Content Include="Content\Login\dist\img\photo-3.jpg" />
+    <Content Include="Content\Login\dist\img\photo-4.jpg" />
+    <Content Include="Content\Login\dist\img\prototyping.png" />
+    <Content Include="Content\Login\dist\img\screensho1.png" />
+    <Content Include="Content\Login\dist\img\screenshot2.png" />
+    <Content Include="Content\Login\dist\img\share.gif" />
+    <Content Include="Content\Login\dist\img\slider1.jpg" />
+    <Content Include="Content\Login\dist\img\slider2.jpg" />
+    <Content Include="Content\Login\dist\img\slider3.jpg" />
+    <Content Include="Content\Login\dist\img\thumbnail-1.jpg" />
+    <Content Include="Content\Login\dist\img\thumbnail-2.jpg" />
+    <Content Include="Content\Login\dist\img\thumbnail-3.jpg" />
+    <Content Include="Content\Login\dist\img\thumbnail-4.jpg" />
+    <Content Include="Content\Login\dist\img\together.png" />
+    <Content Include="Content\Login\dist\img\wild_flowers.png" />
+    <Content Include="Content\Login\dist\js\site.min.js" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -2244,16 +2281,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\2831_computer-wallpaper-hd.jpg" />
     <Content Include="Image\images.png" />
-    <Content Include="Models\DBrmsModel.Context.tt">
+    <Content Include="Models\DBrms.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBrmsModel.edmx</DependentUpon>
-      <LastGenOutput>DBrmsModel.Context.cs</LastGenOutput>
+      <DependentUpon>DBrms.edmx</DependentUpon>
+      <LastGenOutput>DBrms.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBrmsModel.tt">
+    <Content Include="Models\DBrms.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBrmsModel.edmx</DependentUpon>
-      <LastGenOutput>DBrmsModel.cs</LastGenOutput>
+      <DependentUpon>DBrms.edmx</DependentUpon>
+      <LastGenOutput>DBrms.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2475,13 +2513,6 @@
     <Content Include="Content\jvectormap\tests\world.json" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-codes.json" />
-    <EntityDeploy Include="Models\DBrmsModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBrmsModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBrmsModel.edmx.diagram">
-      <DependentUpon>DBrmsModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Website\images\Thumbs.db" />
     <Content Include="Content\Website\webfonts\fa-brands-400.eot" />
     <Content Include="Content\Website\webfonts\fa-brands-400.ttf" />
@@ -2495,6 +2526,25 @@
     <Content Include="Content\Website\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\Website\webfonts\fa-solid-900.woff" />
     <Content Include="Content\Website\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\Login\dist\fonts\angularicons.eot" />
+    <Content Include="Content\Login\dist\fonts\angularicons.ttf" />
+    <Content Include="Content\Login\dist\fonts\angularicons.woff" />
+    <Content Include="Content\Login\dist\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Login\dist\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Login\dist\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Login\dist\fonts\FontAwesome.otf" />
+    <Content Include="Content\Login\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Login\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Login\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Login\dist\img\check_flat\default.psd" />
+    <Content Include="Content\Login\dist\js\site.min.map" />
+    <EntityDeploy Include="Models\DBrms.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBrms.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBrms.edmx.diagram">
+      <DependentUpon>DBrms.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

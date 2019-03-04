@@ -16,10 +16,12 @@ namespace DBrms.Models
     public class MetadataLogin
     {
         public int UserId { get; set; }
-        [DisplayName("User Name") ] 
+        [DisplayName("User Name") ]
+        [Required(ErrorMessage ="Enter Name")]
         public string UserName { get; set; }
        
         [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+        [Required(ErrorMessage = "Enter Password")]
         public string Password { get; set; }
         public int UserRole { get; set; }
     }

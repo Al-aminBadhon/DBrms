@@ -9,28 +9,41 @@ namespace DBrms.Controllers
 {
     public class LoginController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
         // GET: Login
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index (Login u )
+       
+        public ActionResult Index (string username, string password)
         {
-            //This action is for handle post (login)
-            if(ModelState.IsValid)
-            {
-                var v =db.Logins.Where(a=>   a.UserName.Equals(u.UserName) && a.Password.Equals(u.Password)  ).FirstOrDefault();
-                if(v != null)
+             var Login = db.Restaurants.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+
+                if (Login == null)
                 {
-                    Session["LogedUserID"] = v.UserId.ToString();
-                    //Session["UserRole"] = v.UserRole.ToString();
-                    return RedirectToAction("Logged");
+                    var cus = db.Customers.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+                    if (cus == null)
+                    {
+                        ViewBag.message = "Login Fail";
+                        return View();
+                    }
+                    else
+                    {
+                        Session["username"] = cus.Name.ToString();
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
-            }
-            return View();
+                else
+                {
+                    Session["username"] = Login.Name.ToString();
+                    return RedirectToAction("Index", "Restaurants");
+                }
+                
+           
+           
+           
         }
         public ActionResult Logged()
         {

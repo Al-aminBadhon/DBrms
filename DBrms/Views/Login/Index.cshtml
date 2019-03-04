@@ -1,146 +1,65 @@
-﻿@model DBrms.Models.Login
+﻿
+
 
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
     <title>Login</title>
-    <link href="~/Content/LoginCss.css" rel="stylesheet" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="favicon_16.ico" />
+    <link rel="bookmark" href="favicon_16.ico" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/Content/Login/dist/css/site.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="~/Content/Login/dist/js/site.min.js"></script>
+    <style>
+
+
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-image: url('../../Image/2831_computer-wallpaper-hd.jpg');
+            background-position: center;
+            background-size: cover;
+            color: #2c2d2d
+        }
+       
+    </style>
 </head>
 <body>
-    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-        if (ViewBag.Message != null)
-        {
-    <div style="color:red">
-        @ViewBag.Message
+
+    <div class="container">
+       
+        <form class="form-signin" action=@Url.Action("Index","Login") method="post">
+            <span class="alert-danger">  <h2>@ViewBag.message</h2></span>
+            <h3 class="form-signin-heading"><center>Please sign in</center></h3>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class=" glyphicon glyphicon-lock "></i>
+                    </div>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
     </div>
-        }
-
-        <div class="container">
-            <h1><center>Login</center></h1>
-
-            <div class="imgcontainer">
-
-                <img src="~/Image/images.png" alt="Avatar" class="avatar" />
-            </div>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.UserRole, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserRole, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserRole, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
+    <div class="clearfix"></div>
+    <br><br>
 
 
 </body>
 </html>
-
-
-@*@model DBrms.Models.Login
-
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <link href="~/Content/LoginCss.css" rel="stylesheet" />
-</head>
-<body>
-
-    <p><center><b>Login Form</b></center></p>
-    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
-    {
-        <div class="imgcontainer">
-
-            <img src="~/Image/images.png" alt="Avatar" class="avatar" />
-        </div>
-        @Html.AntiForgeryToken() // This is for prevent CSRF Attack
-        @Html.ValidationSummary(true)
-        if (ViewBag.Message != null)
-        {
-            <div style="border: 1px solid red ">
-                @ViewBag.Message
-            </div>
-        }
-
-
-        <table class="container">
-            <tr>
-                <td>
-                    @Html.LabelFor(a => a.UserName)
-                </td>
-                <td>
-                    @Html.TextBoxFor(a => a.UserName)
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(a => a.UserName)
-                </td>
-            </tr>
-
-            <tr>
-
-                <td>
-                    @Html.LabelFor(a => a.Password)
-                </td>
-                <td>
-                    @Html.PasswordFor(a => a.Password)
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(a => a.Password)
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Login">
-                </td>
-            </tr>
-        </table>
-    }
-
-
-</body>
-</html>*@
