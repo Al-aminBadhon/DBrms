@@ -32,13 +32,17 @@ namespace DBrms.Controllers
                     else
                     {
                         Session["username"] = cus.Name.ToString();
+                        Session["CusomerId"] = cus.CustomerId.ToString();
                         return RedirectToAction("Index", "Customer");
+
+                    
                     }
                 }
                 else
                 {
                     Session["username"] = Login.Name.ToString();
-                    return RedirectToAction("Index", "Restaurants");
+                Session["RestaurantsId"] = Login.RestaurantId.ToString();
+                return RedirectToAction("Index", "Restaurants");
                 }
                 
            
