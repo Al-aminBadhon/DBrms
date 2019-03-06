@@ -18,8 +18,8 @@ namespace DBrms.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
-            var restaurants = db.Restaurants.Include(r => r.FoodOrder);
-            return View(restaurants.ToList());
+            
+            return View(db.Restaurants.ToList());
         }
 
       
@@ -86,19 +86,37 @@ namespace DBrms.Controllers
             return View();
         }
 
-        //public ActionResult Details(int? id)
+        public ActionResult Details(int? id)
+        {
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+            
+            return View(db.Restaurants.Where(x => x.RestaurantId == id).FirstOrDefault());
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            var Edit = db.Restaurants.Find(id);
+            if(Edit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Edit);
+        }
+        //[HttpPost]
+        //public ActionResult Edit([Bind(Include ="")])
         //{
-        //    id = Convert.ToInt32(Session["RestaurantsId"]);
-        //    return View(db.Restaurants.Where(x => x.Username == username && x.Password == password).FirstOrDefault());
+        //    return View();
         //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
+
+       
     }
 }
