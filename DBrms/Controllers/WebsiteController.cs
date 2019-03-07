@@ -9,7 +9,7 @@ namespace DBrms.Controllers
 {
     public class WebsiteController : Controller
     {
-        dbrmsEntities db = new dbrmsEntities();
+        dbrmsEntities1 db = new dbrmsEntities1();
         // GET: Website
         public ActionResult Index()
         {
@@ -22,6 +22,20 @@ namespace DBrms.Controllers
             List<TradingRestaurant> tradingRestaurants = db.TradingRestaurants.ToList();
             ViewBag.TradingRestaurants = tradingRestaurants;
 
+            return View();
+        }
+        public ActionResult Magazine()
+        {
+            
+
+            List<Magazine> magazines = db.Magazines.ToList();
+            ViewBag.Magazines = magazines;
+
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
             return View();
         }
     }

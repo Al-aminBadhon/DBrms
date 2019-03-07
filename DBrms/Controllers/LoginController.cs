@@ -9,7 +9,7 @@ namespace DBrms.Controllers
 {
     public class LoginController : Controller
     {
-        dbrmsEntities db = new dbrmsEntities();
+        dbrmsEntities1 db = new dbrmsEntities1();
         // GET: Login
         public ActionResult Index()
         {
@@ -32,7 +32,7 @@ namespace DBrms.Controllers
                     else
                     {
                         Session["username"] = cus.Name.ToString();
-                        Session["CusomerId"] = cus.CustomerId.ToString();
+                        Session["CustomerId"] = cus.CustomerId.ToString();
                         return RedirectToAction("Index", "Customer");
 
                     
@@ -41,7 +41,7 @@ namespace DBrms.Controllers
                 else
                 {
                     Session["username"] = Login.Name.ToString();
-                Session["RestaurantsId"] = Login.RestaurantId.ToString();
+                    Session["RestaurantsId"] = Login.RestaurantId.ToString();
                 return RedirectToAction("Index", "Restaurants");
                 }
                 
@@ -49,10 +49,6 @@ namespace DBrms.Controllers
            
            
         }
-        public ActionResult Logged()
-        {
-            return View();
-        }
-
+       
     }
 }

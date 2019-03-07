@@ -164,66 +164,66 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBrms.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBrms.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBrms.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBrms.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBrms.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBrms.edmx</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Login.cs" />
     <Compile Include="Models\Extended\Slider.cs" />
     <Compile Include="Models\Food.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodCart.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodOrder.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Magazine.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Newspanel.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Restaurant.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Review.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Slider.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TradingRestaurant.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transaction.cs">
-      <DependentUpon>DBrms.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2359,15 +2359,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Image\2831_computer-wallpaper-hd.jpg" />
     <Content Include="Image\images.png" />
-    <Content Include="Models\DBrms.Context.tt">
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBrms.edmx</DependentUpon>
-      <LastGenOutput>DBrms.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBrms.tt">
+    <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBrms.edmx</DependentUpon>
-      <LastGenOutput>DBrms.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2614,13 +2614,6 @@
     <Content Include="Content\Login\dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Login\dist\img\check_flat\default.psd" />
     <Content Include="Content\Login\dist\js\site.min.map" />
-    <EntityDeploy Include="Models\DBrms.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBrms.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBrms.edmx.diagram">
-      <DependentUpon>DBrms.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Website2\css\maps\home.css.map" />
     <Content Include="Content\Website2\css\maps\style.css.map" />
     <Content Include="Content\Website2\plugins\instafeed.js\bower.json" />
@@ -2645,6 +2638,13 @@
     <Content Include="Content\Website2\plugins\themefisher-font\fonts\themefisher-font.ttf" />
     <Content Include="Content\Website2\plugins\themefisher-font\fonts\themefisher-font.woff" />
     <Content Include="Content\Website2\plugins\themefisher-font\selection.json" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2687,10 +2687,13 @@
     <Content Include="Views\Admin\RestaurantAdd.cshtml" />
     <Content Include="Views\Restaurants\Menu.cshtml" />
     <Content Include="Views\Restaurants\MenuAdd.cshtml" />
-    <Content Include="Views\Login\Logged.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Restaurants\Details.cshtml" />
     <Content Include="Views\Restaurants\Edit.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Website\Magazine.cshtml" />
+    <Content Include="Views\Website\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

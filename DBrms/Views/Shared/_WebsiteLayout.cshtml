@@ -9,13 +9,13 @@
     <meta charset="UTF-8" />
     <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
@@ -44,11 +44,10 @@
         <div class="container-fluid">
             <div class="row main-top-w3l py-2">
                 <div class="col-lg-4 header-most-top">
-                    
+
                 </div>
                 <div class="col-lg-8 header-right mt-lg-0 mt-2">
                     <!-- header lists -->
-                  
                     <!-- //header lists -->
                 </div>
             </div>
@@ -56,7 +55,6 @@
     </div>
 
     <!-- Button trigger modal(select-location) -->
-   
     <!-- //shop locator (popup) -->
     <!-- modals -->
     <!-- log in -->
@@ -192,49 +190,53 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="agileits-navi_search">
-                    <form action="#" method="post">
-                       
-                    </form>
+                    <form action="#" method="post"></form>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto text-center mr-xl-5">
-                        <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link" href="index.html">
-                                Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link" href="">Retaurants</a>
-                        </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link" href="">Booking</a>
-                        </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link" href="">Magazine</a>
-                        </li>
-                        <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                            <a class="nav-link" href="">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Contact Us</a>
-                        </li>
-                    </ul>
+                   
+                        <ul class="navbar-nav ml-auto text-center mr-xl-5">
+
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("Home", "Index") | </a>
+                            </li>
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("Restaurants", "Restaurants")  | </a>
+                            </li>
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("Booking", "Booking")  | </a>
+                            </li>
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("Magazine", "Magazine")  | </a>
+                            </li>
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("About Us", "AboutUs")  | </a>
+                            </li>
+                            
+                            <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                <a class="nav-link">@Html.ActionLink("Contact Us", "ContactUs")  | </a>
+                            </li>
+                        </ul>
+                   
                 </div>
             </nav>
         </div>
-        @RenderBody()
+        <div>
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+
+        </div>        @RenderBody()
     </div>
     <!-- //navigation -->
     <!-- banner -->
-   
     <!-- //banner -->
     <!-- top Products -->
-    
     <!-- middle section -->
     <!-- footer -->
     <footer>
@@ -404,7 +406,6 @@
         </div>
         <!-- //footer third section -->
         <!-- footer fourth section -->
-        
         <!-- //footer fourth section (text) -->
     </footer>
     <!-- //footer -->
@@ -424,78 +425,78 @@
     <!-- //jquery -->
     <!-- nav smooth scroll -->
     <script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
     </script>
     <!-- //nav smooth scroll -->
     <!-- popup modal (for location)-->
     <script src="~/Content/Website/js/jquery.magnific-popup.js"></script>
     <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
 
-		});
+        });
     </script>
     <!-- //popup modal (for location)-->
     <!-- cart-js -->
     <script src="~/Content/Website/js/minicart.js"></script>
     <script>
-		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+        paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+        paypals.minicarts.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
     </script>
     <!-- //cart-js -->
     <!-- password-script -->
     <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
     </script>
     <!-- //password-script -->
     <!-- scroll seller -->
@@ -508,33 +509,33 @@
     <script src="~/Content/Website/js/move-top.js"></script>
     <script src="~/Content/Website/js/easing.js"></script>
     <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
     </script>
     <!-- //end-smooth-scrolling -->
     <!-- smooth-scrolling-of-move-up -->
     <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-		});
+        });
     </script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- for bootstrap working -->

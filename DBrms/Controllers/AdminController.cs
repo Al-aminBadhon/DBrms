@@ -10,7 +10,7 @@ namespace DBrms.Controllers
 {
     public class AdminController : Controller
     {
-        dbrmsEntities db = new dbrmsEntities();
+        dbrmsEntities1 db = new dbrmsEntities1();
 
         public ActionResult Index()
         {
@@ -193,7 +193,7 @@ namespace DBrms.Controllers
                 String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                restaurant.picture = "/Image/" + fileName;
+                restaurant.Picture = "/Image/" + fileName;
                 fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
                 ImageFile.SaveAs(fileName);
 

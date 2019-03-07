@@ -91,6 +91,9 @@
 
 
                     <!-- first section """""NewsPanel Start""""" -->
+                    <!-- ***************************************** -->
+                       <!-- ************************************* -->
+                          <!-- ****************************** -->
                     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                         <h3 class="heading-tittle text-center font-italic">Top News</h3>
                         <div class="row">
@@ -160,43 +163,36 @@
                         </div>
                     </div>
                     <!-- first section """""NewsPanel End""""" -->
-
-
-
                     <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
                     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                         <h3 class="heading-tittle text-center font-italic">Trending Restaurants</h3>
                         <div class="row">
                             @foreach (var item in ViewBag.TradingRestaurants)
                             {
-                            <div class="col-md-4 product-men mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src=@item.Image height="200" width="150">
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                <div class="col-md-4 product-men mt-5">
+                                    <div class="men-pro-item simpleCart_shelfItem">
+                                        <div class="men-thumb-item text-center">
+                                            <img src=@item.Image height="200" width="150">
+                                            <div class="men-cart-pro">
+                                                <div class="inner-men-cart-pro">
+                                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="item-info-product text-center border-top mt-4">
+                                            <h4 class="pt-1">
+                                                <a href="single.html">@item.Name</a>
+                                            </h4>
+
+
+                                        </div>
                                     </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="single.html">@item.Name</a>
-                                        </h4>
-                                        
-                                        
-                                    </div>  
                                 </div>
-                            </div>
                             }
-                            
+
                         </div>
                     </div>
                     <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
-
-
-
-
                     <!-- third section -->
                     <div class="product-sec1 product-sec2 px-sm-5 px-3">
                         <div class="row">

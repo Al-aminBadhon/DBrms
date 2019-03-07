@@ -13,10 +13,10 @@ namespace DBrms.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbrmsEntities : DbContext
+    public partial class dbrmsEntities1 : DbContext
     {
-        public dbrmsEntities()
-            : base("name=dbrmsEntities")
+        public dbrmsEntities1()
+            : base("name=dbrmsEntities1")
         {
         }
     

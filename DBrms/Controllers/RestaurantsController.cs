@@ -13,7 +13,7 @@ namespace DBrms.Controllers
 {
     public class RestaurantsController : Controller
     {
-        dbrmsEntities db = new dbrmsEntities();
+        dbrmsEntities1 db = new dbrmsEntities1();
 
         // GET: Restaurants
         public ActionResult Index()
@@ -102,21 +102,27 @@ namespace DBrms.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            var Edit = db.Restaurants.Find(id);
-            if(Edit == null)
+            var edit = db.Restaurants.Find(id);
+            if(edit == null)
             {
                 return HttpNotFound();
             }
-            return View(Edit);
+            return View(edit);
         }
-        //[HttpPost]
-        //public ActionResult Edit([Bind(Include ="")])
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount")] Restaurant restaurant, HttpPostedFileBase ImageFile)
+            {
+            if (ModelState.IsValid)
+            {
+                db.Entry(restaurant).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details");
+            }
+            return View();
+        }
 
 
 
-       
+
     }
 }

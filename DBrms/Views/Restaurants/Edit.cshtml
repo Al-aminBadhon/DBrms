@@ -42,12 +42,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <img src="@Model.picture" height="200" width="400" />
+                <img src="@Model.Picture" height="200" width="400" />
                 <p><b>Upload Another</b></p>
                 <input type="file" id="ImageFile" name="ImageFile"  />
-                @Html.ValidationMessageFor(model => model.picture, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
             </div>
         </div>
 
