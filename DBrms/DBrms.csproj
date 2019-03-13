@@ -2358,7 +2358,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\2831_computer-wallpaper-hd.jpg" />
+    <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
     <Content Include="Image\images.png" />
+    <Content Include="Image\Location.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2694,6 +2696,8 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Website\Magazine.cshtml" />
     <Content Include="Views\Website\ContactUs.cshtml" />
+    <Content Include="Views\Website\Restaurants.cshtml" />
+    <Content Include="Views\Website\RestaurantProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

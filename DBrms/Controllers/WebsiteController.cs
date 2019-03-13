@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,6 +38,31 @@ namespace DBrms.Controllers
         public ActionResult ContactUs()
         {
             return View();
+        }
+
+        public ActionResult Restaurants()
+        {
+            List<Restaurant> restaurants = db.Restaurants.ToList();
+            ViewBag.Restaurants = restaurants;
+
+            return View();
+        }
+
+        public ActionResult RestaurantProfile(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Restaurant restaurant = db.Restaurants.Find(id);
+            if (restaurant == null)
+            {
+                return HttpNotFound();
+            }
+            return View(restaurant);
+
         }
     }
 }
