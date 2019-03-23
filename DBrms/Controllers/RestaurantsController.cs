@@ -16,36 +16,45 @@ namespace DBrms.Controllers
         dbrmsEntities1 db = new dbrmsEntities1();
 
         // GET: Restaurants
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+            List<Restaurant> restaurants = db.Restaurants.Where(x=> x.RestaurantId ==id).ToList();
+            ViewBag.Restaurants = restaurants;
+
             return View(db.Restaurants.ToList());
         }
 
       
-
-        public ActionResult Menu ()
+        
+        public ActionResult Menu (int? id)
         {
-            return View(db.Foods.ToList());
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+            return View(db.Foods.Where(x => x.RestaurantId == id));
         }
 
         [HttpGet]
         public ActionResult MenuAdd()
         {
+           int id = Convert.ToInt32(Session["RestaurantsId"]);
             return View();
         }
         [HttpPost]
-        public ActionResult MenuAdd([Bind(Include ="RestaurantId,Name,Image,Price,Details")] Food food , HttpPostedFileBase ImageFile)
+        public ActionResult MenuAdd([Bind(Include ="Name,Image,Price,Details")] Food food , HttpPostedFileBase ImageFile)
         {
+
+
             if (ImageFile != null)
             {
+
                 String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
                 food.Image = "/Image/" + filename;
                 filename = Path.Combine(Server.MapPath("/Image/"), filename);
                 ImageFile.SaveAs(filename);
-
+                int id = Convert.ToInt32(Session["RestaurantsId"]);
+                food.RestaurantId = id;
                 db.Foods.Add(food);
                 db.SaveChanges();
                 ModelState.Clear();
@@ -54,6 +63,35 @@ namespace DBrms.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult MenuEdit (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            var menuedit = db.Foods.Find(id);
+            if (menuedit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(menuedit);
+        }
+        [HttpPost]
+        public ActionResult MenuEdit([Bind(Include = "Name,Image,Price,Details")]Food food, HttpPostedFileBase ImageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(food).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Menu");
+            }
+
+            return View();
+        }
+
+
 
         public ActionResult PopularMenu()
         {

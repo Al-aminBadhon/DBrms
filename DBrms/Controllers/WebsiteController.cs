@@ -50,6 +50,8 @@ namespace DBrms.Controllers
 
         public ActionResult RestaurantProfile(int? id)
         {
+            List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
+            ViewBag.Foods = foods;
 
             if (id == null)
             {

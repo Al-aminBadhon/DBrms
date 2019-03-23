@@ -2687,7 +2687,6 @@
     <Content Include="Views\Admin\NewspanelAdd.cshtml" />
     <Content Include="Views\Admin\ManageRsetaurant.cshtml" />
     <Content Include="Views\Admin\RestaurantAdd.cshtml" />
-    <Content Include="Views\Restaurants\Menu.cshtml" />
     <Content Include="Views\Restaurants\MenuAdd.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Restaurants\Details.cshtml" />
@@ -2698,6 +2697,8 @@
     <Content Include="Views\Website\ContactUs.cshtml" />
     <Content Include="Views\Website\Restaurants.cshtml" />
     <Content Include="Views\Website\RestaurantProfile.cshtml" />
+    <Content Include="Views\Restaurants\MenuEdit.cshtml" />
+    <Content Include="Views\Restaurants\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
