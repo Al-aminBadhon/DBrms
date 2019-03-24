@@ -19,6 +19,7 @@ namespace DBrms.Controllers
         public ActionResult Index(int? id)
         {
             id = Convert.ToInt32(Session["RestaurantsId"]);
+
             List<Restaurant> restaurants = db.Restaurants.Where(x=> x.RestaurantId ==id).ToList();
             ViewBag.Restaurants = restaurants;
 
@@ -30,7 +31,14 @@ namespace DBrms.Controllers
         public ActionResult Menu (int? id)
         {
             id = Convert.ToInt32(Session["RestaurantsId"]);
+
+            List<Restaurant> restaurants = db.Restaurants.Where(X=> X.RestaurantId ==id ).ToList();
+            ViewBag.Restaurants = restaurants;
+
+
             return View(db.Foods.Where(x => x.RestaurantId == id));
+
+            
         }
 
         [HttpGet]

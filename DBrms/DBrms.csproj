@@ -2361,6 +2361,7 @@
     <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
     <Content Include="Image\images.png" />
     <Content Include="Image\Location.png" />
+    <Content Include="Image\setting-clipart-gear-system-settings-md.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2699,6 +2700,7 @@
     <Content Include="Views\Website\RestaurantProfile.cshtml" />
     <Content Include="Views\Restaurants\MenuEdit.cshtml" />
     <Content Include="Views\Restaurants\Menu.cshtml" />
+    <Content Include="Views\Website\FoodSingle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

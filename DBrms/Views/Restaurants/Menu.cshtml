@@ -5,8 +5,12 @@
     Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
 }
 
-<h2>Menu</h2>
-
+<div>
+    @foreach (var item in ViewBag.Restaurants)
+    {
+        <h2>Menu of @item.Name</h2>
+    }
+</div>
 <p>
     @Html.ActionLink("Add Menu", "MenuAdd")
 </p>

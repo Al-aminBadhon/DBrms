@@ -11,12 +11,17 @@
         <div class="container">
             <ul class="w3_short">
                 <li>
-                    <a> Home </a>
-                    <i> |   </i>
+                    <a href="~/Website/Index">Home</a>
+                    <i>|</i>
                 </li>
-                <li> Restaurents </li>
-                <i> | </i>
-                <li> @Model.Name </li>
+                <li>
+                    <a href="~/Website/Restaurants">Restaurants</a>
+                    <i>|</i>
+                </li>
+                <li>
+                    <a>@Model.Name</a>
+                    
+                </li>
             </ul>
         </div>
     </div>
@@ -26,8 +31,19 @@
     <p><font size="7" color="#7f6018"><img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" /> <b><i> @Model.Name </i></b></font></p>
 </center>
 
+
+<div>
+
+
+</div>
+
+
 <div style="margin-left: 100px; ">
-    <img src="@Model.Picture" align="middle" height="350" width="600" />
+    <a>
+        <img src="@Model.Picture" align="middle" height="350" width="600" />
+
+
+    </a>
     <p>
         <font size="5" color="#7f6018">
             <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="30" width="30" />
@@ -39,16 +55,17 @@
 
 
 
-<div class="w3-bar w3-black" style="width: 260px; margin-left: 550px; background-color:cadetblue !important;">
+<div class="w3-bar w3-black" style="width: 783px; margin-left: 270px; background-color:cadetblue !important;">
 
-    <button class="w3-bar-item w3-button" onclick="openCity('Overview')"> Overview </button>
-    <button class="w3-bar-item w3-button" onclick="openCity('Menu')"> Menu </button>
-    <button class="w3-bar-item w3-button" onclick="openCity('Review')"> Review </button>
+    <button class="w3-bar-item w3-button" onclick="openCity('Overview')"> Restaurant Overview </button>
+    <button class="w3-bar-item w3-button" onclick="openCity('Menu')"> Food Item in Restaurant </button>
+    <button class="w3-bar-item w3-button" onclick="openCity('RestaurantReview')"> Review of Restaurant </button>
+    <button class="w3-bar-item w3-button" onclick="openCity('FoodReview')"> Review of Food Item  </button>
 
 </div>
 
 
-<div id="Overview" class="w3-container city" style="margin-left:200px;">
+<div id="Overview" class="w3-container city">
     <style>
         table {
             font-family: arial, sans-serif;
@@ -59,120 +76,187 @@
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
-            padding: 8px;
+            padding: 10px;
         }
 
         tr:nth-child(even) {
             background-color: #dddddd;
         }
     </style>
-    <h2 style="padding-left: 420px; color:brown;">Overview</h2>
-    <table>
 
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Address)</td>
-            <td> @Html.DisplayFor(model => model.Address)</td>
+                                                     <!-- Overview navigation bar-->
 
-        </tr>
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Phone)</td>
-            <td> @Html.DisplayFor(model => model.Phone)</td>
+    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+        <h3 class="heading-tittle text-center font-italic">Restaurant Overview</h3>
 
-        </tr>
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Location)</td>
-            <td> @Html.DisplayFor(model => model.Location)</td>
+        <div class="row" style="padding-left:200px;">
 
-        </tr>
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.PopularMenu)</td>
-            <td> @Html.DisplayFor(model => model.PopularMenu)</td>
+            <table>
 
-        </tr>
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.CostPerOrder) </td>
-            <td> @Html.DisplayFor(model => model.CostPerOrder) tk </td>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Address)</td>
+                    <td> @Html.DisplayFor(model => model.Address)</td>
 
-        </tr>
-        <tr>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Phone)</td>
+                    <td> @Html.DisplayFor(model => model.Phone)</td>
 
-            <td> @Html.DisplayNameFor(model => model.Time)</td>
-            <td> @Html.DisplayFor(model => model.Time)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Location)</td>
+                    <td> @Html.DisplayFor(model => model.Location)</td>
 
-        </tr>
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Cuisine)</td>
-            <td> @Html.DisplayFor(model => model.Cuisine)</td>
-        </tr>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.PopularMenu)</td>
+                    <td> @Html.DisplayFor(model => model.PopularMenu)</td>
 
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Extra)</td>
-            <td> @Html.DisplayFor(model => model.Extra)</td>
-        </tr>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.CostPerOrder) </td>
+                    <td> @Html.DisplayFor(model => model.CostPerOrder) tk </td>
 
-        <tr>
-            <td> @Html.DisplayNameFor(model => model.Discount)</td>
-            <td> @Html.DisplayFor(model => model.Discount)</td>
-        </tr>
+                </tr>
+                <tr>
+
+                    <td> @Html.DisplayNameFor(model => model.Time)</td>
+                    <td> @Html.DisplayFor(model => model.Time)</td>
+
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Cuisine)</td>
+                    <td> @Html.DisplayFor(model => model.Cuisine)</td>
+                </tr>
+
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Extra)</td>
+                    <td> @Html.DisplayFor(model => model.Extra)</td>
+                </tr>
+
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Discount)</td>
+                    <td> @Html.DisplayFor(model => model.Discount)</td>
+                </tr>
 
 
-    </table>
+            </table>
+
+        </div>
+
+    </div>
 </div>
+                                                                <!-- Menu navigation bar-->
+
 
 <div id="Menu" class="w3-container city" style="display:none">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-        <h3 class="heading-tittle text-center font-italic">Top News</h3>
+        <h3 class="heading-tittle text-center font-italic">Menu List</h3>
         <div class="row">
 
 
             @foreach (var item in ViewBag.Foods)
             {
-            <div class="col-md-4 product-men mt-5">
-                <div class="men-pro-item simpleCart_shelfItem">
-                    <div class="men-thumb-item text-center">
-                        <img src="@item.Image" height="150" width="200">
-                        <div class="men-cart-pro">
-                            <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
-                            </div>
-                        </div>
-                        <span class="product-new-top">New</span>
+                <div class="col-md-4 product-men mt-5">
+                    <div class="men-pro-item simpleCart_shelfItem">
+                        <div class="men-thumb-item text-center">
+                            <img src="@item.Image" height="150" width="200">
+                            <div class="men-cart-pro">
+                                <div class="inner-men-cart-pro">
 
-                    </div>
-                    <div class="item-info-product text-center border-top mt-4">
-                        <h4 class="pt-1">
-                            <a href="single.html">@item.Name</a>
-                        </h4>
-                        <div class="info-product-price my-2">
-                            <span class="item_price">@item.Price tk</span>
-                            
+                                    <a href="~/Website/FoodSingle/@item.FoodId" class="link-product-add-cart"> Quick View</a>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart" />
-                                    <input type="hidden" name="add" value="1" />
-                                    <input type="hidden" name="business" value=" " />
-                                    <input type="hidden" name="item_name" value="@item.Name" />
-                                    <input type="hidden" name="amount" value="@item.Price" />
-                                    <input type="hidden" name="discount_amount" value="0.00" />
-                                    <input type="hidden" name="currency_code" value="USD" />
-                                    <input type="hidden" name="return" value=" " />
-                                    <input type="hidden" name="cancel_return" value=" " />
-                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                </fieldset>
-                            </form>
+                        <div class="item-info-product text-center border-top mt-4">
+                            <h4 class="pt-1">
+                                <a style="font-size:30px;" href="~/Website/FoodSingle/@item.FoodId">@item.Name</a>
+                            </h4>
+                            <div class="info-product-price my-2">
+                                <span class="item_price">Taka @item.Price </span>
+
+                            </div>
+                            <div class="info-product-price my-2">
+                                <span > User Ratings: 4.5 </span>
+
+                            </div>
+                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="add" value="1" />
+                                        <input type="hidden" name="business" value=" " />
+                                        <input type="hidden" name="item_name" value="@item.Name" />
+                                        <input type="hidden" name="amount" value="@item.Price" />
+                                        <input type="hidden" name="discount_amount" value="0.00" />
+                                        <input type="hidden" name="currency_code" value="USD" />
+                                        <input type="hidden" name="return" value=" " />
+                                        <input type="hidden" name="cancel_return" value=" " />
+                                        <input type="submit" name="submit" value="Add to cart" class="button btn" />
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                
+
             }
 
-            
+
         </div>
     </div>
 </div>
+
+                                                     <!-- Restaurant Review navigation bar-->
+
+<div id="RestaurantReview" class="w3-container city" style="display:none">
+    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+        <h3 class="heading-tittle text-center font-italic">Reviews of Restaurants</h3>
+        <div class="row">
+
+
+
+
+
+        </div>
+    </div>
+</div>
+ 
+                                                    <!-- Food Review navigation bar-->
+
+<div id="FoodReview" class="w3-container city" style="display:none">
+    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+        <h3 class="heading-tittle text-center font-italic">Reviews of Food Items</h3>
+        <div class="row">
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+                                                    <!-- For get Restaurants rating from users-->
+<div>
+    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+
+        <div class="row">
+
+
+            <h3><b><i> Your Ratings for Restaurants </i></b></h3>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 
 

@@ -50,6 +50,8 @@ namespace DBrms.Controllers
 
         public ActionResult RestaurantProfile(int? id)
         {
+            
+
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
             ViewBag.Foods = foods;
 
@@ -65,6 +67,22 @@ namespace DBrms.Controllers
             }
             return View(restaurant);
 
+        }
+
+        public ActionResult FoodSingle(int? id)
+        {
+            
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Food food  = db.Foods.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
+            return View(food);
         }
     }
 }
