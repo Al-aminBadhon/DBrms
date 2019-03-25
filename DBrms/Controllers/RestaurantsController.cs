@@ -148,7 +148,7 @@ namespace DBrms.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            var edit = db.Restaurants.Find(id);
+            Restaurant edit = db.Restaurants.Find(id);
             if(edit == null)
             {
                 return HttpNotFound();
@@ -156,10 +156,17 @@ namespace DBrms.Controllers
             return View(edit);
         }
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount")] Restaurant restaurant, HttpPostedFileBase ImageFile)
+        public ActionResult Edit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,UserName,Password")] Restaurant restaurant, HttpPostedFileBase ImageFile)
             {
+            //String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+            //String extension = Path.GetExtension(ImageFile.FileName);
+            //filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+            //restaurant.Picture = "/Image/" + filename;
+            //filename = Path.Combine(Server.MapPath("/Image/"), filename);
+            //ImageFile.SaveAs(filename);
             if (ModelState.IsValid)
             {
+                
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details");

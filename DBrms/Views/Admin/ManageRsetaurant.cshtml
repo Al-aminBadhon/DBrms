@@ -18,46 +18,20 @@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>*@
+
         <th>
             @Html.DisplayNameFor(model => model.Picture)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PopularMenu)
+            @Html.DisplayNameFor(model => model.Visible)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CostPerOrder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cuisine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Extra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Discount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RatingUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RatingNum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FoodOrder.FoodOrderId)
-        </th>
-        <th></th>*@
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -65,46 +39,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.Address)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>*@
+
         <td>
             <img src="@item.Picture" height="200" width="400">
         </td>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PopularMenu)
+            @Html.DisplayFor(modelItem => item.Visible)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CostPerOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cuisine)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Extra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RatingUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RatingNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodOrder.FoodOrderId)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RestaurantId }) |
-           
-            @Html.ActionLink("Delete", "Delete", new { id=item.RestaurantId })
+            @Html.ActionLink("Edit", "ManageRestaurantEdit", new { id = item.RestaurantId }) |
+
+
         </td>
     </tr>
 }

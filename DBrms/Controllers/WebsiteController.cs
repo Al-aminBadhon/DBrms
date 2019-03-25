@@ -17,11 +17,13 @@ namespace DBrms.Controllers
             List<Slider> sliders = db.Sliders.ToList();
             ViewBag.Sliders = sliders;
 
-            List<Newspanel> newspanels = db.Newspanels.ToList();
-            ViewBag.Newspanels = newspanels;
+            
 
-            List<TradingRestaurant> tradingRestaurants = db.TradingRestaurants.ToList();
-            ViewBag.TradingRestaurants = tradingRestaurants;
+            List<Magazine> magazines = db.Magazines.Where(x => x.IsActive == true).ToList();
+            ViewBag.Magazines = magazines;
+
+            List<Restaurant> restaurants = db.Restaurants.Where(x => x.IsActive == true).ToList();
+            ViewBag.Restaurants = restaurants;
 
             return View();
         }

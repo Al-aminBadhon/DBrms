@@ -2682,10 +2682,8 @@
     <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
     <Content Include="Views\Website\Index.cshtml" />
     <Content Include="Views\Admin\TradingRestaurant.cshtml" />
-    <Content Include="Views\Admin\TradingRestaurantAdd.cshtml" />
     <Content Include="Views\Admin\MagazineAdd.cshtml" />
     <Content Include="Views\Admin\Newspanel.cshtml" />
-    <Content Include="Views\Admin\NewspanelAdd.cshtml" />
     <Content Include="Views\Admin\ManageRsetaurant.cshtml" />
     <Content Include="Views\Admin\RestaurantAdd.cshtml" />
     <Content Include="Views\Restaurants\MenuAdd.cshtml" />
@@ -2701,6 +2699,9 @@
     <Content Include="Views\Restaurants\MenuEdit.cshtml" />
     <Content Include="Views\Restaurants\Menu.cshtml" />
     <Content Include="Views\Website\FoodSingle.cshtml" />
+    <Content Include="Views\Admin\NewspanelEdit.cshtml" />
+    <Content Include="Views\Admin\TradingRestaurantEdit.cshtml" />
+    <Content Include="Views\Admin\ManageRestaurantEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

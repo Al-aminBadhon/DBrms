@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DBrms.Models.Newspanel>
+﻿@model IEnumerable<DBrms.Models.Magazine>
 
 @{
     ViewBag.Title = "Newspanel";
@@ -7,9 +7,7 @@
 
 <h2>News panel</h2>
 
-<p>
-    @Html.ActionLink("Add News", "NewspanelAdd")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -23,6 +21,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
+          
         </th>
         <th></th>
     </tr>
@@ -42,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NewspanelId }) 
+            @Html.ActionLink("Edit", "NewspanelEdit", new { id=item.MagazineId }) 
        
-            @Html.ActionLink("Delete", "Delete", new { id=item.NewspanelId })
+            
         </td>
     </tr>
 }

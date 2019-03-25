@@ -18,5 +18,6 @@ namespace DBrms.Models
         public string Name { get; set; }
         public string Image { get; set; }
         public string Details { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using System.Net;
+using System.Data.Entity;
 
 namespace DBrms.Controllers
 {
@@ -70,71 +72,135 @@ namespace DBrms.Controllers
         {
             
 
-            return View(db.Newspanels.ToList());
+            return View(db.Magazines.ToList());
         }
+
+
+        //[HttpGet]
+        //public ActionResult NewspanelAdd()
+        //{
+           
+
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive")] Newspanel newspanel , HttpPostedFileBase ImageFile )
+        //{
+        //    if (ImageFile != null)
+        //    {
+        //        String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+        //        String extension = Path.GetExtension(ImageFile.FileName);
+        //        filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+        //        newspanel.Image = "/Image/" + filename;
+        //        filename = Path.Combine(Server.MapPath("/Image/"), filename);
+        //        ImageFile.SaveAs(filename);
+
+        //        db.Newspanels.Add(newspanel);
+        //        db.SaveChanges();
+        //        ModelState.Clear();
+        //        return RedirectToAction("Newspanel");
+
+        //    }
+
+        //    return View();
+        //}
 
 
         [HttpGet]
-        public ActionResult NewspanelAdd()
+        public ActionResult NewspanelEdit(int? id)
         {
-           
-
-            return View();
-        }
-        [HttpPost]
-        public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive")] Newspanel newspanel , HttpPostedFileBase ImageFile )
-        {
-            if (ImageFile != null)
+            if (id == null)
             {
-                String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-                String extension = Path.GetExtension(ImageFile.FileName);
-                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                newspanel.Image = "/Image/" + filename;
-                filename = Path.Combine(Server.MapPath("/Image/"), filename);
-                ImageFile.SaveAs(filename);
-
-                db.Newspanels.Add(newspanel);
-                db.SaveChanges();
-                ModelState.Clear();
-                return RedirectToAction("Newspanel");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
+            Magazine newspanelEdit = db.Magazines.Find(id);
+            if (newspanelEdit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(newspanelEdit);
+            
+        }
+        [HttpPost]
+        public ActionResult NewspanelEdit([Bind(Include ="MagazineId,Name,Image,Details,IsActive")] Magazine newspanel)
+        {
+            if (ModelState.IsValid)
+            {
 
+                db.Entry(newspanel).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Newspanel");
+            }
             return View();
         }
+
+
 
         public ActionResult TradingRestaurant()
         {
 
 
-            return View(db.TradingRestaurants.ToList());
+            return View(db.Restaurants.ToList());
         }
+
 
         [HttpGet]
-        public ActionResult TradingRestaurantAdd()
+        public ActionResult TradingRestaurantEdit(int ? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Restaurant tradingrestaurantEdit = db.Restaurants.Find(id);
+            if (tradingrestaurantEdit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tradingrestaurantEdit);
+            
         }
         [HttpPost]
-        public ActionResult TradingRestaurantAdd([Bind(Include ="Name,Image,IsActive")] TradingRestaurant tradingRestaurant, HttpPostedFileBase Imagefile)
+        public ActionResult TradingRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive,Visible")] Restaurant restaurant)
         {
-            if(Imagefile != null)
+            if (ModelState.IsValid)
             {
-                String filename = Path.GetFileNameWithoutExtension(Imagefile.FileName);
-                String extension = Path.GetExtension(Imagefile.FileName);
-                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-                tradingRestaurant.Image = "/Image/" + filename;
-                filename = Path.Combine(Server.MapPath("/Image/"), filename);
-                Imagefile.SaveAs(filename);
 
-                db.TradingRestaurants.Add(tradingRestaurant);
+                db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
-                ModelState.Clear();
                 return RedirectToAction("TradingRestaurant");
-
             }
             return View();
         }
+
+
+
+        //[HttpGet]
+        //public ActionResult TradingRestaurantAdd()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult TradingRestaurantAdd([Bind(Include ="Name,Image,IsActive")] TradingRestaurant tradingRestaurant, HttpPostedFileBase Imagefile)
+        //{
+        //    if(Imagefile != null)
+        //    {
+        //        String filename = Path.GetFileNameWithoutExtension(Imagefile.FileName);
+        //        String extension = Path.GetExtension(Imagefile.FileName);
+        //        filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+        //        tradingRestaurant.Image = "/Image/" + filename;
+        //        filename = Path.Combine(Server.MapPath("/Image/"), filename);
+        //        Imagefile.SaveAs(filename);
+
+        //        db.TradingRestaurants.Add(tradingRestaurant);
+        //        db.SaveChanges();
+        //        ModelState.Clear();
+        //        return RedirectToAction("TradingRestaurant");
+
+        //    }
+        //    return View();
+        //}
         public ActionResult Review()
         {
 
@@ -201,6 +267,38 @@ namespace DBrms.Controllers
                 db.SaveChanges();
                 ModelState.Clear();
                 return RedirectToAction("Restaurants");
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult ManageRestaurantEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Restaurant managerestaurantEdit = db.Restaurants.Find(id);
+            if (managerestaurantEdit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(managerestaurantEdit);
+
+          
+        }
+        [HttpPost]
+        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive,Visible")] Restaurant restaurant)
+        {
+            if (ModelState.IsValid)
+            {
+                //Restaurant res = db.Restaurants.FirstOrDefault(x=> x.RestaurantId == restaurant.RestaurantId);
+                //res.IsActive = restaurant.IsActive;
+                db.Entry(restaurant).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageRestaurant");
             }
             return View();
         }
