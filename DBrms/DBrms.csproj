@@ -180,6 +180,9 @@
     <Compile Include="Models\FoodOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Login.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

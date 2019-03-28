@@ -27,7 +27,7 @@ namespace DBrms.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Picture { get; set; }
-        public string Location { get; set; }
+        public Nullable<int> LocationId { get; set; }
         public string PopularMenu { get; set; }
         public string CostPerOrder { get; set; }
         public string Time { get; set; }
@@ -44,6 +44,7 @@ namespace DBrms.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Food> Foods { get; set; }
         public virtual FoodOrder FoodOrder { get; set; }
+        public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
     }

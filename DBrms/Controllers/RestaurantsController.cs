@@ -13,7 +13,7 @@ namespace DBrms.Controllers
 {
     public class RestaurantsController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
 
         // GET: Restaurants
         public ActionResult Index(int? id)

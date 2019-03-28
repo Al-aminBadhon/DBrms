@@ -12,7 +12,7 @@ namespace DBrms.Controllers
 {
     public class AdminController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
 
         public ActionResult Index()
         {
@@ -248,12 +248,23 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult RestaurantAdd()
         {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name"); ;
 
             return View();
         }
         [HttpPost]
-        public ActionResult RestaurantAdd([Bind(Include = "Name,Address,Phone,picture,Location,CostPerFood,Cuisine")] Restaurant restaurant , HttpPostedFileBase ImageFile )
+        public ActionResult RestaurantAdd([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant , HttpPostedFileBase ImageFile , int? LocationId)
         {
+            int er = 0;
+            if (LocationId == null)
+            {
+                er++;
+            }
+            if (er > 0)
+            {
+                return View("Index");
+            }
+           
             if (ImageFile != null)
             {
                 String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
@@ -266,7 +277,7 @@ namespace DBrms.Controllers
                 db.Restaurants.Add(restaurant);
                 db.SaveChanges();
                 ModelState.Clear();
-                return RedirectToAction("Restaurants");
+                return RedirectToAction("ManageRsetaurant");
             }
             return View();
         }

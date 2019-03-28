@@ -10,7 +10,7 @@ namespace DBrms.Controllers
 {
     public class CustomerController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
         // GET: Customer
         public ActionResult Index()
         {

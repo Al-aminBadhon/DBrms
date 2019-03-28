@@ -10,7 +10,7 @@ namespace DBrms.Controllers
 {
     public class WebsiteController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
         // GET: Website
         public ActionResult Index()
         {

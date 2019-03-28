@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbrmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbrmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
@@ -63,6 +63,13 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="UserId" />
@@ -113,7 +120,7 @@
           <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
           <Property Name="Picture" Type="varchar(max)" />
-          <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
           <Property Name="PopularMenu" Type="varchar" MaxLength="100" />
           <Property Name="CostPerOrder" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Time" Type="varchar" MaxLength="50" />
@@ -133,6 +140,7 @@
           <Property Name="RestautantId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Desscription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Slider">
           <Key>
@@ -268,6 +276,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Restaurant_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Review_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -310,6 +330,7 @@
           <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodCart" EntityType="Self.FoodCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodOrder" EntityType="Self.FoodOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Magazine" EntityType="Self.Magazine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Newspanel" EntityType="Self.Newspanel" Schema="dbo" store:Type="Tables" />
@@ -352,6 +373,10 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Location" Association="Self.FK_Restaurant_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
           <AssociationSet Name="FK_Review_Customer" Association="Self.FK_Review_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Review" EntitySet="Review" />
@@ -365,7 +390,8 @@
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbrmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -440,6 +466,14 @@
           <NavigationProperty Name="Food" Relationship="Self.FK_FoodOrder_Food" FromRole="FoodOrder" ToRole="Food" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_FoodOrder_Order" FromRole="FoodOrder" ToRole="Restaurant" />
         </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurant_Location" FromRole="Location" ToRole="Restaurant" />
+        </EntityType>
         <EntityType Name="Login">
           <Key>
             <PropertyRef Name="UserId" />
@@ -492,7 +526,7 @@
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" />
           <Property Name="PopularMenu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CostPerOrder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -501,12 +535,13 @@
           <Property Name="Discount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Visible" Type="Boolean" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Restaurant" FromRole="Restaurant" ToRole="Cart" />
           <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Restaurant" FromRole="Restaurant" ToRole="Food" />
           <NavigationProperty Name="FoodOrder" Relationship="Self.FK_FoodOrder_Order" FromRole="Restaurant" ToRole="FoodOrder" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Restaurant_Location" FromRole="Restaurant" ToRole="Location" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Visible" Type="Boolean" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -516,6 +551,7 @@
           <Property Name="RestautantId" Type="Int32" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="Desscription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Review_Customer" FromRole="Review" ToRole="Customer" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
         </EntityType>
@@ -666,6 +702,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Restaurant_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Transaction_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -690,12 +738,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbrmsEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dbrmsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Foods" EntityType="Self.Food" />
           <EntitySet Name="FoodCarts" EntityType="Self.FoodCart" />
           <EntitySet Name="FoodOrders" EntityType="Self.FoodOrder" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
           <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Magazines" EntityType="Self.Magazine" />
           <EntitySet Name="Newspanels" EntityType="Self.Newspanel" />
@@ -742,6 +791,10 @@
             <End Role="Restaurant" EntitySet="Restaurants" />
             <End Role="FoodOrder" EntitySet="FoodOrders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Location" Association="Self.FK_Restaurant_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Restaurant" EntitySet="Restaurants" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transaction_Order" Association="Self.FK_Transaction_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Transaction" EntitySet="Transactions" />
@@ -756,7 +809,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbrmsModelStoreContainer" CdmEntityContainer="dbrmsEntities1">
+        <EntityContainerMapping StorageEntityContainer="dbrmsModelStoreContainer" CdmEntityContainer="dbrmsEntities">
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="dbrmsModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -820,6 +873,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="dbrmsModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Logins">
             <EntityTypeMapping TypeName="dbrmsModel.Login">
               <MappingFragment StoreEntitySet="Login">
@@ -833,11 +894,11 @@
           <EntitySetMapping Name="Magazines">
             <EntityTypeMapping TypeName="dbrmsModel.Magazine">
               <MappingFragment StoreEntitySet="Magazine">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="MagazineId" ColumnName="MagazineId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -868,14 +929,12 @@
           <EntitySetMapping Name="Restaurants">
             <EntityTypeMapping TypeName="dbrmsModel.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
-                <ScalarProperty Name="Visible" ColumnName="Visible" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RestaurantId" ColumnName="RestaurantId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="PopularMenu" ColumnName="PopularMenu" />
                 <ScalarProperty Name="CostPerOrder" ColumnName="CostPerOrder" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
@@ -884,6 +943,8 @@
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -894,6 +955,7 @@
                 <ScalarProperty Name="RestautantId" ColumnName="RestautantId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="Desscription" ColumnName="Desscription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

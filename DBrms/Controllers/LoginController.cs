@@ -9,7 +9,7 @@ namespace DBrms.Controllers
 {
     public class LoginController : Controller
     {
-        dbrmsEntities1 db = new dbrmsEntities1();
+        dbrmsEntities db = new dbrmsEntities();
         // GET: Login
         public ActionResult Index()
         {

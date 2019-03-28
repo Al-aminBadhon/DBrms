@@ -13,10 +13,10 @@ namespace DBrms.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbrmsEntities1 : DbContext
+    public partial class dbrmsEntities : DbContext
     {
-        public dbrmsEntities1()
-            : base("name=dbrmsEntities1")
+        public dbrmsEntities()
+            : base("name=dbrmsEntities")
         {
         }
     
@@ -30,6 +30,7 @@ namespace DBrms.Models
         public virtual DbSet<Food> Foods { get; set; }
         public virtual DbSet<FoodCart> FoodCarts { get; set; }
         public virtual DbSet<FoodOrder> FoodOrders { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Magazine> Magazines { get; set; }
         public virtual DbSet<Newspanel> Newspanels { get; set; }
