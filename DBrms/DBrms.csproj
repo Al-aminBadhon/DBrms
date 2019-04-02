@@ -2364,6 +2364,8 @@
     <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
     <Content Include="Image\images.png" />
     <Content Include="Image\Location.png" />
+    <Content Include="Image\maxresdefault.jpg" />
+    <Content Include="Image\pizzahut.jpg" />
     <Content Include="Image\setting-clipart-gear-system-settings-md.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2697,7 +2699,6 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Website\Magazine.cshtml" />
     <Content Include="Views\Website\ContactUs.cshtml" />
-    <Content Include="Views\Website\Restaurants.cshtml" />
     <Content Include="Views\Website\RestaurantProfile.cshtml" />
     <Content Include="Views\Restaurants\MenuEdit.cshtml" />
     <Content Include="Views\Restaurants\Menu.cshtml" />
@@ -2705,6 +2706,7 @@
     <Content Include="Views\Admin\NewspanelEdit.cshtml" />
     <Content Include="Views\Admin\TradingRestaurantEdit.cshtml" />
     <Content Include="Views\Admin\ManageRestaurantEdit.cshtml" />
+    <Content Include="Views\Website\Restaurants.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

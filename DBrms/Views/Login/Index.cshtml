@@ -2,6 +2,8 @@
 
 
 @{
+    /**/
+
     Layout = null;
 }
 <!DOCTYPE html>
@@ -28,16 +30,21 @@
             background-size: cover;
             color: #2c2d2d
         }
-       
     </style>
 </head>
 <body>
 
     <div class="container">
-       
+
         <form class="form-signin" action=@Url.Action("Index","Login") method="post">
-            <span class="alert-danger">  <h2>@ViewBag.message</h2></span>
-            <h3 class="form-signin-heading"><center>Please sign in</center></h3>
+            <span class="alert-danger">
+                <h2>@ViewBag.message</h2>
+            </span>
+            <h3 class="form-signin-heading">
+                <center>
+                    Please sign in
+                </center>
+            </h3>
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon">

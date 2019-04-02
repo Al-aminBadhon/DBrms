@@ -25,6 +25,8 @@ namespace DBrms.Controllers
             List<Restaurant> restaurants = db.Restaurants.Where(x => x.IsActive == true).ToList();
             ViewBag.Restaurants = restaurants;
 
+          
+
             return View();
         }
         public ActionResult Magazine()
@@ -42,12 +44,21 @@ namespace DBrms.Controllers
             return View();
         }
 
+        ////  public ActionResult Restaurants()
+        //  {
+        //     var restaurants = db.Restaurants.ToList();
+        //      ViewBag.Restaurants = restaurants;
+
+        //      return View(restaurants);
+        //  }
+
+           // [ActionName("Restaurant")]
         public ActionResult Restaurants()
         {
-            List<Restaurant> restaurants = db.Restaurants.ToList();
+            var restaurants = db.Restaurants.ToList();
             ViewBag.Restaurants = restaurants;
 
-            return View();
+            return View(restaurants);
         }
 
         public ActionResult RestaurantProfile(int? id)
