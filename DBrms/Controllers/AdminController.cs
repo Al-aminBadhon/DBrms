@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.IO;
 using System.Net;
 using System.Data.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace DBrms.Controllers
 {
@@ -208,9 +210,9 @@ namespace DBrms.Controllers
             return View(db.Reviews.ToList());
         }
 
-        public ActionResult Magazine()
+        public ActionResult Magazine(int? page)
         {
-            return View(db.Magazines.ToList());
+            return View(db.Magazines.ToList().ToPagedList(page ?? 1,3));
         }
 
         [HttpGet]

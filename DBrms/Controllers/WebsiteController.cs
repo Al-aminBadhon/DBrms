@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace DBrms.Controllers
 {
@@ -53,9 +55,14 @@ namespace DBrms.Controllers
         //  }
 
            // [ActionName("Restaurant")]
-        public ActionResult Restaurants()
+        public ActionResult Restaurants(int? page, string search)
         {
-            var restaurants = db.Restaurants.ToList();
+            if(search != null)
+            {
+                return View(db.Restaurants.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 3));
+            }
+
+            var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1,3);
             ViewBag.Restaurants = restaurants;
 
             return View(restaurants);
@@ -97,5 +104,29 @@ namespace DBrms.Controllers
             }
             return View(food);
         }
+
+        public ActionResult Checkout(/*int? id*/)
+        {
+            
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+
+            //Food food = db.Foods.Find(id);
+            //if (food == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //Session["FoodId"] = db.Foods.ToList();
+            //Session["CustomerId"] = db.Customers.ToList();
+            return View();
+        }
+
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+
     }
 }
