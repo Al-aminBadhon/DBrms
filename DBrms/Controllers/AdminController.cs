@@ -21,11 +21,11 @@ namespace DBrms.Controllers
             return View();
         }
          
-        public ActionResult Slider()
+        public ActionResult Slider(int ? page)
         {
            
 
-            return View(db.Sliders.ToList());
+            return View(db.Sliders.ToList().ToPagedList(page ?? 1,3));
         }
 
         [HttpGet]
@@ -70,42 +70,17 @@ namespace DBrms.Controllers
 
             return View();
         }
-        public ActionResult Newspanel()
+        public ActionResult Newspanel(int? page)
         {
             
 
-            return View(db.Magazines.ToList());
+            return View(db.Magazines.ToList().ToPagedList(page ?? 1,3));
         }
 
 
-        //[HttpGet]
-        //public ActionResult NewspanelAdd()
-        //{
-           
 
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult NewspanelAdd([Bind(Include = "Name,Image,Details,IsActive")] Newspanel newspanel , HttpPostedFileBase ImageFile )
-        //{
-        //    if (ImageFile != null)
-        //    {
-        //        String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-        //        String extension = Path.GetExtension(ImageFile.FileName);
-        //        filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-        //        newspanel.Image = "/Image/" + filename;
-        //        filename = Path.Combine(Server.MapPath("/Image/"), filename);
-        //        ImageFile.SaveAs(filename);
 
-        //        db.Newspanels.Add(newspanel);
-        //        db.SaveChanges();
-        //        ModelState.Clear();
-        //        return RedirectToAction("Newspanel");
-
-        //    }
-
-        //    return View();
-        //}
+        
 
 
         [HttpGet]
@@ -139,11 +114,11 @@ namespace DBrms.Controllers
 
 
 
-        public ActionResult TradingRestaurant()
+        public ActionResult TradingRestaurant(int? page)
         {
 
 
-            return View(db.Restaurants.ToList());
+            return View(db.Restaurants.ToList().ToPagedList(page ?? 1,3));
         }
 
 
@@ -203,11 +178,11 @@ namespace DBrms.Controllers
         //    }
         //    return View();
         //}
-        public ActionResult Review()
+        public ActionResult Review(int? page)
         {
 
 
-            return View(db.Reviews.ToList());
+            return View(db.Reviews.ToList().ToPagedList(page ?? 1,3));
         }
 
         public ActionResult Magazine(int? page)
@@ -240,10 +215,10 @@ namespace DBrms.Controllers
             return View();
         }
 
-        public ActionResult ManageRsetaurant()
+        public ActionResult ManageRsetaurant(int? page)
         {
 
-            return View(db.Restaurants.ToList());
+            return View(db.Restaurants.ToList().ToPagedList(page ?? 1,3));
         }
 
 

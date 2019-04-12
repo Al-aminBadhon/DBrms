@@ -11,11 +11,14 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Review
     {
         public int ReviewId { get; set; }
+
         public int RestautantId { get; set; }
+
         public int CustomerId { get; set; }
         public string Desscription { get; set; }
         public Nullable<bool> IsActive { get; set; }

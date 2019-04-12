@@ -2722,7 +2722,6 @@
     <Content Include="Views\Restaurants\Edit.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
-    <Content Include="Views\Website\Magazine.cshtml" />
     <Content Include="Views\Website\ContactUs.cshtml" />
     <Content Include="Views\Website\RestaurantProfile.cshtml" />
     <Content Include="Views\Restaurants\MenuEdit.cshtml" />
@@ -2734,6 +2733,8 @@
     <Content Include="Views\Website\Restaurants.cshtml" />
     <Content Include="Views\Website\Checkout.cshtml" />
     <Content Include="Views\Website\AboutUs.cshtml" />
+    <Content Include="Views\Website\Magazine.cshtml" />
+    <Content Include="Views\Customer\CustomerOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

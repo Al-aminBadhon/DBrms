@@ -1,4 +1,7 @@
-﻿
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.Magazine>
+
 @{
     ViewBag.Title = "Magazine";
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
@@ -49,15 +52,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
- 
+
     <!-- //modal -->
     <!-- //top-header -->
     <!-- header-bottom-->
-   
     <!-- shop locator (popup) -->
     <!-- //header-bottom -->
     <!-- navigation -->
-  
     <!-- //navigation -->
     <!-- banner-2 -->
     <div class="page-head_agile_info_w3l">
@@ -96,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <!-- first section -->
                         <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                             <div class="row">
-                                @foreach (var item in ViewBag.Magazines)
+                                @foreach (var item in Model)
                                 {
                                     <div class="col-md-4 product-men mt-5">
                                         <div class="men-pro-item simpleCart_shelfItem">
@@ -118,11 +119,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 }
 
-                                
                             </div>
+
                         </div>
+                        @Html.PagedListPager(Model, page => Url.Action("Magazine", new { page }))
                         <!-- //first section -->
-                        
+
                     </div>
                 </div>
                 <!-- //product left -->
@@ -379,7 +381,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- middle section -->
     <!-- footer -->
-   
     <!-- //footer -->
     <!-- copyright -->
     <div class="copy-right py-3">
@@ -515,3 +516,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </body>
 
 </html>
+</table>

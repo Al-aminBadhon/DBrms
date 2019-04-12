@@ -1,4 +1,7 @@
-﻿@model IEnumerable<DBrms.Models.Review>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<DBrms.Models.Review>
 
 @{
     ViewBag.Title = "Review";
@@ -11,13 +14,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Desscription)
+            @Html.DisplayNameFor(model => model.First().Desscription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Name)
+            Customer
+            @Html.DisplayNameFor(model => model.First().Customer.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Restaurant.Name)
+            Restaurant 
+            @Html.DisplayNameFor(model => model.First().Restaurant.Name)
         </th>
         <th></th>
     </tr>
@@ -35,10 +40,12 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ReviewId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReviewId }) |
+            
             @Html.ActionLink("Delete", "Delete", new { id=item.ReviewId })
         </td>
     </tr>
 }
 
 </table>
+
+@Html.PagedListPager(Model, page=> Url.Action("Review", new { page } ) )

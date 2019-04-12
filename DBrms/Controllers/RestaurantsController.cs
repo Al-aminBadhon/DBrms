@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DBrms.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace DBrms.Controllers
 {
@@ -28,7 +30,7 @@ namespace DBrms.Controllers
 
       
         
-        public ActionResult Menu (int? id)
+        public ActionResult Menu (int? id, int ? page)
         {
             id = Convert.ToInt32(Session["RestaurantsId"]);
 
@@ -36,7 +38,7 @@ namespace DBrms.Controllers
             ViewBag.Restaurants = restaurants;
 
 
-            return View(db.Foods.Where(x => x.RestaurantId == id));
+            return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1,3));
 
             
         }

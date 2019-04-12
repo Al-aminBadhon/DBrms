@@ -38,6 +38,13 @@ namespace DBrms.Controllers
             }
             return View(edit);
         }
+
+   public ActionResult CustomerOrderList()
+        {
+
+            return View();
+
+        }
         
     }
 }

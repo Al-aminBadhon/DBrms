@@ -1,4 +1,7 @@
-﻿@model IEnumerable<DBrms.Models.Restaurant>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<DBrms.Models.Restaurant>
 
 @{
     ViewBag.Title = "TradingRestaurant";
@@ -11,16 +14,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.First().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Picture)
+            @Html.DisplayNameFor(model => model.First().Picture)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.First().LocationId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.First().IsActive)
         </th>
         <th></th>
     </tr>
@@ -35,7 +38,7 @@
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.Location)
+            @Html.DisplayFor(modelItem => item.Location.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
@@ -50,3 +53,7 @@
 }
 
 </table>
+
+
+
+@Html.PagedListPager(Model, page=> Url.Action("TradingRestaurant", new { page }))

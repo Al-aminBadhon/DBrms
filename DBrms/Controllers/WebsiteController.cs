@@ -31,14 +31,14 @@ namespace DBrms.Controllers
 
             return View();
         }
-        public ActionResult Magazine()
+        public ActionResult Magazine(int ? page)
         {
-            
 
-            List<Magazine> magazines = db.Magazines.ToList();
+            var magazines = db.Magazines.ToList().ToPagedList(page ?? 1, 9);
             ViewBag.Magazines = magazines;
+           
 
-            return View();
+            return View(magazines);
         }
 
         public ActionResult ContactUs()
