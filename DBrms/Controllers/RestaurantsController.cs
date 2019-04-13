@@ -30,12 +30,17 @@ namespace DBrms.Controllers
 
       
         
-        public ActionResult Menu (int? id, int ? page)
+        public ActionResult Menu (int? id, int ? page, string search)
         {
             id = Convert.ToInt32(Session["RestaurantsId"]);
-
-            List<Restaurant> restaurants = db.Restaurants.Where(X=> X.RestaurantId ==id ).ToList();
+            List<Restaurant> restaurants = db.Restaurants.Where(X => X.RestaurantId == id).ToList();
             ViewBag.Restaurants = restaurants;
+
+            if (search != null)
+            {
+                return View(db.Foods.Where(x=> x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1,3));
+            }
+           
 
 
             return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1,3));

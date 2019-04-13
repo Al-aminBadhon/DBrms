@@ -80,6 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- //page -->
     <!-- Single Page -->
+
     <div class="row">
         <div class="agileinfo-ads-display col-lg-9">
             <div class="container py-xl-4 py-lg-2">
@@ -88,8 +89,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <span>R</span>estaurents
                 </h3>
+                @if (Model.Count == 0)
+                {
+                <center> <p style="color:red; font-size:20px;">No result found</p></center>
+                }
+                else
+                {
                 <!-- //tittle heading -->
-                @foreach (var item in Model)
+                foreach (var item in Model)
                 {
                     <div class="row">
                         <div class="col-lg-5 col-md-8 single-right-left ">
@@ -161,8 +168,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
 
-                } 
-                    <div> <center> @Html.PagedListPager(Model, page => Url.Action("Restaurants", new { page }))</center></a></div>
+                }
+                }
+                <div> <center> @Html.PagedListPager(Model, page => Url.Action("Restaurants", new { page }))</center></a></div>
 
             </div>
 
@@ -172,47 +180,68 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="side-bar p-sm-4 p-3">
                 <div class="search-hotel border-bottom py-2">
                     <h3 class="agileits-sear-head mb-3">Search Here..</h3>
-                    <form action="" method="post">
-                        <input type="search" placeholder="Find restaurant...." name="search" required="">
+                    @using (Html.BeginForm("Restaurants", "Website", FormMethod.Get))
+                    {
+                        <input type="search" placeholder="Find restaurant...." name="search">
                         <input type="submit" value=" ">
-                    </form>
-                </div>
 
 
-                <!-- price Range search -->
-                <!-- price Range search -->
 
-                <div class="range border-bottom py-2">
-                    <h3 class="agileits-sear-head mb-3">Price Range</h3>
-                    <div class="w3l-range">
-                        <ul>
-                            <li>
-                                <a href="#">100-200 tk</a>
-                            </li>
-                            <li class="my-1">
-                                <a href="#">200-300 tk</a>
+                        <!-- price Range search -->
+                        <!-- price Range search -->
 
-                            </li>
-                            <li>
-                                <a href="#">300-400 tk</a>
-                            </li>
-                            <li class="my-1">
-                                <a href="#">400-500 tk</a>
-                            </li>
+                        <div class="range border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Price Range</h3>
+                            <div class="w3l-range">
+                                <ul>
+                                    <li>
+                                        @Html.RadioButton("range", "100-199") 100-199 tk
+                                    </li>
+                                    <li class="my-1">
+                                        @Html.RadioButton("range", "200-299") 200-299 tk
 
-                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.RadioButton("range", "300-399") 300-399 tk
+                                    </li>
+                                    <li class="my-1">
+                                        @Html.RadioButton("range", "400-499") 400-499 tk
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- price Range search Finish-->
+                        <!-- price Range search Finish-->
+                        <!-- discounts -->
+                        <!-- discounts -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Restaurant Discounts</h3>
+                            <ul>
+                             
+                                <li>
+                                    @Html.RadioButton("discount", "5%") 5% Discount
+                                </li>
+                                <li>
+                                    @Html.RadioButton("discount", "10%") 10% Discount
+                                </li>
+                                <li>
+                                    @Html.RadioButton("discount", "15%") 15% Discount
+                                </li>
+                             
+                            </ul>
+                        </div>
+                    }
                     </div>
-                </div>
-                <!-- price Range search Finish-->
-                <!-- price Range search Finish-->
-
+                <!-- //----------------------------------discounts--------------------------- -->
+                <!-- //----------------------------------discounts--------------------------- -->
                 <div class="range border-bottom py-2">
                     <h3 class="agileits-sear-head mb-3">Locations</h3>
                     <div class="w3l-range">
                         <ul>
                             <li>
 
-                                <img src="~/Image/Location.png" height="15px" width="15px"/> <a href="#"> Uttara</a>
+                                <img src="~/Image/Location.png" height="15px" width="15px" /> <a href="#"> Uttara</a>
                             </li>
                             <li class="my-1">
                                 <img src="~/Image/Location.png" height="15px" width="15px" /> <a href="#"> Dhanmondi</a>
@@ -229,39 +258,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
 
-                <!-- discounts -->
-                <!-- discounts -->
-                <div class="left-side border-bottom py-2">
-                    <h3 class="agileits-sear-head mb-3">Restaurant Discounts</h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">5% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">10% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">20% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">30% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">50% or More</span>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked">
-                            <span class="span">60% or More</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- //----------------------------------discounts--------------------------- -->
-                <!-- //----------------------------------discounts--------------------------- -->
+
                 <!-- -----------------------------reviews-------------------------- -->
                 <!-- -----------------------------reviews-------------------------- -->
 

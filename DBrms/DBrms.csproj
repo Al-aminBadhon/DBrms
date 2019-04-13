@@ -2735,6 +2735,7 @@
     <Content Include="Views\Website\AboutUs.cshtml" />
     <Content Include="Views\Website\Magazine.cshtml" />
     <Content Include="Views\Customer\CustomerOrderList.cshtml" />
+    <Content Include="Views\Website\PriceRange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
