@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <a>@Model.Name</a>
-                    
+
                 </li>
             </ul>
         </div>
@@ -55,12 +55,12 @@
 
 
 
-<div class="w3-bar w3-black" style="width: 783px; margin-left: 270px; background-color:cadetblue !important;">
+<div class="w3-bar w3-black" style="width: 596px; margin-left: 380px; background-color:cadetblue !important;">
 
     <button class="w3-bar-item w3-button" onclick="openCity('Overview')"> Restaurant Overview </button>
     <button class="w3-bar-item w3-button" onclick="openCity('Menu')"> Food Item in Restaurant </button>
     <button class="w3-bar-item w3-button" onclick="openCity('RestaurantReview')"> Review of Restaurant </button>
-    <button class="w3-bar-item w3-button" onclick="openCity('FoodReview')"> Review of Food Item  </button>
+    @*<button class="w3-bar-item w3-button" onclick="openCity('FoodReview')"> Review of Food Item  </button>*@
 
 </div>
 
@@ -84,7 +84,7 @@
         }
     </style>
 
-                                                     <!-- Overview navigation bar-->
+    <!-- Overview navigation bar-->
 
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
         <h3 class="heading-tittle text-center font-italic">Restaurant Overview</h3>
@@ -144,13 +144,13 @@
 
     </div>
 </div>
-                                                                <!-- Menu navigation bar-->
+<!-- Menu navigation bar-->
 
 
 <div id="Menu" class="w3-container city" style="display:none">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
         <h3 class="heading-tittle text-center font-italic">Menu List</h3>
-        <div class="row">
+        <div class="row" >
 
 
             @foreach (var item in ViewBag.Foods)
@@ -180,14 +180,14 @@
                                 <span> User Ratings: 4.5 </span>
 
                             </div>
-                        
+
                             <form action="@Url.Action("Checkout","Website")" method="post">
 
-                                <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart"  />
+                                <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart" />
 
                             </form>
 
-                                @*<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                            @*<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                     <form action="#" method="post">
                                         <fieldset>
                                             <input type="hidden" name="cmd" value="_cart" />
@@ -203,8 +203,8 @@
                                         </fieldset>
                                     </form>
                                 </div>*@
-</div>
                         </div>
+                    </div>
                 </div>
 
             }
@@ -214,44 +214,57 @@
     </div>
 </div>
 
-                                                     <!-- Restaurant Review navigation bar-->
+<!-- Restaurant Review navigation bar-->
 
 <div id="RestaurantReview" class="w3-container city" style="display:none">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
         <h3 class="heading-tittle text-center font-italic">Reviews of Restaurants</h3>
-        <div class="row">
+        <div class="row"style="width:90%; padding-left:150px " >
+            @foreach (var item in ViewBag.Reviews)
+            {
+                <div>
+                    <div style="padding-left:50px; position:center;">
+
+                        
+                        <img src="~/Image/images.png" height="30" width="30" />
+                        <a style="font-size:30px"> @item.Customer.Name </a>
+
+                    </div>
+                    <div style="padding-left:100px">
+
+
+                        <p style="color:darkgreen; font-size:20px;"> @item.Desscription</p>
+                        <div>
+                            ----------------------------------------------------------------------------------------------------------------------------------
+                        </div>
+                    </div>
+                </div>
 
 
 
-
+            }
 
         </div>
     </div>
 </div>
- 
-                                                    <!-- Food Review navigation bar-->
 
-<div id="FoodReview" class="w3-container city" style="display:none">
-    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-        <h3 class="heading-tittle text-center font-italic">Reviews of Food Items</h3>
-        <div class="row">
-
-
-
-
-
+<!-- Food Review navigation bar-->
+@*<div id="FoodReview" class="w3-container city" style="display:none">
+        <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+            <h3 class="heading-tittle text-center font-italic">Reviews of Food Items</h3>
+            <div class="row">
+            </div>
         </div>
-    </div>
-</div>
+    </div>*@
 
-                                                    <!-- For get Restaurants rating from users-->
+<!-- For get Restaurants rating from users-->
 <div>
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 
         <div class="row">
 
 
-            <h3><b><i> Your Ratings for Restaurants </i></b></h3>
+            <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
 
 
         </div>

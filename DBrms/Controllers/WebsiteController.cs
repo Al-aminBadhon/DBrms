@@ -109,7 +109,8 @@ namespace DBrms.Controllers
 
         public ActionResult RestaurantProfile(int? id)
         {
-
+            List<Review> reviews = db.Reviews.Where(x => x.RestautantId == id).ToList();
+            ViewBag.Reviews = reviews;
 
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
             ViewBag.Foods = foods;
@@ -130,6 +131,7 @@ namespace DBrms.Controllers
 
         public ActionResult FoodSingle(int? id)
         {
+            
 
             if (id == null)
             {

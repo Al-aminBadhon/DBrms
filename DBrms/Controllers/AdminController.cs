@@ -153,31 +153,7 @@ namespace DBrms.Controllers
 
 
 
-        //[HttpGet]
-        //public ActionResult TradingRestaurantAdd()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult TradingRestaurantAdd([Bind(Include ="Name,Image,IsActive")] TradingRestaurant tradingRestaurant, HttpPostedFileBase Imagefile)
-        //{
-        //    if(Imagefile != null)
-        //    {
-        //        String filename = Path.GetFileNameWithoutExtension(Imagefile.FileName);
-        //        String extension = Path.GetExtension(Imagefile.FileName);
-        //        filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-        //        tradingRestaurant.Image = "/Image/" + filename;
-        //        filename = Path.Combine(Server.MapPath("/Image/"), filename);
-        //        Imagefile.SaveAs(filename);
-
-        //        db.TradingRestaurants.Add(tradingRestaurant);
-        //        db.SaveChanges();
-        //        ModelState.Clear();
-        //        return RedirectToAction("TradingRestaurant");
-
-        //    }
-        //    return View();
-        //}
+       
         public ActionResult Review(int? page)
         {
 
