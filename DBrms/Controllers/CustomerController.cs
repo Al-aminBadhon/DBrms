@@ -14,6 +14,7 @@ namespace DBrms.Controllers
         // GET: Customer
         public ActionResult Index()
         {
+            
             return View();
         }
 
