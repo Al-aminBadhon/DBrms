@@ -136,7 +136,7 @@ namespace DBrms.Controllers
                 return HttpNotFound();
             }
             return View(tradingrestaurantEdit);
-            
+                
         }
         [HttpPost]
         public ActionResult TradingRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive,Visible")] Restaurant restaurant)

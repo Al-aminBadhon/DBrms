@@ -150,7 +150,7 @@
 <div id="Menu" class="w3-container city" style="display:none">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
         <h3 class="heading-tittle text-center font-italic">Menu List</h3>
-        <div class="row" >
+        <div class="row">
 
 
             @foreach (var item in ViewBag.Foods)
@@ -219,13 +219,13 @@
 <div id="RestaurantReview" class="w3-container city" style="display:none">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
         <h3 class="heading-tittle text-center font-italic">Reviews of Restaurants</h3>
-        <div class="row"style="width:90%; padding-left:150px " >
+        <div class="row" style="width:90%; padding-left:150px ">
             @foreach (var item in ViewBag.Reviews)
             {
                 <div>
                     <div style="padding-left:50px; position:center;">
 
-                        
+
                         <img src="~/Image/images.png" height="30" width="30" />
                         <a style="font-size:30px"> @item.Customer.Name </a>
 
@@ -233,7 +233,7 @@
                     <div style="padding-left:100px">
 
 
-                        <p style="color:darkgreen; font-size:20px;"> @item.Desscription</p>
+                        <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
                         <div>
                             ----------------------------------------------------------------------------------------------------------------------------------
                         </div>
@@ -258,14 +258,35 @@
     </div>*@
 
 <!-- For get Restaurants rating from users-->
-<div>
+<div style="width:95%; padding-left:100px;  ">
     <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 
-        <div class="row">
+        <div>
+            <div>
+                <h3>
+                    <b>
+                        <i>
+                            Give your review
+                        </i>
+                    </b>
+                </h3>
+              
+                @using (Html.BeginForm("RestaurantProfile", "Website", FormMethod.Post))
+                {
+                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId" />
+                   
+                        
+                   
+                    <input type="text" style="width:80%; height:100px;" name="Description" class="form-control" placeholder="Write your opinion" required> </Input>
 
+                    <input type="submit" value="post" />
 
-            <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
+                }
+            </div>
 
+            <div>
+                <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
+            </div>
 
         </div>
     </div>

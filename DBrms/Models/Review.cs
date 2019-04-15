@@ -17,8 +17,8 @@ namespace DBrms.Models
         public int ReviewId { get; set; }
         public int RestautantId { get; set; }
         public int CustomerId { get; set; }
-        public string Desscription { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public string Description { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant { get; set; }

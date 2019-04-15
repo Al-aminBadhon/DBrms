@@ -3,7 +3,7 @@
 @model IPagedList<DBrms.Models.Restaurant>
 
 @{
-    ViewBag.Title = "Restaurant";
+    ViewBag.Title = "RestaurantsLocation";
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
@@ -91,90 +91,90 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </h3>
                 @if (Model.Count == 0)
                 {
-                <center> <p style="color:red; font-size:20px;">No result found</p></center>
+                    <center> <p style="color:red; font-size:20px;">No result found</p></center>
                 }
                 else
                 {
-                <!-- //tittle heading -->
-                foreach (var item in Model)
-                {
-                    <div class="row">
-                        <div class="col-lg-5 col-md-8 single-right-left ">
-                            <div class="grid images_3_of_2">
-                                <div class="flexslider">
-                                    <img src="@item.Picture" height="250" width="400">
+                    <!-- //tittle heading -->
+                    foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-lg-5 col-md-8 single-right-left ">
+                                <div class="grid images_3_of_2">
+                                    <div class="flexslider">
+                                        <img src="@item.Picture" height="250" width="400">
 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7 single-right-left simpleCart_shelfItem">
+                                <h3 class="mb-3">
+                                    <b><i>@item.Name</i></b>    <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" />
+
+                                    <p><b> @Html.DisplayFor(modelItem => item.Location.Name)</b> - <img src="~/Image/Location.png" height="20" width="20" /></p>
+
+                                    ---------------------
+                                </h3>
+
+
+                                <div>
+
+                                    <table style="width:50%">
+
+
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> | Popular Menu</td>
+                                            <td>@item.PopularMenu</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> | Cuisine</td>
+                                            <td>@item.Cuisine</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> | Cost Range</td>
+                                            <td>@item.CostPerOrder</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> | Time</td>
+                                            <td>@item.Time</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> |  Address</td>
+                                            <td>@item.Address</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="far fa-hand-point-right mr-2"> |  Phone</td>
+                                            <td>@item.Phone</td>
+                                        </tr>
+                                        <tr></tr>
+
+
+                                    </table>
+                                    <p class="my-sm-4 my-3">
+                                        <i class="fas fa-retweet mr-3"></i>
+                                        @Html.ActionLink("More", "RestaurantProfile", new { id = @item.RestaurantId }, null)
+                                    </p>
+
+                                </div>
+                                <div class="product-single-w3l">
+                                    <p class="my-3">
+
+
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-7 single-right-left simpleCart_shelfItem">
-                            <h3 class="mb-3">
-                                <b><i>@item.Name</i></b>    <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" />
-
-                                <p><b> @Html.DisplayFor(modelItem => item.Location.Name)</b> - <img src="~/Image/Location.png" height="20" width="20" /></p>
-
-                                ---------------------
-                            </h3>
-
-
-                            <div>
-
-                                <table style="width:50%">
-
-
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> | Popular Menu</td>
-                                        <td>@item.PopularMenu</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> | Cuisine</td>
-                                        <td>@item.Cuisine</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> | Cost Range</td>
-                                        <td>@item.CostPerOrder</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> | Time</td>
-                                        <td>@item.Time</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> |  Address</td>
-                                        <td>@item.Address</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="far fa-hand-point-right mr-2"> |  Phone</td>
-                                        <td>@item.Phone</td>
-                                    </tr>
-                                    <tr></tr>
-
-
-                                </table>
-                                <p class="my-sm-4 my-3">
-                                    <i class="fas fa-retweet mr-3"></i>
-                                    @Html.ActionLink("More", "RestaurantProfile", new { id = @item.RestaurantId }, null)
-                                </p>
-
-                            </div>
-                            <div class="product-single-w3l">
-                                <p class="my-3">
-
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
+                    }
                 }
-                }
-                <div> <center> @Html.PagedListPager(Model, page => Url.Action("Restaurants", new { page }))</center></a></div>
+                <div> <center> @Html.PagedListPager(Model, page => Url.Action("RestaurantsLocation", new { page }))</center></a></div>
 
             </div>
 
-          
+
         </div>
         <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
             <div class="side-bar p-sm-4 p-3">
@@ -231,56 +231,52 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             </ul>
                         </div>
+                        <h3 class="agileits-sear-head mb-3">Locations</h3>
+                        <div class="w3l-range">
+                            <ul>
+                                <li>
 
+                                    <img src="~/Image/Location.png" height="15" width="15" /> @Html.ActionLink("Uttara", "RestaurantsLocation", new { id = "Uttara" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />  @Html.ActionLink("Mirpur", "RestaurantsLocation", new { id = "Mirpur" }, null)
+
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Dhanmondi", "RestaurantsLocation", new { id = "Dhanmondi" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("300 Feet", "RestaurantsLocation", new { id = "300 Feet" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Banani", "RestaurantsLocation", new { id = "Banani" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Basundhara R area", "RestaurantsLocation", new { id = "Basundhara R area" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Mohammad Pur", "RestaurantsLocation", new { id = "Mohammad Pur" }, null)
+                                </li>
+                                <li>
+                                    <img src="~/Image/Location.png" height="15px" width="15px" /> @Html.ActionLink("Gulsan-1", "RestaurantsLocation", new { id = "Gulsan-1" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Gulsan-2", "RestaurantsLocation", new { id = "Gulsan-2" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Jamuna Future Park", "RestaurantsLocation", new { id = "Jamuna Future Park" }, null)
+                                </li>
+                                <li class="my-1">
+                                    <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Basundhara City", "RestaurantsLocation", new { id = "Basundhara City" }, null)
+                                </li>
+
+                            </ul>
+                        </div>
 
                     }
                 </div>
                 <!-- //----------------------------------discounts--------------------------- -->
                 <!-- //----------------------------------discounts--------------------------- -->
-
-                <h3 class="agileits-sear-head mb-3">Locations</h3>
-                <div class="w3l-range">
-                    <ul>
-                        <li>
-
-                            <img src="~/Image/Location.png" height="15" width="15" /> @Html.ActionLink("Uttara", "RestaurantsLocation", new { id = "Uttara" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />  @Html.ActionLink("Mirpur", "RestaurantsLocation", new { id = "Mirpur" }, null)
-
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Dhanmondi", "RestaurantsLocation", new { id = "Dhanmondi" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("300 Feet", "RestaurantsLocation", new { id = "300 Feet" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Banani", "RestaurantsLocation", new { id = "Banani" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Basundhara R area", "RestaurantsLocation", new { id = "Basundhara R area" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Mohammad Pur", "RestaurantsLocation", new { id = "Mohammad Pur" }, null)
-                        </li>
-                        <li>
-                            <img src="~/Image/Location.png" height="15px" width="15px" /> @Html.ActionLink("Gulsan-1", "RestaurantsLocation", new { id = "Gulsan-1" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Gulsan-2", "RestaurantsLocation", new { id = "Gulsan-2" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Jamuna Future Park", "RestaurantsLocation", new { id = "Jamuna Future Park" }, null)
-                        </li>
-                        <li class="my-1">
-                            <img src="~/Image/Location.png" height="15px" width="15px" />@Html.ActionLink("Basundhara City", "RestaurantsLocation", new { id = "Basundhara City" }, null)
-                        </li>
-
-                    </ul>
-                </div>
-
-
                 <!-- -----------------------------reviews-------------------------- -->
                 <!-- -----------------------------reviews-------------------------- -->
 
@@ -373,15 +369,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!-- //best seller -->
             </div>
             <!-- //product right -->
-            </div>
         </div>
-        <!-- //Single Page -->
-        <!-- js-files -->
-        <!-- jquery -->
-        <script src="~/Content/Website/js/jquery-2.2.3.min.js"></script>
-        <!-- //jquery -->
-        <!-- nav smooth scroll -->
-        <script>
+    </div>
+    <!-- //Single Page -->
+    <!-- js-files -->
+    <!-- jquery -->
+    <script src="~/Content/Website/js/jquery-2.2.3.min.js"></script>
+    <!-- //jquery -->
+    <!-- nav smooth scroll -->
+    <script>
             $(document).ready(function () {
                 $(".dropdown").hover(
                     function () {
@@ -394,11 +390,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }
                 );
             });
-        </script>
-        <!-- //nav smooth scroll -->
-        <!-- popup modal (for location)-->
-        <script src="~/Content/Website/js/jquery.magnific-popup.js"></script>
-        <script>
+    </script>
+    <!-- //nav smooth scroll -->
+    <!-- popup modal (for location)-->
+    <script src="~/Content/Website/js/jquery.magnific-popup.js"></script>
+    <script>
             $(document).ready(function () {
                 $('.popup-with-zoom-anim').magnificPopup({
                     type: 'inline',
@@ -413,11 +409,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 });
 
             });
-        </script>
-        <!-- //popup modal (for location)-->
-        <!-- cart-js -->
-        <script src="~/Content/Website/js/minicart.js"></script>
-        <script>
+    </script>
+    <!-- //popup modal (for location)-->
+    <!-- cart-js -->
+    <script src="~/Content/Website/js/minicart.js"></script>
+    <script>
             paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
             paypals.minicarts.cart.on('checkout', function (evt) {
@@ -436,10 +432,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     evt.preventDefault();
                 }
             });
-        </script>
-        <!-- //cart-js -->
-        <!-- password-script -->
-        <script>
+    </script>
+    <!-- //cart-js -->
+    <!-- password-script -->
+    <script>
             window.onload = function () {
                 document.getElementById("password1").onchange = validatePassword;
                 document.getElementById("password2").onchange = validatePassword;
@@ -454,16 +450,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     document.getElementById("password2").setCustomValidity('');
                 //empty string means no validation error
             }
-        </script>
-        <!-- //password-script -->
-        <!-- imagezoom -->
-        <script src="~/Content/Website/js/imagezoom.js"></script>
-        <!-- //imagezoom -->
-        <!-- flexslider -->
-        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    </script>
+    <!-- //password-script -->
+    <!-- imagezoom -->
+    <script src="~/Content/Website/js/imagezoom.js"></script>
+    <!-- //imagezoom -->
+    <!-- flexslider -->
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
-        <script src="~/Content/Website/js/jquery.flexslider.js"></script>
-        <script>
+    <script src="~/Content/Website/js/jquery.flexslider.js"></script>
+    <script>
             // Can also be used with $(document).ready()
             $(window).load(function () {
                 $('.flexslider').flexslider({
@@ -471,15 +467,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     controlNav: "thumbnails"
                 });
             });
-        </script>
-        <!-- //FlexSlider-->
-        <!-- smoothscroll -->
-        <script src="~/Content/Website/js/SmoothScroll.min.js"></script>
-        <!-- //smoothscroll -->
-        <!-- start-smooth-scrolling -->
-        <script src="~/Content/Website/js/move-top.js"></script>
-        <script src="~/Content/Website/js/easing.js"></script>
-        <script>
+    </script>
+    <!-- //FlexSlider-->
+    <!-- smoothscroll -->
+    <script src="~/Content/Website/js/SmoothScroll.min.js"></script>
+    <!-- //smoothscroll -->
+    <!-- start-smooth-scrolling -->
+    <script src="~/Content/Website/js/move-top.js"></script>
+    <script src="~/Content/Website/js/easing.js"></script>
+    <script>
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
                     event.preventDefault();
@@ -489,10 +485,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }, 1000);
                 });
             });
-        </script>
-        <!-- //end-smooth-scrolling -->
-        <!-- smooth-scrolling-of-move-up -->
-        <script>
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
             $(document).ready(function () {
                 /*
                 var defaults = {
@@ -507,13 +503,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 });
 
             });
-        </script>
-        <!-- //smooth-scrolling-of-move-up -->
-        <!-- for bootstrap working -->
-        <script src="~/Content/Website/js/bootstrap.js"></script>
-        <!-- //for bootstrap working -->
-        <!-- //js-files -->
+    </script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- for bootstrap working -->
+    <script src="~/Content/Website/js/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- //js-files -->
 
 </body>
 
 </html>
+
