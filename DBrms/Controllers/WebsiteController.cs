@@ -188,7 +188,7 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult RestaurantProfile(int? id)
         {
-            List<Review> reviews = db.Reviews.Where(x => x.RestautantId == id).ToList();
+            List<Review> reviews = db.Reviews.Where(x => x.RestautanstId == id).ToList();
             ViewBag.Reviews = reviews;
 
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
@@ -218,7 +218,7 @@ namespace DBrms.Controllers
                 int id = Convert.ToInt32(Session["CustomerId"]);
                 review.CustomerId = id;
 
-                review.RestautantId = RestaurantId;
+                review.RestautanstId = RestaurantId;
                 review.Description = Description;
 
                 if (ModelState.IsValid)
@@ -298,20 +298,20 @@ namespace DBrms.Controllers
                 db.SaveChanges();
                 ModelState.Clear();
 
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
             return View();
         }
 
 
         [HttpGet]
-        public ActionResult RestaurantResgistration()
+        public ActionResult RestaurantRegistration()
         {
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
             return View();
         }
         [HttpPost]
-        public ActionResult RestaurantResgistration([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
+        public ActionResult RestaurantRegistration([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
         {
             int er = 0;
             if (LocationId == null)
@@ -335,9 +335,9 @@ namespace DBrms.Controllers
                 db.Restaurants.Add(restaurant);
                 db.SaveChanges();
                 ModelState.Clear();
-                return RedirectToAction("ManageRsetaurant");
+                return RedirectToAction("Index", "Login");
             }
-                return View();
+            return View();
         }
 
 

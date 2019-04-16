@@ -5,6 +5,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DBrms.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace DBrms.Controllers
 {
@@ -39,12 +41,24 @@ namespace DBrms.Controllers
             }
             return View(edit);
         }
-
-   public ActionResult CustomerOrderList()
+        [HttpPost]
+        public ActionResult Edit([Bind(Include ="")] Customer customer)
+        {
+            return View();
+        }
+        public ActionResult CustomerOrderList()
         {
 
             return View();
 
+        }
+        public ActionResult CustomerReviewList(int? id,int? page)
+        {
+          
+                id=Convert.ToInt32(Session["CustomerId"]);
+               
+                return View(db.Reviews.Where(x=> x.CustomerId == id).ToList().ToPagedList(page ?? 1,5));
+           
         }
         
     }

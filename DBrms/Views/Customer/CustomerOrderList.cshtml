@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
-<h2>CustomerOrderList</h2>
+<h2>Customer Ordered List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -33,7 +31,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.RestaurantId)
@@ -55,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+         
             @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
         </td>
     </tr>
