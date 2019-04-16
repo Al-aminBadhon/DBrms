@@ -192,7 +192,7 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult RestaurantAdd()
         {
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name"); ;
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name"); 
 
             return View();
         }

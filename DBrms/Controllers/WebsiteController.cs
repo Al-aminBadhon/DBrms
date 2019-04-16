@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using System.IO;
 
 namespace DBrms.Controllers
 {
@@ -41,7 +42,7 @@ namespace DBrms.Controllers
             return View(magazines);
         }
 
-        public ActionResult MagazineSingle(int? id )
+        public ActionResult MagazineSingle(int? id)
         {
             if (id == null)
             {
@@ -49,7 +50,7 @@ namespace DBrms.Controllers
             }
             Magazine magazine = db.Magazines.Find(id);
             ViewBag.Magazines = magazine;
-            if(magazine == null)
+            if (magazine == null)
             {
                 return HttpNotFound();
             }
@@ -95,7 +96,7 @@ namespace DBrms.Controllers
             //Logic for Discount
             //Logic for Discount
 
-            if (discount == "5%" && range== null)
+            if (discount == "5%" && range == null)
             {
                 var discount1 = db.Restaurants.Where(x => x.Discount.StartsWith("5")).ToList().ToPagedList(page ?? 1, 3);
                 return View(discount1);
@@ -114,7 +115,7 @@ namespace DBrms.Controllers
             //logic for Loaction
             //logic for Loaction
 
-            
+
 
             var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1, 3);
             ViewBag.Restaurants = restaurants;
@@ -122,7 +123,7 @@ namespace DBrms.Controllers
             return View(restaurants);
         }
 
-        public ActionResult RestaurantsLocation( string id, int? page)
+        public ActionResult RestaurantsLocation(string id, int? page)
         {
             if (id == "Uttara")
             {
@@ -276,6 +277,69 @@ namespace DBrms.Controllers
             return View();
         }
 
-        
+        [HttpGet]
+        public ActionResult CustomerRegistration()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CustomerRegistration([Bind(Include = "Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
+        {
+            if (ImageFile != null)
+            {
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                customer.Image = "/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
+
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                ModelState.Clear();
+
+                return RedirectToAction("Index","Login");
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult RestaurantResgistration()
+        {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RestaurantResgistration([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
+        {
+            int er = 0;
+            if (LocationId == null)
+            {
+                er++;
+            }
+            if (er > 0)
+            {
+                return View("Index");
+            }
+
+            if (ImageFile != null)
+            {
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                restaurant.Picture = "/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
+
+                db.Restaurants.Add(restaurant);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("ManageRsetaurant");
+            }
+                return View();
+        }
+
+
     }
 }

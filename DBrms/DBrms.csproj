@@ -2406,9 +2406,11 @@
     <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
     <Content Include="Image\images.png" />
     <Content Include="Image\Location.png" />
+    <Content Include="Image\login-background.jpg" />
     <Content Include="Image\maxresdefault.jpg" />
     <Content Include="Image\pizzahut.jpg" />
     <Content Include="Image\setting-clipart-gear-system-settings-md.png" />
+    <Content Include="Image\top-line-management-login-background-1.jpg" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -2740,6 +2742,7 @@
     <Content Include="Views\Admin\ManageCustomer.cshtml" />
     <Content Include="Views\Admin\CustomerAdd.cshtml" />
     <Content Include="Views\Admin\CustomerEdit.cshtml" />
+    <Content Include="Views\Website\CustomerRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
