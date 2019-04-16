@@ -182,7 +182,7 @@
                             </div>
 
                             <form action="@Url.Action("Checkout","Website")" method="post">
-
+                                <input type="hidden" id="" name="" value="@item.FoodId"/>
                                 <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart" />
 
                             </form>
@@ -277,9 +277,9 @@
                    
                         
                    
-                    <input type="text" style="width:80%; height:100px;" name="Description" class="form-control" placeholder="Write your opinion" required> </Input>
+                    <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required> 
 
-                    <input type="submit" value="post" />
+                    <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
 
                 }
             </div>

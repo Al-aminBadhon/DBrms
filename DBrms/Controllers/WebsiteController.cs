@@ -159,7 +159,6 @@ namespace DBrms.Controllers
                 var location7 = db.Restaurants.Where(x => x.LocationId == 7).ToList().ToPagedList(page ?? 1, 3);
                 return View(location7);
             }
-
             if (id == "Gulsan-1")
             {
                 var location8 = db.Restaurants.Where(x => x.LocationId == 8).ToList().ToPagedList(page ?? 1, 3);

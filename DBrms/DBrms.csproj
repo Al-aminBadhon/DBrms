@@ -2737,6 +2737,9 @@
     <Content Include="Views\Customer\CustomerOrderList.cshtml" />
     <Content Include="Views\Website\MagazineSingle.cshtml" />
     <Content Include="Views\Website\RestaurantsLocation.cshtml" />
+    <Content Include="Views\Admin\ManageCustomer.cshtml" />
+    <Content Include="Views\Admin\CustomerAdd.cshtml" />
+    <Content Include="Views\Admin\CustomerEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

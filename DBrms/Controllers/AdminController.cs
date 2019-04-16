@@ -76,12 +76,7 @@ namespace DBrms.Controllers
 
             return View(db.Magazines.ToList().ToPagedList(page ?? 1,3));
         }
-
-
-
-
         
-
 
         [HttpGet]
         public ActionResult NewspanelEdit(int? id)
@@ -150,15 +145,11 @@ namespace DBrms.Controllers
             }
             return View();
         }
-
-
-
-       
         public ActionResult Review(int? page)
         {
 
 
-            return View(db.Reviews.ToList().ToPagedList(page ?? 1,3));
+            return View(db.Reviews.ToList().ToPagedList(page ?? 1,5));
         }
 
         public ActionResult Magazine(int? page)
@@ -266,5 +257,66 @@ namespace DBrms.Controllers
             }
             return View();
         }
+
+        public ActionResult ManageCustomer(int? page)
+        {
+            return View(db.Customers.ToList().ToPagedList(page ?? 1,3));
+        }
+
+
+        [HttpGet]
+        public ActionResult CustomerAdd()
+        {
+            return View();
+        }
+       [HttpPost]
+        public ActionResult CustomerAdd([Bind(Include = "Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
+        {
+            if (ImageFile != null)
+            {
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                customer.Image = "/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
+
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                ModelState.Clear();
+                return RedirectToAction("ManageCustomer");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CustomerEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
+        [HttpPost]
+        public ActionResult CustomerEdit([Bind(Include = "Name,Address,Image,Phone,Username,Password")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                //Restaurant res = db.Restaurants.FirstOrDefault(x=> x.RestaurantId == restaurant.RestaurantId);
+                //res.IsActive = restaurant.IsActive;
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ManageCustomer");
+            }
+            return View();
+        }
+
     }
 }
