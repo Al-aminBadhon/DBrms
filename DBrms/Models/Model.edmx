@@ -137,9 +137,21 @@
             <PropertyRef Name="ReviewId" />
           </Key>
           <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RestautantId" Type="int" Nullable="false" />
+          <Property Name="RestaurantsId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Rating" Type="float" />
+        </EntityType>
+        <EntityType Name="ReviewFood">
+          <Key>
+            <PropertyRef Name="ReviewFoodId" />
+          </Key>
+          <Property Name="ReviewFoodId" Type="int" Nullable="false" />
+          <Property Name="FoodId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="RatingFood" Type="float" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Slider">
@@ -148,9 +160,9 @@
           </Key>
           <Property Name="SliderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" />
           <Property Name="Details" Type="varchar(max)" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -288,30 +300,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Review_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Review_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="RestaurantId" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="RestautantId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Transaction_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -337,6 +325,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReviewFood" EntityType="Self.ReviewFood" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TradingRestaurant" EntityType="Self.TradingRestaurant" Schema="dbo" store:Type="Tables" />
@@ -376,14 +365,6 @@
           <AssociationSet Name="FK_Restaurant_Location" Association="Self.FK_Restaurant_Location">
             <End Role="Location" EntitySet="Location" />
             <End Role="Restaurant" EntitySet="Restaurant" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_Customer" Association="Self.FK_Review_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Review" EntitySet="Review" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_Restaurant" Association="Self.FK_Review_Restaurant">
-            <End Role="Restaurant" EntitySet="Restaurant" />
-            <End Role="Review" EntitySet="Review" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_Order" Association="Self.FK_Transaction_Order">
             <End Role="Order" EntitySet="Order" />
@@ -547,12 +528,13 @@
             <PropertyRef Name="ReviewId" />
           </Key>
           <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RestautantId" Type="Int32" Nullable="false" />
+          <Property Name="RestaurantsId" Type="Int32" Nullable="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Review_Customer" FromRole="Review" ToRole="Customer" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="Double" />
         </EntityType>
         <EntityType Name="Slider">
           <Key>
@@ -560,9 +542,9 @@
           </Key>
           <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -733,7 +715,7 @@
               <PropertyRef Name="RestaurantId" />
             </Principal>
             <Dependent Role="Review">
-              <PropertyRef Name="RestautantId" />
+              <PropertyRef Name="RestaurantsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -802,7 +784,19 @@
             <End Role="Restaurant" EntitySet="Restaurants" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
+          <EntitySet Name="ReviewFoods" EntityType="dbrmsModel.ReviewFood" />
         </EntityContainer>
+        <EntityType Name="ReviewFood">
+          <Key>
+            <PropertyRef Name="ReviewFoodId" />
+          </Key>
+          <Property Name="ReviewFoodId" Type="Int32" Nullable="false" />
+          <Property Name="FoodId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RatingFood" Type="Double" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -950,10 +944,11 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="dbrmsModel.Review">
               <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
-                <ScalarProperty Name="RestautantId" ColumnName="RestautantId" />
+                <ScalarProperty Name="RestaurantsId" ColumnName="RestaurantsId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -997,6 +992,18 @@
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReviewFoods">
+            <EntityTypeMapping TypeName="dbrmsModel.ReviewFood">
+              <MappingFragment StoreEntitySet="ReviewFood">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RatingFood" ColumnName="RatingFood" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="ReviewFoodId" ColumnName="ReviewFoodId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,7 +19,12 @@
                     <i>|</i>
                 </li>
                 <li>
-                    <a>@Model.Name</a>
+                    <a>
+                        @Model.Name -
+
+
+
+                    </a>
 
                 </li>
             </ul>
@@ -28,11 +33,53 @@
 </div>
 <center>
 
-    <p><font size="7" color="#7f6018"><img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" /> <b><i> @Model.Name </i></b></font></p>
+    <p>
+        <font size="7" color="#7f6018"><img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" /> <b><i> @Model.Name </i></b></font>
+        @{
+            var count = 0;
+            var total = 0;
+            var Result = 0;
+
+
+            foreach (var item in ViewBag.Reviews)
+            {
+                if (item.Rating > 0)
+                {
+                    total += item.Rating;
+                    count++;
+                }
+
+            }
+            if (count > 0)
+            {
+                Result = total / count;
+            }
+
+
+            <b>Restaurant Rating @Result </b>
+            for (int i = 1; i <= Result; i++)
+            {
+                <a>
+                    <img src="~/Image/Star-Full.png" height="30" width="30" />
+                </a>
+            }
+
+            var fau = Result % 2;
+            if (fau != 0)
+            {
+                <a>
+                    <img src="~/Image/Star half.png" height="30" width="30" />
+                </a>
+            }
+
+        }
+    </p>
+
 </center>
 
 
 <div>
+
 
 
 </div>
@@ -181,11 +228,22 @@
 
                             </div>
 
-                            <form action="@Url.Action("Checkout","Website")" method="post">
-                                <input type="hidden" id="" name="" value="@item.FoodId"/>
-                                <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart" />
 
-                            </form>
+                            <td align="center">
+                                <a href="@Url.Action("Buy", "Website", new { id = item.FoodId })">Buy Now</a>
+                            </td>
+
+                            @*<form action="@Url.Action("RestaurantProfile","Website")" method="post">
+                                    <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId"/>
+                                    <input type="hidden" id="Quantity" name="Quantity" value="1"/>
+                                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId"/>
+                                    <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart" />
+                                    <a href="../Website/AddToCart?id=@item.">Add to cart</a>
+                                </form>*@
+
+
+
+
 
                             @*<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                     <form action="#" method="post">
@@ -227,88 +285,111 @@
 
 
                         <img src="~/Image/images.png" height="30" width="30" />
-                        <a style="font-size:30px"> @item.Customer.Name </a>
+                        <p style="font-size:30px">
+                            @item.Customer.Name  - @item.Rating
 
-                    </div>
-                    <div style="padding-left:100px">
+                            @{
+                                
+                                    for (int i = 1; i <= item.Rating; i++)
+                                    {
+                                        <a>
+                                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                        </a>
+                                    }
+                                
+                                var fau1 = item.Rating % 1;
+                                if (fau1 == .5)
+                                {
+                                    <a>
+                                        <img src="~/Image/Star half.png" height="30" width="30" />
+                                    </a>
+                                }
 
 
-                        <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
-                        <div>
-                            ----------------------------------------------------------------------------------------------------------------------------------
+                            }
+                        </p>
+
+                        </div>
+                    
+                        <div style="padding-left:100px">
+
+
+                            <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
+                            <div>
+                                ----------------------------------------------------------------------------------------------------------------------------------
+                            </div>
                         </div>
                     </div>
+
+
+
+                    }
+
                 </div>
-
-
-
-            }
-
-        </div>
-    </div>
-</div>
-
-<!-- Food Review navigation bar-->
-@*<div id="FoodReview" class="w3-container city" style="display:none">
-        <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-            <h3 class="heading-tittle text-center font-italic">Reviews of Food Items</h3>
-            <div class="row">
             </div>
         </div>
-    </div>*@
 
-<!-- For get Restaurants rating from users-->
-<div style="width:95%; padding-left:100px;  ">
-    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+        <!-- Food Review navigation bar-->
+        @*<div id="FoodReview" class="w3-container city" style="display:none">
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Reviews of Food Items</h3>
+                    <div class="row">
+                    </div>
+                </div>
+            </div>*@
 
-        <div>
-            <div>
-                <h3>
-                    <b>
-                        <i>
-                            Give your review
-                        </i>
-                    </b>
-                </h3>
-              
-                @using (Html.BeginForm("RestaurantProfile", "Website", FormMethod.Post))
-                {
-                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId" />
-                   
-                        
-                   
-                    <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required> 
+        <!-- For get Restaurants rating from users-->
+        <div style="width:95%; padding-left:100px;  ">
+            <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 
-                    <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
+                <div>
+                    <div>
+                        <h3>
+                            <b>
+                                <i>
+                                    Give your review
+                                </i>
+                            </b>
+                        </h3>
 
+                        @using (Html.BeginForm("RestaurantProfile", "Website", FormMethod.Post))
+                        {
+                            <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId" />
+
+
+                            <input type="text" name="Rating" class="form-control" required>
+                            <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required>
+
+                            <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
+
+                        }
+                    </div>
+
+                    <div>
+                        <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <script>
+            function openCity(cityName) {
+                var i;
+                var x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
                 }
-            </div>
-
-            <div>
-                <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-<script>
-    function openCity(cityName) {
-        var i;
-        var x = document.getElementsByClassName("city");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        document.getElementById(cityName).style.display = "block";
-    }
-</script>
+                document.getElementById(cityName).style.display = "block";
+            }
+        </script>
 
 
 

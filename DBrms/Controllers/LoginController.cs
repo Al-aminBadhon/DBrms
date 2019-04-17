@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DBrms.Models;
 
 namespace DBrms.Controllers
@@ -48,6 +49,13 @@ namespace DBrms.Controllers
            
            
            
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
        
     }

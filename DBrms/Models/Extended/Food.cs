@@ -4,25 +4,26 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-
-namespace DBrms.Models
+namespace DBrms.Models.Extended
 {
-    [MetadataType(typeof(MetadataSlider))]
+    [MetadataType(typeof(MetadataFood))]
 
-    public partial class Slider
+    public partial class Food
     {
     }
 
-    public class MetadataSlider
+    public class MetadataFood
     {
-        [Required(ErrorMessage ="Enter Name")]
+        
+  
+      
+        [Required]
         public string Name { get; set; }
         [Required]
         public string Image { get; set; }
-        [Required(ErrorMessage = "Enter Details")]
+        [Required]
+        public double Price { get; set; }
+        [Required]
         public string Details { get; set; }
-
-        public bool IsActive { get; set; }
-
     }
 }

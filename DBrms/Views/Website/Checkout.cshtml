@@ -1,32 +1,25 @@
-﻿
+﻿@using DBrms.Models;
+
 @{
     ViewBag.Title = "Checkout";
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
-<html lang="zxx">
+<div lang="zxx">
 
-<head>
-    <title>Electro Store Ecommerce Category Bootstrap Responsive Web Template | Checkout :: w3layouts</title>
+
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
     <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
@@ -46,30 +39,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
           rel="stylesheet">
     <!-- //web fonts -->
+    <style>
+        body {
+            counter-reset: Count-Value;
+        }
 
-</head>
+        table {
+            border-collapse: separate;
+        }
 
-<body>
+        tr td:first-child:before {
+            counter-increment: Count-Value;
+            content: counter(Count-Value);
+        }
+    </style>
+
+
+
     <!-- top-header -->
-   
     <!-- Button trigger modal(select-location) -->
-   
     <!-- //shop locator (popup) -->
     <!-- modals -->
     <!-- log in -->
-   
     <!-- register -->
-   
     <!-- //modal -->
     <!-- //top-header -->
     <!-- header-bottom-->
-    
     <!-- shop locator (popup) -->
     <!-- //header-bottom -->
     <!-- navigation -->
-    
     <!-- //navigation -->
     <!-- banner-2 -->
+
     <div class="page-head_agile_info_w3l">
 
     </div>
@@ -103,101 +104,85 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span>3 Products</span>
                 </h4>
                 <div class="table-responsive">
+
                     <table class="timetable_sub">
                         <thead>
                             <tr>
                                 <th>SL No.</th>
                                 <th>Product</th>
-                                <th>Quality</th>
+                                <th>Quantity</th>
                                 <th>Product Name</th>
-
+                                <th>Restaurant Name</th>
                                 <th>Price</th>
+                                <th>Sub Total</th>
                                 <th>Remove</th>
                             </tr>
                         </thead>
+                       
+
                         <tbody>
-                            <tr class="rem1">
-                                <td class="invert">1</td>
-                                <td class="invert-image">
-                                    <a href="single.html">
-                                        <img src="images/a.jpg" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
+
+                            @foreach (Item item in (List<Item>)Session["cart"])
+                            {
+                                <tr class="rem1">
+                                    <td class="invert"></td>
+                                    <td class="invert-image">
+                                        <a>
+                                            <img src="@item.Food.Image" alt=" " class="img-responsive">
+                                        </a>
+                                    </td>
+                                    <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+
+
+
+                                                <button class="entry value-plus active" onclick="Pluse()"></button>
+                                                <input style="color:black" class="entry value" type="number" id="myNumber" value="@item.Quantity">
+                                                <button class="entry value-minus" onclick="Minus()"></button>
+
+
                                             </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Back Cover</td>
-                                <td class="invert">$259</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close1"> </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="rem2">
-                                <td class="invert">2</td>
-                                <td class="invert-image">
-                                    <a href="single2.html">
-                                        <img src="images/a4.jpg" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
-                                            </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
+                                    </td>
+                                    <td class="invert">@item.Food.Name</td>
+                                    <td class="invert">@item.Food.Restaurant.Name</td>
+                                    <td class="invert">@item.Food.Price</td>
+                                    <td class="invert">@(item.Food.Price * item.Quantity)</td>
+                                    <td class="invert">
+                                        <div class="rem">
+                                            <a href="@Url.Action("Remove", "Website", new { id = item.Food.FoodId })">Remove</a>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Cordless Trimmer</td>
-                                <td class="invert">$1,999</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close2"> </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="rem3">
-                                <td class="invert">3</td>
-                                <td class="invert-image">
-                                    <a href="single.html">
-                                        <img src="images/a3.jpg" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                    <div class="quantity">
-                                        <div class="quantity-select">
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>1</span>
-                                            </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="invert">Nikon Camera</td>
-                                <td class="invert">$37,490</td>
-                                <td class="invert">
-                                    <div class="rem">
-                                        <div class="close3"> </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    </td>
+                                </tr>
+                            }
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td>Grand Total</td>
+                                    
+                                    <td>
+                                        @{
+                                            List<Item> cart = (List<Item>)Session["cart"];
+                                            var total = cart.Sum(item => item.Food.Price * item.Quantity);
+                                        }
+                                        @total
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        
                     </table>
+
                 </div>
             </div>
+
+
+
+
             <div class="checkout-left">
                 <div class="address_form_agile mt-sm-5 mt-4">
                     <h4 class="mb-sm-4 mb-3">Add a new Details</h4>
@@ -243,23 +228,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <span class="far fa-hand-point-right"></span>
                         </a>
                     </div>
+
+                    @*Pop-up botton*@
+
+
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning">
+                        Click for Payment
+                    </button>
+
+
+
                 </div>
             </div>
         </div>
     </div>
     <!-- //checkout page -->
-  
     <!-- footer -->
     <footer>
-        
+
         <!-- footer third section -->
-       
         <!-- //footer third section -->
         <!-- footer fourth section -->
         <div class="agile-sometext py-md-5 py-sm-4 py-3">
             <div class="container">
                 <!-- brands -->
-                
                 <!-- //brands -->
                 <!-- payment -->
                 <div class="sub-some child-momu mt-4">
@@ -300,128 +292,127 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- //footer fourth section (text) -->
     </footer>
     <!-- //footer -->
-   
     <!-- js-files -->
     <!-- jquery -->
     <script src="js/jquery-2.2.3.min.js"></script>
     <!-- //jquery -->
     <!-- nav smooth scroll -->
     <script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
     </script>
     <!-- //nav smooth scroll -->
     <!-- popup modal (for location)-->
     <script src="js/jquery.magnific-popup.js"></script>
     <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
 
-		});
+        });
     </script>
     <!-- //popup modal (for location)-->
     <!-- cart-js -->
     <script src="js/minicart.js"></script>
     <script>
-		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+        paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+        paypals.minicarts.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
     </script>
     <!-- //cart-js -->
     <!-- password-script -->
     <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
     </script>
     <!-- //password-script -->
     <!-- quantity -->
     <script>
-		$('.value-plus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) + 1;
-			divUpd.text(newVal);
-		});
+        $('.value-plus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) + 1;
+            divUpd.text(newVal);
+        });
 
-		$('.value-minus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) - 1;
-			if (newVal >= 1) divUpd.text(newVal);
-		});
+        $('.value-minus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) - 1;
+            if (newVal >= 1) divUpd.text(newVal);
+        });
     </script>
     <!--quantity-->
     <script>
-		$(document).ready(function (c) {
-			$('.close1').on('click', function (c) {
-				$('.rem1').fadeOut('slow', function (c) {
-					$('.rem1').remove();
-				});
-			});
-		});
+        $(document).ready(function (c) {
+            $('.close1').on('click', function (c) {
+                $('.rem1').fadeOut('slow', function (c) {
+                    $('.rem1').remove();
+                });
+            });
+        });
     </script>
     <script>
-		$(document).ready(function (c) {
-			$('.close2').on('click', function (c) {
-				$('.rem2').fadeOut('slow', function (c) {
-					$('.rem2').remove();
-				});
-			});
-		});
+        $(document).ready(function (c) {
+            $('.close2').on('click', function (c) {
+                $('.rem2').fadeOut('slow', function (c) {
+                    $('.rem2').remove();
+                });
+            });
+        });
     </script>
     <script>
-		$(document).ready(function (c) {
-			$('.close3').on('click', function (c) {
-				$('.rem3').fadeOut('slow', function (c) {
-					$('.rem3').remove();
-				});
-			});
-		});
+        $(document).ready(function (c) {
+            $('.close3').on('click', function (c) {
+                $('.rem3').fadeOut('slow', function (c) {
+                    $('.rem3').remove();
+                });
+            });
+        });
     </script>
     <!-- //quantity -->
     <!-- smoothscroll -->
@@ -431,41 +422,109 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
     <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
     </script>
     <!-- //end-smooth-scrolling -->
     <!-- smooth-scrolling-of-move-up -->
     <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-		});
+        });
     </script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- for bootstrap working -->
     <script src="js/bootstrap.js"></script>
     <!-- //for bootstrap working -->
     <!-- //js-files -->
+    <!-- Pop up Modal for payment -->
 
-</body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background:#CE3536; color:white">
+                <div class="modal-header">
+                    <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="contact" name="contact" action="#" method="post">
 
-</html>
+                        <label>Payment System</label>
+                        <div id="styled-select" class="form-group">
+                            <select name="PaymentType" class="dropdown form-control">
+                                <option value="#">Select One</option>
+                                <option value="B-Kash">B-Kash</option>
+                                <option value="Visa">Visa Card</option>
 
+                            </select>
+                        </div>
+                        <div class="optional visa row form-group" style="display:none; background:#01336D; color:white ; width:100%); border:groove 2px; margin-top:20px; padding:10px 10px 10px 10px">
+                            <div class="col-lg-6">
+                                <label>HOLDER NAME:</label>
+                                <input type="text" name="holderName" class="form-control" required>
+                                <label>SURNAME:</label>
+                                <input type="text" name="holderName" class="form-control" required>
+                                <label>ENTER YOUR CREDIT CARD NUMBER:</label>
+                                <input type="number" class="form-control" placeholder="0000 -0000-0000-0000" required>
+                                <label>EXPIRES ON:</label>
+                                <input type="date" name="ExpDate" class="form-control" min="" required>
+                            </div>
+                            <div class="col-lg-3">
+
+                                <img src="~/Upload/Others/visalogo.jpg" width="250" hight="250" style="margin-top:100px" />
+
+                            </div>
+                        </div>
+                        <div class="optional B-Kash form-group" style="display:none; background-color:white; color:black;margin-top:20px; padding:10px 10px 10px 10px">
+                            <img src="~/Upload/Others/bkash.jpg" width="150" height="150" />
+                            <br />
+                            <label>Transection Id# :</label>
+                            <input type="text" name="transectionId" class="form-control" required>
+
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<--End Pop Up -->*@
+
+
+    @*To plus or minus Quantity*@
+
+    <script>
+        function Pluse() {
+            document.getElementById("myNumber").stepUp(1);
+        }
+    </script>
+    <script>
+        function Minus() {
+            document.getElementById("myNumber").stepDown(1);
+        }
+    </script>
+
+</div>

@@ -59,7 +59,19 @@
                         <i class=" glyphicon glyphicon-lock "></i>
                     </div>
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+
                 </div>
+                <input type="checkbox" onclick="myFunction()"> <a style="color:black; font-size:13px" > <b>Show Password</b></a>
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("password");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>

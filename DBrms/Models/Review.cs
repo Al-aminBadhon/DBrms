@@ -15,10 +15,11 @@ namespace DBrms.Models
     public partial class Review
     {
         public int ReviewId { get; set; }
-        public int RestautanstId { get; set; }
+        public int RestaurantsId { get; set; }
         public int CustomerId { get; set; }
-        public Nullable<bool> IsActive { get; set; }
         public string Description { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<double> Rating { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant { get; set; }

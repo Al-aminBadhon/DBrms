@@ -12,12 +12,13 @@ namespace DBrms.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Slider
+    public partial class ReviewFood
     {
-        public int SliderId { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public string Details { get; set; }
+        public int ReviewFoodId { get; set; }
+        public int FoodId { get; set; }
+        public int CustomerId { get; set; }
+        public string Description { get; set; }
+        public double RatingFood { get; set; }
         public Nullable<bool> IsActive { get; set; }
     }
 }

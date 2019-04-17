@@ -20,13 +20,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta charset="UTF-8" />
     <meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
     </script>
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
@@ -50,7 +50,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
-  
+
     <!-- banner-2 -->
     <div class="page-head_agile_info_w3l">
 
@@ -74,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <i> | </i>
                     </li>
                     <li>@Model.Name</li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -86,20 +86,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- tittle heading -->
             <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
                 <span>@Model.Name</span>
-                
+
             </h3>
             <!-- //tittle heading -->
             <div class="row">
                 <div class="col-lg-5 col-md-8 single-right-left ">
-                    <div >
-                        <div >
-                            <ul >
+                    <div>
+                        <div>
+                            <ul>
                                 <li data-thumb="images/si1.jpg">
                                     <div class="thumb-image">
                                         <img src="@Model.Image" data-imagezoom="true" class="img-fluid" alt="">
                                     </div>
                                 </li>
-                                
+
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -119,38 +119,124 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <p class="mb-3">
                         Your ratings here
                     </p>
-                    
+
 
                     <div class="product-single-w3l">
-                        
+
                         <p>
                             <label style="padding-left:100px; color:darkgreen; font-size:30px;">About this food </label>
-                            
+
                         </p>
                         <p>
                             <a style="color:black; font-size:20px;">@Model.Details</a>
                         </p>
-                        <form action="@Url.Action("Checkout","Website")" method="post">
-                            <input type="hidden" id="=FoodId" name="FoodId" value="@Model.FoodId"/>
-                            <input style="background-color:dodgerblue; height:40px; width:200px;" type="submit" name="submit" value="Add to cart" />
 
-                        </form>
-                           </div>
+                        <td align="center">
+                            <a style="border:groove; border-color:cadetblue; background-color:darkturquoise; padding-left:10px; padding-right:10px; color:black; " href="@Url.Action("Buy", "Website", new { id = Model.FoodId })">Add To Cart</a>
+                        </td>
+                        @*<form action="@Url.Action("Checkout","Website")" method="post">
+                                <input type="hidden" id="=FoodId" name="FoodId" value="@Model.FoodId"/>
+                                <input style="background-color:dodgerblue; height:40px; width:200px;" type="submit" name="submit" value="Add to cart" />
 
-                    
+                            </form>*@
+                    </div>
+
+                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                        <h3 class="heading-tittle text-center font-italic">Reviews of Restaurants</h3>
+                        @*<div class="row" style="width:90%; padding-left:150px ">
+                            @foreach (var item in ViewBag.ReviewFood)
+                            {
+                                <div>
+                                    <div style="padding-left:50px; position:center;">
+
+
+                                        <img src="~/Image/images.png" height="30" width="30" />
+                                        <p style="font-size:30px">
+                                            @item.Customer.Name  - @item.RatingFood
+
+                                            @{
+
+                                                for (int i = 1; i <= item.RatingFood; i++)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                                    </a>
+                                                }
+
+                                                var fau1 = item.RatingFood % 1;
+                                                if (fau1 == .5)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star half.png" height="30" width="30" />
+                                                    </a>
+                                                }
+
+
+                                            }
+                                        </p>
+
+                                    </div>
+
+                                    <div style="padding-left:100px">
+
+
+                                        <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
+                                        <div>
+                                            ----------------------------------------------------------------------------------------------------------------------------------
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            }
+
+                        </div>*@
+                    </div>
+                    <div style="width:95%; padding-left:100px;  ">
+                        <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+
+                            <div>
+                                <div>
+                                    <h3>
+                                        <b>
+                                            <i>
+                                                Give your review
+                                            </i>
+                                        </b>
+                                    </h3>
+
+                                    @using (Html.BeginForm("FoodSingle", "Website", FormMethod.Post))
+                                    {
+                                        <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.FoodId" />
+
+
+                                        <input type="text" name="Rating" class="form-control" required>
+                                        <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required>
+
+                                        <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
+
+                                    }
+                                </div>
+
+                                <div>
+                                    <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
     <!-- //Single Page -->
     <!-- middle section -->
-   
     <!-- middle section -->
     <!-- footer -->
-
     <!-- //footer -->
     <!-- copyright -->
-   
     <!-- //copyright -->
     <!-- js-files -->
     <!-- jquery -->
@@ -158,78 +244,78 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //jquery -->
     <!-- nav smooth scroll -->
     <script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
     </script>
     <!-- //nav smooth scroll -->
     <!-- popup modal (for location)-->
     <script src="js/jquery.magnific-popup.js"></script>
     <script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
 
-		});
+        });
     </script>
     <!-- //popup modal (for location)-->
     <!-- cart-js -->
     <script src="js/minicart.js"></script>
     <script>
-		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+        paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+        paypals.minicarts.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
     </script>
     <!-- //cart-js -->
     <!-- password-script -->
     <script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
 
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
     </script>
     <!-- //password-script -->
     <!-- imagezoom -->
@@ -240,13 +326,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <script src="js/jquery.flexslider.js"></script>
     <script>
-		// Can also be used with $(document).ready()
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
-			});
-		});
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
     </script>
     <!-- //FlexSlider-->
     <!-- smoothscroll -->
@@ -256,33 +342,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="js/move-top.js"></script>
     <script src="js/easing.js"></script>
     <script>
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
 
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
     </script>
     <!-- //end-smooth-scrolling -->
     <!-- smooth-scrolling-of-move-up -->
     <script>
-		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-			};
-			*/
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
 
-		});
+        });
     </script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- for bootstrap working -->
@@ -295,6 +381,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </html>
 
 <p>
-   
-    @Html.ActionLink("Back to List", "RestaurantProfile","Website", new { id = Model.RestaurantId },null)
+
+    @Html.ActionLink("Back to List", "RestaurantProfile", "Website", new { id = Model.RestaurantId }, null)
 </p>

@@ -18,14 +18,20 @@ namespace DBrms.Controllers
         dbrmsEntities db = new dbrmsEntities();
 
         // GET: Restaurants
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            id = Convert.ToInt32(Session["RestaurantsId"]);
+            if (Session["RestaurantsId"] != null)
+            {
+               
 
-            List<Restaurant> restaurants = db.Restaurants.Where(x=> x.RestaurantId ==id).ToList();
-            ViewBag.Restaurants = restaurants;
-
-            return View(db.Restaurants.ToList());
+               
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","Login");
+            }
+            
         }
 
       
@@ -150,7 +156,8 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -186,7 +193,7 @@ namespace DBrms.Controllers
 
             id = Convert.ToInt32(Session["RestauranstId"]);
 
-            return View(db.Reviews.Where(x=> x.RestautanstId == id).ToList().ToPagedList(page ?? 1,5));
+            return View(db.Reviews.Where(x=> x.RestaurantsId == id).ToList().ToPagedList(page ?? 1,5));
 
         }
 

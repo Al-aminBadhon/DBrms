@@ -9,6 +9,7 @@ using PagedList;
 using PagedList.Mvc;
 using System.IO;
 
+
 namespace DBrms.Controllers
 {
     public class WebsiteController : Controller
@@ -42,13 +43,14 @@ namespace DBrms.Controllers
             return View(magazines);
         }
 
+     
         public ActionResult MagazineSingle(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Magazine magazine = db.Magazines.Find(id);
+            Models.Magazine magazine = db.Magazines.Find(id);
             ViewBag.Magazines = magazine;
             if (magazine == null)
             {
@@ -59,8 +61,12 @@ namespace DBrms.Controllers
 
         public ActionResult ContactUs()
         {
+
+         
+
             return View();
         }
+
 
 
         public ActionResult Restaurants(int? page, string search, string range, string discount, string id)
@@ -188,12 +194,12 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult RestaurantProfile(int? id)
         {
-            List<Review> reviews = db.Reviews.Where(x => x.RestautanstId == id).ToList();
+            List<Review> reviews = db.Reviews.Where(x => x.RestaurantsId == id).ToList();
             ViewBag.Reviews = reviews;
 
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
             ViewBag.Foods = foods;
-
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -205,20 +211,24 @@ namespace DBrms.Controllers
                 return HttpNotFound();
             }
 
+            
+
+
             return View(restaurant);
 
-
+            
         }
         [HttpPost]
-        public ActionResult RestaurantProfile(int RestaurantId, string Description)
+        public ActionResult RestaurantProfile(int RestaurantId, string Description , string Rating /*,int FoodId*/)
         {
             Review review = new Review();
             if (Session["CustomerId"] != null)
             {
                 int id = Convert.ToInt32(Session["CustomerId"]);
                 review.CustomerId = id;
-
-                review.RestautanstId = RestaurantId;
+               
+                review.Rating = Convert.ToDouble(Rating);
+                review.RestaurantsId = RestaurantId;
                 review.Description = Description;
 
                 if (ModelState.IsValid)
@@ -233,13 +243,33 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+
+            //Cart cart = new Cart();
+            //FoodCart foodCart = new FoodCart();
+
+            //if (Session["CustomerId"] != null)
+            //{
+            //   int id = Convert.ToInt32(Session["CustomerId"]);
+            //    cart.CustomerId = id;
+            //    cart.RestaurantId = RestaurantId;
+            //    foodCart.FoodId = FoodId;
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
+
+           
+           
+
             return View();
         }
 
 
-        public ActionResult FoodSingle(int? id)
+        public ActionResult FoodSingle(int? id/*, int ReviewFood, string Description, string RatingFood */)
         {
 
+           
 
             if (id == null)
             {
@@ -251,24 +281,37 @@ namespace DBrms.Controllers
             {
                 return HttpNotFound();
             }
+            //List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.FoodId == id).ToList();
+            //ViewBag.ReviewFoods = reviewFoods;
+
+            //if (Session["CustomerId"] != null)
+            //{
+            //    ReviewFood reviewFood = new ReviewFood();
+            //    int customerId = Convert.ToInt32(Session["CustomerId"]);
+            //    reviewFood.CustomerId = customerId;
+
+            //    reviewFood.RatingFood = Convert.ToDouble(RatingFood);
+            //    reviewFood.ReviewFoodId = ReviewFood;
+            //    reviewFood.Description = Description;
+
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.ReviewFoods.Add(reviewFood);
+            //        db.SaveChanges();
+            //        ModelState.Clear();
+            //        return RedirectToAction("FoodSingle");
+            //    }
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
             return View(food);
         }
 
-        public ActionResult Checkout(/*int? id*/)
+        public ActionResult Checkout()
         {
-
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-
-            //Food food = db.Foods.Find(id);
-            //if (food == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //Session["FoodId"] = db.Foods.ToList();
-            //Session["CustomerId"] = db.Customers.ToList();
+            
             return View();
         }
 
@@ -338,6 +381,87 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             return View();
+        }
+
+        public ActionResult Buy(string id)
+        {
+            // var food = db.Foods.ToList();
+            //  Food ob = new Food();ob.find(id)
+            Food ob = new Food();
+
+            var ID = Convert.ToInt32(id);
+            if (Session["cart"] == null)
+            {
+
+                List<Item> cart = new List<Item>();
+
+
+                cart.Add(new Item { Food = db.Foods.Find(ID), Quantity = 1 });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Item> cart = (List<Item>)Session["cart"];
+                int index = isExist(id);
+                if (index != -1)
+                {
+                    cart[index].Quantity++;
+                }
+                else
+                {
+                    cart.Add(new Item { Food = db.Foods.Find(ID), Quantity = 1 });
+                }
+                Session["cart"] = cart;
+            }
+            return RedirectToAction("Checkout");
+
+            //var ID = Convert.ToInt32(id);
+            //var list = db.Foods.Find(ID);
+            //if (Session["cart"] == null)
+            //{
+            //    List<Item> foodCartTest = new List<Item>();
+
+            //    foodCartTest.First().Food.FoodId = list.FoodId;
+            //    foodCartTest.First().Food.Name = list.Name;
+            //    foodCartTest.First().Food.RestaurantId = list.RestaurantId;
+            //    foodCartTest.First().Food.Restaurant.Name = list.Restaurant.Name;
+            //    foodCartTest.First().Food.Price = list.Price;
+            //    foodCartTest.First().Quantity = 1;
+            //    Session["Cart"] = foodCartTest;
+
+            //}
+            //else
+            //{
+            //    List<FoodCart> foodCarts = (List<FoodCart>)Session["Cart"];
+
+            //    FoodCart foodCart = new FoodCart();
+            //    foodCarts.Add(foodCart);
+
+            //    Session["Cart"] = foodCarts;
+            //}
+            //return RedirectToAction("Checkout");
+
+        }
+
+        public ActionResult Remove(string id)
+        {
+
+   
+            List<Item> cart = (List<Item>)Session["cart"];
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+            return RedirectToAction("Checkout");
+        }
+
+        private int isExist(string id)
+        {
+            var ID = Convert.ToInt32(id);
+            List<Item> cart = (List<Item>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Food.FoodId.Equals(ID))
+                    return i;
+            return -1;
         }
 
 
