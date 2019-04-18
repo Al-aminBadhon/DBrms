@@ -20,5 +20,8 @@ namespace DBrms.Models
         public string Description { get; set; }
         public double RatingFood { get; set; }
         public Nullable<bool> IsActive { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual Food Food { get; set; }
     }
 }

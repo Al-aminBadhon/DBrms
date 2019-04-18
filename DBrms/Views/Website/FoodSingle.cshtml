@@ -117,7 +117,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </p>
 
                     <p class="mb-3">
-                        Your ratings here
+                      
+                        @{
+                            var count = 0;
+                            var total = 0;
+                            float Result = 0;
+
+
+                            foreach (var item in ViewBag.ReviewFoods)
+                            {
+                                if (item.RatingFood > 0)
+                                {
+                                    total += item.RatingFood;
+                                    count++;
+                                }
+
+                            }
+                            if (count > 0)
+                            {
+                                Result = total / count;
+                            }
+
+
+                            <b>Food Rating by Customers  </b>
+                            for (int i = 1; i <= Result; i++)
+                            {
+                                <a>
+                                    <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                </a>
+                            }
+
+                            var fau = Result % 2;
+                            if (fau != 0)
+                            {
+                                <a>
+                                    <img src="~/Image/Star half.png" height="30" width="30" />
+                                </a>
+                            }
+
+                        }
                     </p>
 
 
@@ -135,102 +173,110 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <a style="border:groove; border-color:cadetblue; background-color:darkturquoise; padding-left:10px; padding-right:10px; color:black; " href="@Url.Action("Buy", "Website", new { id = Model.FoodId })">Add To Cart</a>
                         </td>
                         @*<form action="@Url.Action("Checkout","Website")" method="post">
-                                <input type="hidden" id="=FoodId" name="FoodId" value="@Model.FoodId"/>
-                                <input style="background-color:dodgerblue; height:40px; width:200px;" type="submit" name="submit" value="Add to cart" />
+                            <input type="hidden" id="=FoodId" name="FoodId" value="@Model.FoodId"/>
+                            <input style="background-color:dodgerblue; height:40px; width:200px;" type="submit" name="submit" value="Add to cart" />
 
-                            </form>*@
+                        </form>*@
                     </div>
 
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                        <h3 class="heading-tittle text-center font-italic">Reviews of Restaurants</h3>
-                        @*<div class="row" style="width:90%; padding-left:150px ">
-                            @foreach (var item in ViewBag.ReviewFood)
-                            {
-                                <div>
-                                    <div style="padding-left:50px; position:center;">
+                </div>
 
 
-                                        <img src="~/Image/images.png" height="30" width="30" />
-                                        <p style="font-size:30px">
-                                            @item.Customer.Name  - @item.RatingFood
+            </div>
 
-                                            @{
+        </div>
+        <div class="w3-container city">
 
-                                                for (int i = 1; i <= item.RatingFood; i++)
-                                                {
-                                                    <a>
-                                                        <img src="~/Image/Star-Full.png" height="30" width="30" />
-                                                    </a>
-                                                }
-
-                                                var fau1 = item.RatingFood % 1;
-                                                if (fau1 == .5)
-                                                {
-                                                    <a>
-                                                        <img src="~/Image/Star half.png" height="30" width="30" />
-                                                    </a>
-                                                }
+            <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                <h3 class="heading-tittle text-center font-italic">Reviews of Food</h3>
+                <div class="row" style="width:90%; padding-left:150px ">
+                    
+                    @foreach (var item in ViewBag.ReviewFoods)
+                    {
+                        <div>
+                            <div style="padding-left:50px; position:center;">
 
 
-                                            }
-                                        </p>
+                                <img src="~/Image/images.png" height="30" width="30" />
+                                <p style="font-size:30px">
+                                    @item.Customer.Name  - @item.RatingFood
 
-                                    </div>
+                                    @{
 
-                                    <div style="padding-left:100px">
+                                        for (int i = 1; i <= item.RatingFood; i++)
+                                        {
+                                            <a>
+                                                <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                            </a>
+                                        }
 
+                                        var fau1 = item.RatingFood % 1;
+                                        if (fau1 == .5)
+                                        {
+                                            <a>
+                                                <img src="~/Image/Star half.png" height="30" width="30" />
+                                            </a>
+                                        }
 
-                                        <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
-                                        <div>
-                                            ----------------------------------------------------------------------------------------------------------------------------------
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            }
-
-                        </div>*@
-                    </div>
-                    <div style="width:95%; padding-left:100px;  ">
-                        <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-
-                            <div>
-                                <div>
-                                    <h3>
-                                        <b>
-                                            <i>
-                                                Give your review
-                                            </i>
-                                        </b>
-                                    </h3>
-
-                                    @using (Html.BeginForm("FoodSingle", "Website", FormMethod.Post))
-                                    {
-                                        <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.FoodId" />
-
-
-                                        <input type="text" name="Rating" class="form-control" required>
-                                        <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required>
-
-                                        <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
 
                                     }
-                                </div>
-
-                                <div>
-                                    <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
-                                </div>
+                                </p>
 
                             </div>
+
+                            <div style="padding-left:100px">
+
+
+                                <p style="color:darkgreen; font-size:20px;"> @item.Description</p>
+                                <div>
+                                    ----------------------------------------------------------------------------------------------------------------------------------
+                                </div>
+                            </div>
                         </div>
+
+
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div style="width:95%; padding-left:100px;  ">
+            <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+
+                <div>
+                    <div>
+                        <h3>
+                            <b>
+                                <i>
+                                    Give your review
+                                </i>
+                            </b>
+                        </h3>
+
+                        @using (Html.BeginForm("FoodSingle", "Website", FormMethod.Post))
+                        {
+                            <input type="hidden" id="FoodId" name="FoodId" value="@Model.FoodId" />
+
+
+                            <input type="text" name="RatingFood" class="form-control" required>
+                            <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required>
+
+                            <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
+
+                        }
                     </div>
+
+                    <div>
+                        <h3><b><i> Your Ratings for Restaurants or some text from restaurant owner(restaurant overview from owner) </i></b></h3>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    </div>
+ 
     <!-- //Single Page -->
     <!-- middle section -->
     <!-- middle section -->
@@ -380,7 +426,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </html>
 
-<p>
 
-    @Html.ActionLink("Back to List", "RestaurantProfile", "Website", new { id = Model.RestaurantId }, null)
-</p>

@@ -20,6 +20,7 @@ namespace DBrms.Models
             this.Carts = new HashSet<Cart>();
             this.Orders = new HashSet<Order>();
             this.Reviews = new HashSet<Review>();
+            this.ReviewFoods = new HashSet<ReviewFood>();
         }
     
         public int CustomerId { get; set; }
@@ -38,5 +39,7 @@ namespace DBrms.Models
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReviewFood> ReviewFoods { get; set; }
     }
 }

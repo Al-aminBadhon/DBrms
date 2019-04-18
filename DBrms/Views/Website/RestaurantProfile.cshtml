@@ -38,7 +38,7 @@
         @{
             var count = 0;
             var total = 0;
-            var Result = 0;
+           float Result = 0;
 
 
             foreach (var item in ViewBag.Reviews)
@@ -56,7 +56,7 @@
             }
 
 
-            <b>Restaurant Rating @Result </b>
+            <b>Restaurant Rating  </b>
             for (int i = 1; i <= Result; i++)
             {
                 <a>
@@ -224,13 +224,52 @@
 
                             </div>
                             <div class="info-product-price my-2">
-                                <span> User Ratings: 4.5 </span>
+                                <span>
+                                    @*@{
+                                        var count1 = 0;
+                                        var total1 = 0;
+                                        float Result1 = 0;
+
+
+
+
+                                        if (item.ReviewFoods.RatingFood !=null && item.ReviewFoods.RatingFood > 0)
+                                        {
+                                            total1 += item.ReviewFoods.RatingFood;
+                                            count1++;
+                                        }
+
+
+                                        if (count1 > 0)
+                                        {
+                                            Result1 = total1 / count1;
+                                        }
+
+
+                                        <b>Customers Rating </b>
+                                        for (int i = 1; i <= Result1; i++)
+                                        {
+                                            <a>
+                                                <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                            </a>
+                                        }
+
+                                        var fau1 = Result1 % 2;
+                                        if (fau1 != 0)
+                                        {
+                                            <a>
+                                                <img src="~/Image/Star half.png" height="30" width="30" />
+                                            </a>
+                                        }
+
+                                    }*@
+                                </span>
 
                             </div>
 
 
                             <td align="center">
-                                <a href="@Url.Action("Buy", "Website", new { id = item.FoodId })">Buy Now</a>
+                                <a style="border:groove; border-color:cadetblue; background-color:darkturquoise; padding-left:10px; padding-right:10px; color:black; " href="@Url.Action("Buy", "Website", new { id = item.FoodId })">Add To Cart</a>
                             </td>
 
                             @*<form action="@Url.Action("RestaurantProfile","Website")" method="post">

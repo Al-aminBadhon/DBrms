@@ -147,7 +147,7 @@
           <Key>
             <PropertyRef Name="ReviewFoodId" />
           </Key>
-          <Property Name="ReviewFoodId" Type="int" Nullable="false" />
+          <Property Name="ReviewFoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FoodId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
@@ -300,6 +300,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReviewFood_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="ReviewFood" Type="Self.ReviewFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="ReviewFood">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewFood_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="ReviewFood" Type="Self.ReviewFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="ReviewFood">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Transaction_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -366,6 +390,14 @@
             <End Role="Location" EntitySet="Location" />
             <End Role="Restaurant" EntitySet="Restaurant" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReviewFood_Customer" Association="Self.FK_ReviewFood_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="ReviewFood" EntitySet="ReviewFood" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewFood_Food" Association="Self.FK_ReviewFood_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="ReviewFood" EntitySet="ReviewFood" />
+          </AssociationSet>
           <AssociationSet Name="FK_Transaction_Order" Association="Self.FK_Transaction_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Transaction" EntitySet="Transaction" />
@@ -406,6 +438,7 @@
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Customer" FromRole="Customer" ToRole="Cart" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Customer" FromRole="Customer" ToRole="Review" />
+          <NavigationProperty Name="ReviewFoods" Relationship="dbrmsModel.FK_ReviewFood_Customer" FromRole="Customer" ToRole="ReviewFood" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
@@ -420,6 +453,7 @@
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Food_Restaurant" FromRole="Food" ToRole="Restaurant" />
           <NavigationProperty Name="FoodCarts" Relationship="Self.FK_FoodCart_Food" FromRole="Food" ToRole="FoodCart" />
           <NavigationProperty Name="FoodOrders" Relationship="Self.FK_FoodOrder_Food" FromRole="Food" ToRole="FoodOrder" />
+          <NavigationProperty Name="ReviewFoods" Relationship="dbrmsModel.FK_ReviewFood_Food" FromRole="Food" ToRole="ReviewFood" />
         </EntityType>
         <EntityType Name="FoodCart">
           <Key>
@@ -785,6 +819,14 @@
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
           <EntitySet Name="ReviewFoods" EntityType="dbrmsModel.ReviewFood" />
+          <AssociationSet Name="FK_ReviewFood_Customer" Association="dbrmsModel.FK_ReviewFood_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ReviewFood" EntitySet="ReviewFoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewFood_Food" Association="dbrmsModel.FK_ReviewFood_Food">
+            <End Role="Food" EntitySet="Foods" />
+            <End Role="ReviewFood" EntitySet="ReviewFoods" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ReviewFood">
           <Key>
@@ -796,7 +838,33 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RatingFood" Type="Double" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Customer" Relationship="dbrmsModel.FK_ReviewFood_Customer" FromRole="ReviewFood" ToRole="Customer" />
+          <NavigationProperty Name="Food" Relationship="dbrmsModel.FK_ReviewFood_Food" FromRole="ReviewFood" ToRole="Food" />
         </EntityType>
+        <Association Name="FK_ReviewFood_Customer">
+          <End Type="dbrmsModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="dbrmsModel.ReviewFood" Role="ReviewFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="ReviewFood">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewFood_Food">
+          <End Type="dbrmsModel.Food" Role="Food" Multiplicity="1" />
+          <End Type="dbrmsModel.ReviewFood" Role="ReviewFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodId" />
+            </Principal>
+            <Dependent Role="ReviewFood">
+              <PropertyRef Name="FoodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

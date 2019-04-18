@@ -198,6 +198,7 @@ namespace DBrms.Controllers
             ViewBag.Reviews = reviews;
 
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
+            
             ViewBag.Foods = foods;
             
             if (id == null)
@@ -265,12 +266,9 @@ namespace DBrms.Controllers
             return View();
         }
 
-
-        public ActionResult FoodSingle(int? id/*, int ReviewFood, string Description, string RatingFood */)
+        [HttpGet]
+        public ActionResult FoodSingle(int? id)
         {
-
-           
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -281,35 +279,43 @@ namespace DBrms.Controllers
             {
                 return HttpNotFound();
             }
-            //List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.FoodId == id).ToList();
-            //ViewBag.ReviewFoods = reviewFoods;
+            List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.FoodId == id).ToList();
+            ViewBag.ReviewFoods = reviewFoods;
 
-            //if (Session["CustomerId"] != null)
-            //{
-            //    ReviewFood reviewFood = new ReviewFood();
-            //    int customerId = Convert.ToInt32(Session["CustomerId"]);
-            //    reviewFood.CustomerId = customerId;
-
-            //    reviewFood.RatingFood = Convert.ToDouble(RatingFood);
-            //    reviewFood.ReviewFoodId = ReviewFood;
-            //    reviewFood.Description = Description;
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.ReviewFoods.Add(reviewFood);
-            //        db.SaveChanges();
-            //        ModelState.Clear();
-            //        return RedirectToAction("FoodSingle");
-            //    }
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
+           
             return View(food);
         }
 
-        public ActionResult Checkout()
+        [HttpPost]
+        public ActionResult FoodSingle(int FoodId, string Description, string RatingFood)
+        {
+            ReviewFood reviewFood = new ReviewFood();
+            if (Session["CustomerId"] != null)
+            {
+                
+                int customerId = Convert.ToInt32(Session["CustomerId"]);
+                reviewFood.CustomerId = customerId;
+
+                reviewFood.RatingFood = Convert.ToDouble(RatingFood);
+                reviewFood.FoodId = FoodId;
+                reviewFood.Description = Description;
+
+                if (ModelState.IsValid)
+                {
+                    db.ReviewFoods.Add(reviewFood);
+                    db.SaveChanges();
+                    ModelState.Clear();
+                    return RedirectToAction("FoodSingle");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View();
+        }
+
+            public ActionResult Checkout()
         {
             
             return View();
@@ -383,6 +389,8 @@ namespace DBrms.Controllers
             return View();
         }
 
+
+        [HttpGet]
         public ActionResult Buy(string id)
         {
             // var food = db.Foods.ToList();
@@ -442,6 +450,10 @@ namespace DBrms.Controllers
             //return RedirectToAction("Checkout");
 
         }
+
+        [HttpPost]
+
+
 
         public ActionResult Remove(string id)
         {

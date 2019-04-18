@@ -188,6 +188,32 @@ namespace DBrms.Controllers
             return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 3));
         }
 
+        [HttpGet]
+        public ActionResult RestaurantDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           
+            Restaurant restaurant = db.Restaurants.Find(id);
+            if (restaurant == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult RestaurantDelete(int id)
+        {
+            Restaurant restaurant = db.Restaurants.Find(id);
+            db.Restaurants.Remove(restaurant);
+            db.SaveChanges();
+            return RedirectToAction("ManageRsetaurant");
+        }
+
+
 
         [HttpGet]
 
