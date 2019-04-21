@@ -82,6 +82,76 @@ namespace DBrms.Controllers
 
 
 
+        [HttpGet]
+        public ActionResult SliderEdit(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var edit = db.Sliders.Find(id);
+
+            if(edit == null)
+            {
+
+                return HttpNotFound();
+            }
+
+                return View(edit);
+        }
+
+        [HttpPost]
+        public ActionResult SliderEdit([Bind(Include = "SliderId,Name,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(slider).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Slider");
+            }
+            return View();
+
+        }
+
+
+
+        [HttpGet]
+        public ActionResult SliderDelete(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Slider slider = db.Sliders.Find(id);
+            if (slider == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SliderDelete(int id)
+        {
+            Slider slider = db.Sliders.Find(id);
+            db.Sliders.Remove(slider);
+            db.SaveChanges();
+            return RedirectToAction("Slider");
+        }
+
+
 
         public ActionResult CategoryBuffet()
         {

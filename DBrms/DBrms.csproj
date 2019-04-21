@@ -176,7 +176,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Food.cs" />
-    <Compile Include="Models\Extended\Login.cs" />
     <Compile Include="Models\Extended\Magazine.cs" />
     <Compile Include="Models\Extended\Restaurant.cs" />
     <Compile Include="Models\Extended\Review.cs" />
@@ -2758,6 +2757,7 @@
     <Content Include="Views\Customer\CustomerReviewList.cshtml" />
     <Content Include="Views\Restaurants\RestaurantReviewList.cshtml" />
     <Content Include="Views\Website\Checkout.cshtml" />
+    <Content Include="Views\Admin\SliderEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
