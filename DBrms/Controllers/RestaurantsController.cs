@@ -38,6 +38,11 @@ namespace DBrms.Controllers
         
         public ActionResult Menu (int? id, int ? page, string search)
         {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             id = Convert.ToInt32(Session["RestaurantsId"]);
             List<Restaurant> restaurants = db.Restaurants.Where(X => X.RestaurantId == id).ToList();
             ViewBag.Restaurants = restaurants;
@@ -57,7 +62,11 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult MenuAdd()
         {
-           int id = Convert.ToInt32(Session["RestaurantsId"]);
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            int id = Convert.ToInt32(Session["RestaurantsId"]);
             return View();
         }
         [HttpPost]
@@ -87,6 +96,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult MenuEdit (int? id)
         {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,6 +160,10 @@ namespace DBrms.Controllers
 
         public ActionResult Details(int? id)
         {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             id = Convert.ToInt32(Session["RestaurantsId"]);
             
             return View(db.Restaurants.Where(x => x.RestaurantId == id).FirstOrDefault());
@@ -156,6 +173,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
             if (id == null)
             {
@@ -190,7 +211,10 @@ namespace DBrms.Controllers
 
         public ActionResult RestaurantReviewList(int? id, int? page)
         {
-
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             id = Convert.ToInt32(Session["RestaurantsId"]);
 
             return View(db.Reviews.Where(x=> x.RestaurantsId == id).ToList().ToPagedList(page ?? 1,5));

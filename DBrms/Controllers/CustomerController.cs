@@ -87,12 +87,44 @@ namespace DBrms.Controllers
 
         public ActionResult OrderDelete()
         {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
-        public ActionResult ReviewDelete()
+
+        [HttpGet]
+        public ActionResult ReviewDelete(int? id)
         {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ReviewDelete(int id)
+        {
+            Review review = db.Reviews.Find(id);
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("CustomerReviewList");
+        }
+
 
     }
 }
