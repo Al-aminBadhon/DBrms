@@ -7,13 +7,11 @@
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h2>CustomerReviewList</h2>
+<h2>Reviews you given " @Html.DisplayFor(model => model.First().Customer.Name) "</h2>
 
 <table class="table">
     <tr>
-        <th>
-            Customer @Html.DisplayNameFor(model => model.First().Customer.Name)
-        </th>
+      
         <th>
             Restaurant @Html.DisplayNameFor(model => model.First().Restaurant.Name)
         </th>
@@ -31,9 +29,6 @@
         <tr>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.Name)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Restaurant.Name)
             </td>

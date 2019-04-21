@@ -43,7 +43,7 @@ namespace DBrms.Controllers
             return View(magazines);
         }
 
-     
+
         public ActionResult MagazineSingle(int? id)
         {
             if (id == null)
@@ -62,7 +62,7 @@ namespace DBrms.Controllers
         public ActionResult ContactUs()
         {
 
-         
+
 
             return View();
         }
@@ -198,9 +198,9 @@ namespace DBrms.Controllers
             ViewBag.Reviews = reviews;
 
             List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
-            
+
             ViewBag.Foods = foods;
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -212,22 +212,22 @@ namespace DBrms.Controllers
                 return HttpNotFound();
             }
 
-            
+
 
 
             return View(restaurant);
 
-            
+
         }
         [HttpPost]
-        public ActionResult RestaurantProfile(int RestaurantId, string Description , string Rating /*,int FoodId*/)
+        public ActionResult RestaurantProfile(int RestaurantId, string Description, string Rating /*,int FoodId*/)
         {
             Review review = new Review();
             if (Session["CustomerId"] != null)
             {
                 int id = Convert.ToInt32(Session["CustomerId"]);
                 review.CustomerId = id;
-               
+
                 review.Rating = Convert.ToDouble(Rating);
                 review.RestaurantsId = RestaurantId;
                 review.Description = Description;
@@ -260,8 +260,8 @@ namespace DBrms.Controllers
             //    return RedirectToAction("Index", "Login");
             //}
 
-           
-           
+
+
 
             return View();
         }
@@ -282,7 +282,7 @@ namespace DBrms.Controllers
             List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.FoodId == id).ToList();
             ViewBag.ReviewFoods = reviewFoods;
 
-           
+
             return View(food);
         }
 
@@ -292,7 +292,7 @@ namespace DBrms.Controllers
             ReviewFood reviewFood = new ReviewFood();
             if (Session["CustomerId"] != null)
             {
-                
+
                 int customerId = Convert.ToInt32(Session["CustomerId"]);
                 reviewFood.CustomerId = customerId;
 
@@ -315,9 +315,9 @@ namespace DBrms.Controllers
             return View();
         }
 
-            public ActionResult Checkout()
+        public ActionResult Checkout()
         {
-            
+
             return View();
         }
 
@@ -360,7 +360,7 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult RestaurantRegistration([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
+        public ActionResult RestaurantRegistration([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine,Username,Password,IsActive")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
         {
             int er = 0;
             if (LocationId == null)
@@ -423,42 +423,37 @@ namespace DBrms.Controllers
             }
             return RedirectToAction("Checkout");
 
-            //var ID = Convert.ToInt32(id);
-            //var list = db.Foods.Find(ID);
-            //if (Session["cart"] == null)
-            //{
-            //    List<Item> foodCartTest = new List<Item>();
-
-            //    foodCartTest.First().Food.FoodId = list.FoodId;
-            //    foodCartTest.First().Food.Name = list.Name;
-            //    foodCartTest.First().Food.RestaurantId = list.RestaurantId;
-            //    foodCartTest.First().Food.Restaurant.Name = list.Restaurant.Name;
-            //    foodCartTest.First().Food.Price = list.Price;
-            //    foodCartTest.First().Quantity = 1;
-            //    Session["Cart"] = foodCartTest;
-
-            //}
-            //else
-            //{
-            //    List<FoodCart> foodCarts = (List<FoodCart>)Session["Cart"];
-
-            //    FoodCart foodCart = new FoodCart();
-            //    foodCarts.Add(foodCart);
-
-            //    Session["Cart"] = foodCarts;
-            //}
-            //return RedirectToAction("Checkout");
-
         }
 
         [HttpPost]
+        public ActionResult Buy()
+        {
+            List<Item> cart = (List<Item>)Session["Cart"];
+
+            //FoodCart foodcarts = new FoodCart();
+            var foodcarts = (List<Item>)Session["cart"];
+            if (Session["CustomerId"] == null)
+            {
+
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["CustomerId"]);
+                
+
+
+
+            }
+            return View();
+        }
 
 
 
         public ActionResult Remove(string id)
         {
 
-   
+
             List<Item> cart = (List<Item>)Session["cart"];
             int index = isExist(id);
             cart.RemoveAt(index);

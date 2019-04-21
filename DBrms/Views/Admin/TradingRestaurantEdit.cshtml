@@ -20,7 +20,7 @@
         <input type="hidden" id="Address" name="Address" value="@Model.Address"/>
         <input type="hidden" id="Phone" name="Phone" value="@Model.Phone"/>
         <input type="hidden" id="Picture" name="Picture" value="@Model.Picture"/>
-        <input type="hidden" id="Location" name="Location" value="@Model.Location"/>
+        <input type="hidden" id="LocationId" name="LocationId" value="@Model.LocationId"/>
         <input type="hidden" id="PopularMenu" name="PopularMenu" value="@Model.PopularMenu"/>
         <input type="hidden" id="CostPerOrder" name="CostPerOrder" value="@Model.CostPerOrder"/>
         <input type="hidden" id="Time" name="Time" value="@Model.Time"/>
@@ -29,7 +29,7 @@
         <input type="hidden" id="Discount" name="Discount" value="@Model.Discount"/>
         <input type="hidden" id="Username" name="Username" value="@Model.Username"/>
         <input type="hidden" id="Password" name="Password" value="@Model.Password"/>
-        <input type="hidden" id="Visible" name="Visible" value="@Model.Visible"/>
+    
         
 
         <div class="form-group">
@@ -70,10 +70,10 @@
             <div class="col-md-10">
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => Model.Location)
+                        @Html.DisplayFor(modelItem => Model.Location.Name)
                     </td>
                 </tr>
-                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Location.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -134,7 +134,7 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult TradingRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive,Visible")] Restaurant restaurant)
+        public ActionResult TradingRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -225,7 +225,7 @@ namespace DBrms.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RestaurantAdd([Bind(Include = "Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
+        public ActionResult RestaurantAdd([Bind(Include = "RestaurantId,Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine,Username,Password")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
         {
             //int er = 0;
             //if (LocationId == null)
@@ -249,7 +249,7 @@ namespace DBrms.Controllers
                 db.Restaurants.Add(restaurant);
                 db.SaveChanges();
                 ModelState.Clear();
-                return RedirectToAction("ManageRestaurant");
+                return RedirectToAction("ManageRsetaurant");
 
             }
             return View();
@@ -259,6 +259,7 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult ManageRestaurantEdit(int? id)
         {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -274,7 +275,7 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive,Visible")] Restaurant restaurant)
+        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -334,8 +335,15 @@ namespace DBrms.Controllers
             return View(customer);
         }
         [HttpPost]
-        public ActionResult CustomerEdit([Bind(Include = "Name,Address,Image,Phone,Username,Password")] Customer customer)
+        public ActionResult CustomerEdit([Bind(Include = "CustomerId,Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
         {
+            String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+            String extension = Path.GetExtension(ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            customer.Image = "/Image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+            ImageFile.SaveAs(fileName);
+
             if (ModelState.IsValid)
             {
                 //Restaurant res = db.Restaurants.FirstOrDefault(x=> x.RestaurantId == restaurant.RestaurantId);
@@ -345,6 +353,31 @@ namespace DBrms.Controllers
                 return RedirectToAction("ManageCustomer");
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult CustomerDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CustomerDelete(int id)
+        {
+            Restaurant restaurant = db.Restaurants.Find(id);
+            db.Restaurants.Remove(restaurant);
+            db.SaveChanges();
+            return RedirectToAction("ManageCustomer");
         }
 
     }

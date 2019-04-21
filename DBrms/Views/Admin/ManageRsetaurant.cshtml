@@ -26,11 +26,9 @@
             @Html.DisplayNameFor(model => model.First().Picture)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Location.LocationId)
+            @Html.DisplayNameFor(model => model.First().Location)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Visible)
-        </th>
+        
     </tr>
 
     @foreach (var item in Model)
@@ -51,13 +49,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Location.Name)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Visible)
-                </td>
+                
                 <td>
                     @Html.ActionLink("Edit", "ManageRestaurantEdit", new { id = item.RestaurantId }) |
 
-                    <input type="submit" value="Delete" onclick="return confirm('Are you sure do delete @item.Name Restaurant?')"/>
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure? You want to delete ** @item.Name ** Restaurant?')"/>
 
 
                 </td>

@@ -191,7 +191,7 @@ namespace DBrms.Controllers
         public ActionResult RestaurantReviewList(int? id, int? page)
         {
 
-            id = Convert.ToInt32(Session["RestauranstId"]);
+            id = Convert.ToInt32(Session["RestaurantsId"]);
 
             return View(db.Reviews.Where(x=> x.RestaurantsId == id).ToList().ToPagedList(page ?? 1,5));
 

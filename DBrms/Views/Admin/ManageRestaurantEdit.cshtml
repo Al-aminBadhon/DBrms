@@ -17,21 +17,22 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId" />
-    <input type="hidden" id="Name" name="Name" value="@Model.Name" />
-    <input type="hidden" id="Address" name="Address" value="@Model.Address" />
-    <input type="hidden" id="Phone" name="Phone" value="@Model.Phone" />
-    <input type="hidden" id="Picture" name="Picture" value="@Model.Picture" />
-    <input type="hidden" id="Location" name="Location" value="@Model.Location" />
-    <input type="hidden" id="PopularMenu" name="PopularMenu" value="@Model.PopularMenu" />
-    <input type="hidden" id="CostPerOrder" name="CostPerOrder" value="@Model.CostPerOrder" />
-    <input type="hidden" id="Time" name="Time" value="@Model.Time" />
-    <input type="hidden" id="Cuisine" name="Cuisine" value="@Model.Cuisine" />
-    <input type="hidden" id="Extra" name="Extra" value="@Model.Extra" />
-    <input type="hidden" id="Discount" name="Discount" value="@Model.Discount" />
-    <input type="hidden" id="Username" name="Username" value="@Model.Username" />
-    <input type="hidden" id="Password" name="Password" value="@Model.Password" />
+    @*<input type="hidden" id="Name" name="Name" value="@Model.Name" />
+        <input type="hidden" id="Address" name="Address" value="@Model.Address" />
+        <input type="hidden" id="Phone" name="Phone" value="@Model.Phone" />
+        <input type="hidden" id="Picture" name="Picture" value="@Model.Picture" />
+        <input type="hidden" id="LocationId" name="LocationId" value="@Model.LocationId" />
+        <input type="hidden" id="PopularMenu" name="PopularMenu" value="@Model.PopularMenu" />
+        <input type="hidden" id="CostPerOrder" name="CostPerOrder" value="@Model.CostPerOrder" />
+        <input type="hidden" id="Time" name="Time" value="@Model.Time" />
+        <input type="hidden" id="Cuisine" name="Cuisine" value="@Model.Cuisine" />
+        <input type="hidden" id="Extra" name="Extra" value="@Model.Extra" />
+        <input type="hidden" id="Discount" name="Discount" value="@Model.Discount" />
+        <input type="hidden" id="Username" name="Username" value="@Model.Username" />
+        <input type="hidden" id="Password" name="Password" value="@Model.Password" />*@
     <input type="hidden" id="IsActive" name="IsActive" value="@Model.IsActive" />
-    
+    <input type="hidden" id="Picture" name="Picture" value="@Model.Picture" />
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -60,32 +61,82 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+            <img src="@Model.Picture" height="150" width="250" />
+
         </div>
     </div>
+
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("LocationId", null, "--Select One Location--", htmlAttributes: new { @class = "from-control" })
             @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
         </div>
     </div>
-
-   
-
-  
-
     <div class="form-group">
-        @Html.LabelFor(model => model.Visible, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Cuisine, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Visible)
-                @Html.ValidationMessageFor(model => model.Visible, "", new { @class = "text-danger" })
-            </div>
+            @Html.EditorFor(model => model.Cuisine, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cuisine, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CostPerOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CostPerOrder, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CostPerOrder, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PopularMenu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PopularMenu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PopularMenu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Extra, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Extra, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Extra, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
