@@ -20,7 +20,11 @@ namespace DBrms.Controllers
        
         public ActionResult Index (string username, string password)
         {
-             var Login = db.Restaurants.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
+            var admin = db.Logins.Where(x => x.UserName == username && x.Password == password).FirstOrDefault();
+
+            if (admin == null)
+            {
+                var Login = db.Restaurants.Where(x => x.Username == username && x.Password == password).FirstOrDefault();
 
                 if (Login == null)
                 {
@@ -36,17 +40,21 @@ namespace DBrms.Controllers
                         Session["CustomerId"] = cus.CustomerId.ToString();
                         return RedirectToAction("Index", "Customer");
 
-                    
+
                     }
                 }
                 else
                 {
                     Session["username"] = Login.Name.ToString();
                     Session["RestaurantsId"] = Login.RestaurantId.ToString();
-                return RedirectToAction("Index", "Restaurants");
+                    return RedirectToAction("Index", "Restaurants");
                 }
-                
-           
+            }  
+           else
+            {
+                Session["UserId"] = admin.UserId.ToString();
+                return RedirectToAction("Index","Admin");
+            }
            
            
         }

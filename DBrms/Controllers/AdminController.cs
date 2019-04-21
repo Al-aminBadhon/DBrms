@@ -18,12 +18,20 @@ namespace DBrms.Controllers
 
         public ActionResult Index()
         {
+            if(Session["UserId"] == null)
+            {
+                return RedirectToAction("Index","Login");
+            }
             return View();
         }
 
         public ActionResult Slider(int? page)
         {
 
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             return View(db.Sliders.ToList().ToPagedList(page ?? 1, 3));
         }
@@ -32,30 +40,41 @@ namespace DBrms.Controllers
         public ActionResult SliderAdd()
         {
 
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SliderAdd([Bind(Include = "SliderId,Name,Image,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
+        public ActionResult SliderAdd([Bind(Include = "Name,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
 
         {
+
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
 
             String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
             String extension = Path.GetExtension(ImageFile.FileName);
             filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
             slider.Image = "/Image/" + filename;
             filename = Path.Combine(Server.MapPath("/Image/"), filename);
+            ImageFile.SaveAs(filename);
             
-
             if (ModelState.IsValid)
             {
-                ImageFile.SaveAs(filename);
+              
                 db.Sliders.Add(slider);
                 db.SaveChanges();
 
                 ModelState.Clear();
                 return RedirectToAction("Slider");
+
 
             }
             return View();
@@ -73,6 +92,10 @@ namespace DBrms.Controllers
         public ActionResult Newspanel(int? page)
         {
 
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             return View(db.Magazines.ToList().ToPagedList(page ?? 1, 3));
         }
@@ -81,6 +104,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult NewspanelEdit(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,7 +138,10 @@ namespace DBrms.Controllers
 
         public ActionResult TradingRestaurant(int? page)
         {
-
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 3));
         }
@@ -120,6 +150,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult TradingRestaurantEdit(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,19 +181,30 @@ namespace DBrms.Controllers
         }
         public ActionResult Review(int? page)
         {
-
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
             return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
         }
 
         public ActionResult Magazine(int? page)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View(db.Magazines.ToList().ToPagedList(page ?? 1, 3));
         }
 
         [HttpGet]
         public ActionResult MagazineAdd()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
         [HttpPost]
@@ -182,20 +227,27 @@ namespace DBrms.Controllers
             return View();
         }
 
-        public ActionResult ManageRsetaurant(int? page)
+        public ActionResult ManageRestaurant(int? page)
         {
-
-            return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 3));
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 5));
         }
 
         [HttpGet]
         public ActionResult RestaurantDelete(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
+
             Restaurant restaurant = db.Restaurants.Find(id);
             if (restaurant == null)
             {
@@ -203,7 +255,7 @@ namespace DBrms.Controllers
             }
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult RestaurantDelete(int id)
         {
@@ -219,6 +271,10 @@ namespace DBrms.Controllers
 
         public ActionResult RestaurantAdd()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
 
             return View();
@@ -259,6 +315,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult ManageRestaurantEdit(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
             if (id == null)
             {
@@ -275,7 +335,7 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
+        public ActionResult ManageRestaurantEdit([Bind(Include = "Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -290,6 +350,10 @@ namespace DBrms.Controllers
 
         public ActionResult ManageCustomer(int? page)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View(db.Customers.ToList().ToPagedList(page ?? 1, 3));
         }
 
@@ -297,6 +361,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult CustomerAdd()
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
         [HttpPost]
@@ -322,6 +390,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult CustomerEdit(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -358,6 +430,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult CustomerDelete(int? id)
         {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

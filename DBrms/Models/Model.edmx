@@ -74,10 +74,9 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserRole" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Magazine">
           <Key>
@@ -487,15 +486,6 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurant_Location" FromRole="Location" ToRole="Restaurant" />
         </EntityType>
-        <EntityType Name="Login">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserRole" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Magazine">
           <Key>
             <PropertyRef Name="MagazineId" />
@@ -758,7 +748,6 @@
           <EntitySet Name="FoodCarts" EntityType="Self.FoodCart" />
           <EntitySet Name="FoodOrders" EntityType="Self.FoodOrder" />
           <EntitySet Name="Locations" EntityType="Self.Location" />
-          <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Magazines" EntityType="Self.Magazine" />
           <EntitySet Name="Newspanels" EntityType="Self.Newspanel" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -825,6 +814,7 @@
             <End Role="Food" EntitySet="Foods" />
             <End Role="ReviewFood" EntitySet="ReviewFoods" />
           </AssociationSet>
+          <EntitySet Name="Logins" EntityType="dbrmsModel.Login" />
         </EntityContainer>
         <EntityType Name="ReviewFood">
           <Key>
@@ -863,6 +853,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -937,16 +935,6 @@
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Logins">
-            <EntityTypeMapping TypeName="dbrmsModel.Login">
-              <MappingFragment StoreEntitySet="Login">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1069,6 +1057,15 @@
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="FoodId" ColumnName="FoodId" />
                 <ScalarProperty Name="ReviewFoodId" ColumnName="ReviewFoodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="dbrmsModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

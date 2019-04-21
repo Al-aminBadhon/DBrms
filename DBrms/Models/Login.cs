@@ -14,9 +14,8 @@ namespace DBrms.Models
     
     public partial class Login
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int UserRole { get; set; }
     }
 }

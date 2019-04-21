@@ -44,7 +44,10 @@ namespace DBrms.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -63,17 +66,32 @@ namespace DBrms.Controllers
         }
         public ActionResult CustomerOrderList()
         {
-
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
 
         }
         public ActionResult CustomerReviewList(int? id, int? page)
         {
-
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             id = Convert.ToInt32(Session["CustomerId"]);
 
             return View(db.Reviews.Where(x => x.CustomerId == id).ToList().ToPagedList(page ?? 1, 5));
 
+        }
+
+        public ActionResult OrderDelete()
+        {
+            return View();
+        }
+        public ActionResult ReviewDelete()
+        {
+            return View();
         }
 
     }

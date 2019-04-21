@@ -2,4 +2,11 @@
     ViewBag.Title = "Home Page";
 }
 
-<center><h2>Admin Dashboard</h2></center>
+@if (Session["UserId"] != null)
+{
+    <center>
+        <h4 style="color:blue; font-size:30px;"><text> Welcome Admin </text></h4>
+    </center>
+}
+
+

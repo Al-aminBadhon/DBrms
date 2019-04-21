@@ -31,7 +31,6 @@ namespace DBrms.Models
         public virtual DbSet<FoodCart> FoodCarts { get; set; }
         public virtual DbSet<FoodOrder> FoodOrders { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Magazine> Magazines { get; set; }
         public virtual DbSet<Newspanel> Newspanels { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -42,5 +41,6 @@ namespace DBrms.Models
         public virtual DbSet<TradingRestaurant> TradingRestaurants { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<ReviewFood> ReviewFoods { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     }
 }

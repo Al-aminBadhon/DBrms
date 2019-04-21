@@ -2728,7 +2728,7 @@
     <Content Include="Views\Admin\TradingRestaurant.cshtml" />
     <Content Include="Views\Admin\MagazineAdd.cshtml" />
     <Content Include="Views\Admin\Newspanel.cshtml" />
-    <Content Include="Views\Admin\ManageRsetaurant.cshtml" />
+    <Content Include="Views\Admin\ManageRestaurant.cshtml" />
     <Content Include="Views\Admin\RestaurantAdd.cshtml" />
     <Content Include="Views\Restaurants\MenuAdd.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />

@@ -11,8 +11,7 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Restaurant
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +27,6 @@ namespace DBrms.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Picture { get; set; }
-        [DisplayName("Location")]
         public Nullable<int> LocationId { get; set; }
         public string PopularMenu { get; set; }
         public string CostPerOrder { get; set; }
