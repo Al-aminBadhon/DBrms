@@ -518,11 +518,13 @@
 
     <script>
         function Pluse() {
+            if (document.getElementById("myNumber").value < 20)
             document.getElementById("myNumber").stepUp(1);
         }
     </script>
     <script>
         function Minus() {
+            if (document.getElementById("myNumber").value > 1)
             document.getElementById("myNumber").stepDown(1);
         }
     </script>

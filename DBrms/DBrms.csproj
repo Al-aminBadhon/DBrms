@@ -2758,6 +2758,7 @@
     <Content Include="Views\Restaurants\RestaurantReviewList.cshtml" />
     <Content Include="Views\Website\Checkout.cshtml" />
     <Content Include="Views\Admin\SliderEdit.cshtml" />
+    <Content Include="Views\Admin\ReviewEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

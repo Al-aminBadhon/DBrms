@@ -66,6 +66,7 @@ namespace DBrms.Controllers
             filename = Path.Combine(Server.MapPath("/Image/"), filename);
             ImageFile.SaveAs(filename);
             
+            
             if (ModelState.IsValid)
             {
               
@@ -249,6 +250,9 @@ namespace DBrms.Controllers
             }
             return View();
         }
+
+
+
         public ActionResult Review(int? page)
         {
             if (Session["UserId"] == null)
@@ -257,6 +261,67 @@ namespace DBrms.Controllers
             }
 
             return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
+        }
+
+        [HttpGet]
+        public ActionResult ReviewEdit(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View(review);
+
+        }
+        [HttpPost]
+        public ActionResult ReviewEdit([Bind(Include = "RestaurantId,CustomerId,Description")] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(review).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Review");
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ReviewDelete(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReviewDelete(int id)
+        {
+            Review review = db.Reviews.Find(id);
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("Review");
         }
 
         public ActionResult Magazine(int? page)

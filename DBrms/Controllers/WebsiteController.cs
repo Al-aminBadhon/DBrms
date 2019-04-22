@@ -472,5 +472,30 @@ namespace DBrms.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Order()
+        {
+
+            List<Item> cart = (List<Item>)Session["cart"];
+            Session["cart"] = cart;
+            FoodOrder ord = new FoodOrder();
+         //for(int i = 0; i < cart.Count(); i++)
+         //   {
+         //       db.FoodOrders.Add(cart.IndexOf());
+         //   }
+
+            
+
+
+
+            return RedirectToAction("Checkout");
+
+        }
+
+
+
+
+
+
     }
 }

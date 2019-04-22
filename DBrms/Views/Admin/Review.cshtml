@@ -14,25 +14,28 @@
 <table class="table">
     <tr>
 
-        <th>
+        <th style="width:100px">
             Customer
             @Html.DisplayNameFor(model => model.First().Customer.Name)
         </th>
-        <th>
+        <th style="width:300px">
             Customer 
             @Html.DisplayNameFor(model => model.First().Customer.Image)
         </th>
-        <th style="padding-left:30px">
+        <th style="width:100px">
             Restaurant
             @Html.DisplayNameFor(model => model.First().Restaurant.Name)
         </th>
-        <th>
+        <th style="width:400px">
             @Html.DisplayNameFor(model => model.First().Description)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    using (Html.BeginForm("ReviewDelete", "Admin", new { id = item.ReviewId }))
+    {
     <tr>
 
         <td>
@@ -48,11 +51,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ReviewId }) |
+            @Html.ActionLink("Edit", "ReviewEdit", new { id = item.ReviewId }) |
 
-            @Html.ActionLink("Delete", "Delete", new { id = item.ReviewId })
+            <input type="submit" value="Delete" onclick="return confirm ('Are you sure you want to delete the Review??')" />
         </td>
     </tr>
+    }
 }
 
 </table>
