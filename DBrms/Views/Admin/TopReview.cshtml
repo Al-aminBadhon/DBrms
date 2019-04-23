@@ -1,0 +1,77 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<DBrms.Models.Review>
+
+@{
+    ViewBag.Title = "TopReview";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Top Review</h2>
+
+
+<table class="table">
+    <tr>
+        <th style="width:100px">
+           Customer @Html.DisplayNameFor(model => model.First().Customer.Name)
+        </th>
+        <th style="width:200px">
+            @Html.DisplayNameFor(model => model.First().Customer.Image)
+        </th>
+        <th style="width:100px">
+            Restaurant @Html.DisplayNameFor(model => model.First().Restaurant.Name)
+        </th>
+        <th style="width:200px">
+            @Html.DisplayNameFor(model => model.First().Restaurant.Picture)
+        </th>
+        <th style="width:300px">
+            @Html.DisplayNameFor(model => model.First().Description)
+        </th>
+        <th style="width:100px">
+            @Html.DisplayNameFor(model => model.First().Rating)
+        </th>
+
+        <th style="width:100px">
+        <th>
+            @Html.DisplayNameFor(model => model.First().IsActive)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            <img src="@item.Customer.Image" height="100" width="150"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restaurant.Name)
+        </td>
+        <td>
+            <img src="@item.Restaurant.Picture" height="100" width="150" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+
+       
+        <td>
+            @Html.ActionLink("Edit", "TopReviewEdit", new { id = item.ReviewId }) |
+          
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.PagedListPager(Model, page=> Url.Action("TopReview", new { page }))

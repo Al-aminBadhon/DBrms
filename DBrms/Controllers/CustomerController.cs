@@ -87,6 +87,8 @@ namespace DBrms.Controllers
 
         public ActionResult OrderDelete()
         {
+
+
             if (Session["CustomerId"] == null)
             {
                 return RedirectToAction("Index", "Login");

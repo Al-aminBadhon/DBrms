@@ -21,7 +21,8 @@ namespace DBrms.Controllers
             List<Slider> sliders = db.Sliders.ToList();
             ViewBag.Sliders = sliders;
 
-
+            List<Review> reviews = db.Reviews.Where(x => x.IsActive == true).ToList();
+            ViewBag.Reviews = reviews;
 
             List<Magazine> magazines = db.Magazines.Where(x => x.IsActive == true).ToList();
             ViewBag.Magazines = magazines;
@@ -426,12 +427,12 @@ namespace DBrms.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy()
+        public ActionResult Buy(string name, string number, string landmark, string city)
         {
             List<Item> cart = (List<Item>)Session["Cart"];
 
-            //FoodCart foodcarts = new FoodCart();
-            var foodcarts = (List<Item>)Session["cart"];
+            Cart kartForSave = new Cart();
+            FoodCart foodCart = new FoodCart();
             if (Session["CustomerId"] == null)
             {
 
@@ -440,8 +441,25 @@ namespace DBrms.Controllers
             else
             {
                 int id = Convert.ToInt32(Session["CustomerId"]);
-                
 
+                Item tempcart = cart.FirstOrDefault();
+                kartForSave.CustomerId = id;
+
+                kartForSave.Total = cart.Sum(a => (a.Food.Price * a.Quantity));
+                kartForSave.Date = DateTime.Now;
+                kartForSave.Details = name + "\n" + number + "\n" + landmark + "\n" + city;
+                db.Carts.Add(kartForSave);
+                db.SaveChanges();
+                var dataRetrieve = db.Carts.Where(x => x.CustomerId == id).OrderByDescending(x => x.CartId).FirstOrDefault();
+                foreach (var item in cart)
+                {
+                    foodCart.CartId = dataRetrieve.CartId;
+                    foodCart.Quantity = item.Quantity.ToString();
+                    foodCart.FoodId = item.Food.FoodId;
+                    //foodCart.Price = item.Food.Price * foodCart.Quantity;
+                    db.FoodCarts.Add(foodCart);
+                }
+                db.SaveChanges();
 
 
             }
@@ -479,12 +497,12 @@ namespace DBrms.Controllers
             List<Item> cart = (List<Item>)Session["cart"];
             Session["cart"] = cart;
             FoodOrder ord = new FoodOrder();
-         //for(int i = 0; i < cart.Count(); i++)
-         //   {
-         //       db.FoodOrders.Add(cart.IndexOf());
-         //   }
+            //for(int i = 0; i < cart.Count(); i++)
+            //   {
+            //       db.FoodOrders.Add(cart.IndexOf());
+            //   }
 
-            
+
 
 
 

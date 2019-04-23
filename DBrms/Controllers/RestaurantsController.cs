@@ -18,30 +18,25 @@ namespace DBrms.Controllers
         dbrmsEntities db = new dbrmsEntities();
 
         // GET: Restaurants
-        public ActionResult Index()
-        {
-            if (Session["RestaurantsId"] != null)
-            {
-               
-
-               
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index","Login");
-            }
-            
-        }
-
-      
-        
-        public ActionResult Menu (int? id, int ? page, string search)
+        public ActionResult Index(int? id)
         {
             if (Session["RestaurantsId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+
+            List<Review> reviews = db.Reviews.Where(x => x.RestaurantsId == id).ToList();
+            ViewBag.Reivews = reviews.Count();
+
+           return View();
+        }
+
+
+
+        public ActionResult Menu(int? id, int? page, string search)
+        {
+
 
             id = Convert.ToInt32(Session["RestaurantsId"]);
             List<Restaurant> restaurants = db.Restaurants.Where(X => X.RestaurantId == id).ToList();
@@ -49,14 +44,14 @@ namespace DBrms.Controllers
 
             if (search != null)
             {
-                return View(db.Foods.Where(x=> x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1,3));
+                return View(db.Foods.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 3));
             }
-           
 
 
-            return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1,3));
 
-            
+            return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1, 3));
+
+
         }
 
         [HttpGet]
@@ -70,7 +65,7 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult MenuAdd([Bind(Include ="Name,Image,Price,Details")] Food food , HttpPostedFileBase ImageFile)
+        public ActionResult MenuAdd([Bind(Include = "Name,Image,Price,Details")] Food food, HttpPostedFileBase ImageFile)
         {
 
 
@@ -94,7 +89,7 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult MenuEdit (int? id)
+        public ActionResult MenuEdit(int? id)
         {
             if (Session["RestaurantsId"] == null)
             {
@@ -165,7 +160,7 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             id = Convert.ToInt32(Session["RestaurantsId"]);
-            
+
             return View(db.Restaurants.Where(x => x.RestaurantId == id).FirstOrDefault());
         }
 
@@ -184,7 +179,7 @@ namespace DBrms.Controllers
 
             }
             Restaurant edit = db.Restaurants.Find(id);
-            if(edit == null)
+            if (edit == null)
             {
                 return HttpNotFound();
             }
@@ -192,7 +187,7 @@ namespace DBrms.Controllers
         }
         [HttpPost]
         public ActionResult Edit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,UserName,Password")] Restaurant restaurant, HttpPostedFileBase ImageFile)
-            {
+        {
             //String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
             //String extension = Path.GetExtension(ImageFile.FileName);
             //filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
@@ -201,7 +196,7 @@ namespace DBrms.Controllers
             //ImageFile.SaveAs(filename);
             if (ModelState.IsValid)
             {
-                
+
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details");
@@ -217,7 +212,18 @@ namespace DBrms.Controllers
             }
             id = Convert.ToInt32(Session["RestaurantsId"]);
 
-            return View(db.Reviews.Where(x=> x.RestaurantsId == id).ToList().ToPagedList(page ?? 1,5));
+            return View(db.Reviews.Where(x => x.RestaurantsId == id).ToList().ToPagedList(page ?? 1, 5));
+
+        }
+        public ActionResult FoodReviewList(int? id, int? page)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+
+            return View(db.ReviewFoods.Where(x => x.Food.RestaurantId == id).ToList().ToPagedList(page ?? 1, 5));
 
         }
 

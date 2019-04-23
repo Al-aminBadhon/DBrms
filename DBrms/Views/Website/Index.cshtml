@@ -3,226 +3,238 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <!-- Indicators-->
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item item1 active">
-            
-            <div class="container">
-                
-                <div class="w3l-space-banner">
 
-                    <img src="~/Content/Website/images/b1.jpg" />
-                   
-                </div>
-            </div>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+<!-- //Meta tag Keywords -->
+<!-- Custom-Files -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Bootstrap css -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Main css -->
+<link rel="stylesheet" href="css/fontawesome-all.css">
+<!-- Font-Awesome-Icons-CSS -->
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!-- pop-up-box -->
+<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+<!-- menu style -->
+<!-- //Custom-Files -->
+<!-- web fonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+      rel="stylesheet">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+@*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
+<style>
+    .mySlides {
+        display: none;
+    }
+</style>
+
+<div class="carousel slide">
+    @foreach (var item in ViewBag.Sliders)
+    {
+        <div class="carousel-inner">
+            <img class="mySlides" src="@item.Image" style="width:2000px; height:500px">
+
+          <div class="">
+
+          </div>
         </div>
-        <div class="carousel-item item2">
-            <div class="container">
-                <div class="w3l-space-banner">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item item3">
-            <div class="container">
-                <div class="w3l-space-banner">
-                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                        <p>
-                            Get flat
-                            <span>10%</span> Cashback
-                        </p>
-                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
-                            New
-                            <span>Standard</span>
-                        </h3>
-                        <a class="button2" href="product.html">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item item4">
-            <div class="container">
-                <div class="w3l-space-banner">
-                    <div class="carousel-caption p-lg-5 p-sm-4 p-3">
-                        <p>
-                            Get Now
-                            <span>40%</span> Discount
-                        </p>
-                        <h3 class="font-weight-bold pt-2 pb-lg-5 pb-4">
-                            Today
-                            <span>Discount</span>
-                        </h3>
-                        <a class="button2" href="product.html">Shop Now </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+    }
+    <button class="carousel-control-prev" role="button" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="carousel-control-next" onclick="plusDivs(1)">&#10095;</button>
 </div>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000);
+    }
+</script>
+
+
+
 <div class="ads-grid py-sm-5 py-4">
     <div class="container py-xl-4 py-lg-2">
         <!-- tittle heading -->
         <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
             <span>H</span>ome
-            
+
             <span>P</span>age
         </h3>
         <!-- //tittle heading -->
         <div class="row">
             <!-- Elements left -->
-           
-                <div class="wrapper">
+
+            <div class="wrapper">
 
 
 
-                    <!-- first section """""NewsPanel Start""""" -->
-                    <!-- ***************************************** -->
-                       <!-- ************************************* -->
-                          <!-- ****************************** -->
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                        <h3 class="heading-tittle text-center font-italic">Top News</h3>
-                        <div class="row">
+                <!-- first section """""NewsPanel Start""""" -->
+                <!-- ***************************************** -->
+                <!-- ************************************* -->
+                <!-- ****************************** -->
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Top News</h3>
+                    <div class="row">
 
 
-                            @foreach (var item in ViewBag.Magazines)
-                            {
-                                <div class="col-md-4 product-men mt-5">
-                                    <div class="men-pro-item simpleCart_shelfItem">
-                                        <div class="men-thumb-item text-center">
-                                            <img src=@item.Image height="150" width="250">
-                                            <div class="men-cart-pro">
-                                                <div class="inner-men-cart-pro">
-                                                    <a href="~/Website/MagazineSingle/@item.MagazineId" class="link-product-add-cart">Quick View</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
-                                                <a href="~/Website/MagazineSingle/@item.MagazineId">@item.Name</a>
-                                            </h4>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            
-                        </div>
-                    </div>
-                    <!-- first section """""NewsPanel End""""" -->
-                    <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
-                    <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                        <h3 class="heading-tittle text-center font-italic">Popular Restaurants</h3>
-                        <div class="row">
-                            @foreach (var item in ViewBag.Restaurants)
-                            {
-                                <div class="col-md-4 product-men mt-5">
-                                    <div class="men-pro-item simpleCart_shelfItem">
-                                        <div class="men-thumb-item text-center">
-                                            <img src=@item.Picture height="150" width="250">
-                                            <div class="men-cart-pro">
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="item-info-product text-center border-top mt-4">
-                                            <h4 class="pt-1">
-                                                <a href="single.html">@item.Name</a>
-                                            </h4>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                        </div>
-                    </div>
-                    <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
-                    <!-- third section -->
-                    <div class="product-sec1 product-sec2 px-sm-5 px-3">
-                        <div class="row">
-                            <h3 class="col-md-4 effect-bg">Hot offer</h3>
-                            <p class="w3l-nut-middle">Get Extra 10% Off</p>
-                            <div class="col-md-8 bg-right-nut">
-                                
-
-                                <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" alt=""style="padding-left:200px;" height="300px" width="500px" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- //third section -->
-                    <!-- fourth section -->
-                    @*<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
-                        <h3 class="heading-tittle text-center font-italic">Large Appliances</h3>
-                        <div class="row">
+                        @foreach (var item in ViewBag.Magazines)
+                        {
                             <div class="col-md-4 product-men mt-5">
                                 <div class="men-pro-item simpleCart_shelfItem">
                                     <div class="men-thumb-item text-center">
-                                        <img src="~/Content/Website/images/m7.jpg" alt="">
+                                        <img src=@item.Image height="150" width="250">
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                <a href="~/Website/MagazineSingle/@item.MagazineId" class="link-product-add-cart">Quick View</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="product-new-top">New</span>
                                     <div class="item-info-product text-center border-top mt-4">
                                         <h4 class="pt-1">
-                                            <a href="single.html">Whirlpool 245</a>
+                                            <a href="~/Website/MagazineSingle/@item.MagazineId">@item.Name</a>
                                         </h4>
-                                        <div class="info-product-price my-2">
-                                            <span class="item_price">$230.00</span>
-                                            <del>$280.00</del>
-                                        </div>
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <form action="#" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Whirlpool 245" />
-                                                    <input type="hidden" name="amount" value="230.00" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                                </fieldset>
-                                            </form>
-                                        </div>
 
                                     </div>
                                 </div>
                             </div>
-                          
-                           
-                        </div>
-                    </div>*@
-                    <!-- //fourth section -->
+                        }
+
+
+                    </div>
                 </div>
-            
+                <!-- first section """""NewsPanel End""""" -->
+                <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Popular Restaurants</h3>
+                    <div class="row">
+                        @foreach (var item in ViewBag.Restaurants)
+                        {
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <img src=@item.Picture height="150" width="250">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="~/Website/RestaurantProfile/@item.RestaurantId" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="~/Website/RestaurantProfile/@item.RestaurantId">@item.Name</a>
+                                        </h4>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!-- second section """"""Trending Restaurants""""""""""""End"""""""""""" -->
+                <!-- third section -->
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Top Reviews</h3>
+                    <div class="row">
+
+
+                        @foreach (var item in ViewBag.Reviews)
+                        {
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <img src=@item.Restaurant.Picture height="150" width="250">
+
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="~/Website/RestaurantProfile/@item.RestaurantsId" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <img src=@item.Customer.Image height="30" width="50">
+                                        <a>
+                                            @item.Customer.Name -  @item.Rating
+                                            @{
+
+                                                for (int i = 1; i <= item.Rating; i++)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star-Full.png" height="15" width="15" />
+                                                    </a>
+                                                }
+
+                                                var fau1 = item.Rating % 1;
+                                                if (fau1 == .5)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star half.png" height="15" width="15" />
+                                                    </a>
+                                                }
+
+
+                                            }
+                                        </a>
+                                        <p>@item.Description</p>
+                                    </div>
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="~/Website/RestaurantProfile/@item.RestaurantsId">@item.Restaurant.Name</a>
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+                <!-- //third section -->
+                <!-- fourth section -->
+                <!-- //fourth section -->
+            </div>
+
             <!-- //product left -->
             <!-- product right -->
-          
+
         </div>
     </div>
 </div>
 <!-- //top products -->
 <!-- middle section -->
-
-

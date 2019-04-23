@@ -91,6 +91,8 @@
     </div>
     <!-- //page -->
     <!-- checkout page -->
+
+
     <div class="privacy py-sm-5 py-4">
         <div class="container py-xl-4 py-lg-2">
             <!-- tittle heading -->
@@ -118,52 +120,57 @@
                                 <th>Remove</th>
                             </tr>
                         </thead>
-                       
+
 
                         <tbody>
-
-                            @foreach (Item item in (List<Item>)Session["cart"])
+                            @if ((List<Item>)Session["cart"] == null)
                             {
-                                <tr class="rem1">
-                                    <td class="invert"></td>
-                                    <td class="invert-image">
-                                        <a>
-                                            <img src="@item.Food.Image" alt=" " class="img-responsive">
-                                        </a>
-                                    </td>
-                                    <td class="invert">
-                                        <div class="quantity">
-                                            <div class="quantity-select">
-
-
-
-                                                <button class="entry value-plus active" onclick="Pluse()"></button>
-                                                <input style="color:black" class="entry value" type="number" id="myNumber" value="@item.Quantity">
-                                                <button class="entry value-minus" onclick="Minus()"></button>
-
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="invert">@item.Food.Name</td>
-                                    <td class="invert">@item.Food.Restaurant.Name</td>
-                                    <td class="invert">@item.Food.Price</td>
-                                    <td class="invert">@(item.Food.Price * item.Quantity)</td>
-                                    <td class="invert">
-                                        <div class="rem">
-                                            <a href="@Url.Action("Remove", "Website", new { id = item.Food.FoodId })">Remove</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <center> <p style="color:red; font-size:20px;">No Food Added</p></center>
                             }
+                            else
+                            {
+                                foreach (Item item in (List<Item>)Session["cart"])
+                                {
+                                    <tr class="rem1">
+                                        <td class="invert"></td>
+                                        <td >
+                                            <a>
+                                                <img src="@item.Food.Image" height="100" width="200" >
+                                            </a>
+                                        </td>
+                                        <td class="invert">
+                                            <div class="quantity">
+                                                <div class="quantity-select">
+
+
+
+                                                    <button class="entry value-plus active" onclick="Pluse()"></button>
+                                                    <input style="color:black" class="entry value" type="number" id="myNumber" value="@item.Quantity">
+                                                    <button class="entry value-minus" onclick="Minus()"></button>
+
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="invert">@item.Food.Name</td>
+                                        <td class="invert">@item.Food.Restaurant.Name</td>
+                                        <td class="invert">@item.Food.Price</td>
+                                        <td class="invert">@(item.Food.Price * item.Quantity)</td>
+                                        <td class="invert">
+                                            <div class="rem">
+                                                <a href="@Url.Action("Remove", "Website", new { id = item.Food.FoodId })">Remove</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
                                 <tr>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>Grand Total</td>
-                                    
+
                                     <td>
                                         @{
                                             List<Item> cart = (List<Item>)Session["cart"];
@@ -172,9 +179,10 @@
                                         @total
                                     </td>
                                 </tr>
-                                
-                            </tbody>
-                        
+                            }
+
+                        </tbody>
+
                     </table>
 
                 </div>
@@ -186,7 +194,7 @@
             <div class="checkout-left">
                 <div class="address_form_agile mt-sm-5 mt-4">
                     <h4 class="mb-sm-4 mb-3">Add a new Details</h4>
-                    <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                    <form action="Buy" method="post" class="creditly-card-form agileinfo_form">
                         <div class="creditly-wrapper wthree, w3_agileits_wrapper">
                             <div class="information-wrapper">
                                 <div class="first-row">
@@ -209,25 +217,25 @@
                                         <input type="text" class="form-control" placeholder="Town/City" name="city" required="">
                                     </div>
                                     @*<div class="controls form-group">
-                                        <select class="option-w3ls">
-                                            <option>Select Address type</option>
-                                            <option>Office</option>
-                                            <option>Home</option>
-                                            <option>Commercial</option>
+                                            <select class="option-w3ls">
+                                                <option>Select Address type</option>
+                                                <option>Office</option>
+                                                <option>Home</option>
+                                                <option>Commercial</option>
 
-                                        </select>
-                                    </div>*@
+                                            </select>
+                                        </div>*@
                                 </div>
                                 <button class="submit check_out btn">Cash on Delivery</button>
                             </div>
                         </div>
                     </form>
                     @*<div class="checkout-right-basket">
-                        <a href="payment.html">
-                            Make a Payment
-                            <span class="far fa-hand-point-right"></span>
-                        </a>
-                    </div>*@
+                            <a href="payment.html">
+                                Make a Payment
+                                <span class="far fa-hand-point-right"></span>
+                            </a>
+                        </div>*@
 
                     @*Pop-up botton*@
 
@@ -478,7 +486,7 @@
 
                             </select>
                         </div>
-                        <div  class="optional visa row form-group" style="display:none; background:#01336D; color:white ; width:100%); border:groove 2px; margin-top:20px; padding:10px 10px 10px 10px">
+                        <div class="optional visa row form-group" style="display:none; background:#01336D; color:white ; width:100%); border:groove 2px; margin-top:20px; padding:10px 10px 10px 10px">
                             <div class="col-lg-6">
                                 <label>HOLDER NAME:</label>
                                 <input type="text" name="holderName" class="form-control" required>
@@ -519,13 +527,13 @@
     <script>
         function Pluse() {
             if (document.getElementById("myNumber").value < 20)
-            document.getElementById("myNumber").stepUp(1);
+                document.getElementById("myNumber").stepUp(1);
         }
     </script>
     <script>
         function Minus() {
             if (document.getElementById("myNumber").value > 1)
-            document.getElementById("myNumber").stepDown(1);
+                document.getElementById("myNumber").stepDown(1);
         }
     </script>
 

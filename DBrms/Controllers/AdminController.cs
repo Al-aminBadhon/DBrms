@@ -324,6 +324,46 @@ namespace DBrms.Controllers
             return RedirectToAction("Review");
         }
 
+       
+        public ActionResult TopReview(int? page)
+        {
+            return View(db.Reviews.ToList().ToPagedList(page ?? 1,5));
+        }
+        [HttpGet]
+        public ActionResult TopReviewEdit(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View(review);
+
+        }
+        [HttpPost]
+        public ActionResult TopReviewEdit([Bind(Include = "ReviewId,RestaurantsId,CustomerId,Description,Rating,IsActive")] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(review).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("TopReview");
+            }
+            return View();
+        }
+
+
+
         public ActionResult Magazine(int? page)
         {
             if (Session["UserId"] == null)
@@ -362,11 +402,15 @@ namespace DBrms.Controllers
             return View();
         }
 
-        public ActionResult ManageRestaurant(int? page)
+        public ActionResult ManageRestaurant(int? page, string search)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
+            }
+            if (search != null)
+            {
+                return View(db.Restaurants.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
             return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 5));
         }

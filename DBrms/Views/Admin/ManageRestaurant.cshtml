@@ -9,8 +9,11 @@
 }
 
 <h2>Manage Rsetaurant</h2>
-
-<p>
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find Restaurant...." name="search" required="">
+    <input type="submit" value="Search">
+</form>
+<p style="font-size:20px">
     @Html.ActionLink("Add Restaurant", "RestaurantAdd")
 </p>
 <table class="table">
