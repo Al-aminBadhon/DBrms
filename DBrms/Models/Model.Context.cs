@@ -31,16 +31,16 @@ namespace DBrms.Models
         public virtual DbSet<FoodCart> FoodCarts { get; set; }
         public virtual DbSet<FoodOrder> FoodOrders { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Magazine> Magazines { get; set; }
         public virtual DbSet<Newspanel> Newspanels { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<ReviewFood> ReviewFoods { get; set; }
         public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TradingRestaurant> TradingRestaurants { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
-        public virtual DbSet<ReviewFood> ReviewFoods { get; set; }
-        public virtual DbSet<Login> Logins { get; set; }
     }
 }

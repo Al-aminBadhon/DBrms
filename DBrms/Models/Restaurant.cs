@@ -17,7 +17,6 @@ namespace DBrms.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Restaurant()
         {
-            this.Carts = new HashSet<Cart>();
             this.Foods = new HashSet<Food>();
             this.Reviews = new HashSet<Review>();
         }
@@ -38,8 +37,6 @@ namespace DBrms.Models
         public string Password { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Food> Foods { get; set; }
         public virtual FoodOrder FoodOrder { get; set; }

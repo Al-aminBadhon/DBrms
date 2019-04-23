@@ -17,7 +17,7 @@ namespace DBrms.Models
         public int FoodCartId { get; set; }
         public int FoodId { get; set; }
         public int CartId { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public double Price { get; set; }
     
         public virtual Cart Cart { get; set; }

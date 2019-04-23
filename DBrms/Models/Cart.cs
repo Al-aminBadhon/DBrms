@@ -21,15 +21,12 @@ namespace DBrms.Models
         }
     
         public int CartId { get; set; }
-        public int RestaurantId { get; set; }
         public int CustomerId { get; set; }
-        public string Quantity { get; set; }
         public System.DateTime Date { get; set; }
         public double Total { get; set; }
         public string Details { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FoodCart> FoodCarts { get; set; }
     }

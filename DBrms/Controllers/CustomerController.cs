@@ -64,13 +64,15 @@ namespace DBrms.Controllers
         {
             return View();
         }
-        public ActionResult CustomerOrderList()
+
+        public ActionResult CustomerOrderList(int? id,int? page)
         {
             if (Session["CustomerId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            return View();
+            id = Convert.ToInt32(Session["CustomerId"]);
+            return View(db.FoodCarts.Where(x=> x.Cart.CustomerId == id).ToList().ToPagedList(page ??1,5));
 
         }
         public ActionResult CustomerReviewList(int? id, int? page)

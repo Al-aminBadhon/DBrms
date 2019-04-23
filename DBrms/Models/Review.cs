@@ -21,7 +21,7 @@ namespace DBrms.Models
         public Nullable<bool> IsActive { get; set; }
         public Nullable<double> Rating { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

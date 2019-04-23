@@ -4,38 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b13180b2972849ea87840a33ac6b4ef5" Name="Diagram1">
-        <EntityTypeShape EntityType="dbrmsModel.Cart" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Customer" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Food" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.FoodCart" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.FoodOrder" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Location" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Magazine" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Newspanel" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Order" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Restaurant" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Review" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Slider" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.sysdiagram" Width="1.5" PointX="9.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.TradingRestaurant" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbrmsModel.Transaction" Width="1.5" PointX="10.5" PointY="14.25" IsExpanded="true" />
+      <Diagram DiagramId="3a90ac85ab9a40238b6baf18fe8af02c" Name="Diagram1">
+        <EntityTypeShape EntityType="dbrmsModel.Cart" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Customer" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Food" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.FoodCart" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.FoodOrder" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Location" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Login" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Magazine" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Newspanel" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Order" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Restaurant" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Review" Width="1.5" PointX="11.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.ReviewFood" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Slider" Width="1.5" PointX="11.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.sysdiagram" Width="1.5" PointX="11.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.TradingRestaurant" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbrmsModel.Transaction" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="dbrmsModel.FK_Cart_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="dbrmsModel.FK_Cart_Restaurant" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_FoodCart_Cart" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Order_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="dbrmsModel.FK_Review_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbrmsModel.FK_ReviewFood_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Food_Restaurant" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_FoodCart_Food" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_FoodOrder_Food" ManuallyRouted="false" />
+        <AssociationConnector Association="dbrmsModel.FK_ReviewFood_Food" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_FoodOrder_Order" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Restaurant_Location" ManuallyRouted="false" />
         <AssociationConnector Association="dbrmsModel.FK_Transaction_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="dbrmsModel.FK_Review_Restaurant" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="dbrmsModel.ReviewFood" Width="1.5" PointX="10.375" PointY="3.75" />
-        <AssociationConnector Association="dbrmsModel.FK_ReviewFood_Customer" />
-        <AssociationConnector Association="dbrmsModel.FK_ReviewFood_Food" />
-        <EntityTypeShape EntityType="dbrmsModel.Login" Width="1.5" PointX="12.375" PointY="3.75" />
+        <AssociationConnector Association="dbrmsModel.FK_Review_Restaurant" />
+        <AssociationConnector Association="dbrmsModel.FK_Review_Customer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

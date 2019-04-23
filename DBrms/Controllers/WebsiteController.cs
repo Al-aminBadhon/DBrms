@@ -444,7 +444,6 @@ namespace DBrms.Controllers
 
                 Item tempcart = cart.FirstOrDefault();
                 kartForSave.CustomerId = id;
-
                 kartForSave.Total = cart.Sum(a => (a.Food.Price * a.Quantity));
                 kartForSave.Date = DateTime.Now;
                 kartForSave.Details = name + "\n" + number + "\n" + landmark + "\n" + city;
@@ -454,16 +453,16 @@ namespace DBrms.Controllers
                 foreach (var item in cart)
                 {
                     foodCart.CartId = dataRetrieve.CartId;
-                    foodCart.Quantity = item.Quantity.ToString();
+                    foodCart.Quantity = item.Quantity;
                     foodCart.FoodId = item.Food.FoodId;
-                    //foodCart.Price = item.Food.Price * foodCart.Quantity;
+                    foodCart.Price = item.Food.Price * foodCart.Quantity;
                     db.FoodCarts.Add(foodCart);
                 }
                 db.SaveChanges();
 
-
+                return RedirectToAction("Index","Customer");
             }
-            return View();
+            
         }
 
 
