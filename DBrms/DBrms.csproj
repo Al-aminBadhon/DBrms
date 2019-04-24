@@ -2410,17 +2410,21 @@
     <Content Include="Content\Site.css" />
     <Content Include="Image\2831_computer-wallpaper-hd.jpg" />
     <Content Include="Image\bKash.png" />
+    <Content Include="Image\cancel.png" />
     <Content Include="Image\cart.png" />
     <Content Include="Image\cart1.png" />
     <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
+    <Content Include="Image\Cross.png" />
     <Content Include="Image\images.png" />
     <Content Include="Image\Location.png" />
     <Content Include="Image\login-background.jpg" />
     <Content Include="Image\maxresdefault.jpg" />
+    <Content Include="Image\pending.png" />
     <Content Include="Image\pizzahut.jpg" />
     <Content Include="Image\setting-clipart-gear-system-settings-md.png" />
     <Content Include="Image\Star half.png" />
     <Content Include="Image\Star-Full.png" />
+    <Content Include="Image\tik sign.png" />
     <Content Include="Image\top-line-management-login-background-1.jpg" />
     <Content Include="Image\visalogo.jpg" />
     <Content Include="Models\Model.Context.tt">
@@ -2764,6 +2768,8 @@
     <Content Include="Views\Restaurants\FoodReviewList.cshtml" />
     <Content Include="Views\Customer\CustomerOrderList.cshtml" />
     <Content Include="Views\Customer\OrderListDetails.cshtml" />
+    <Content Include="Views\Admin\OrderList.cshtml" />
+    <Content Include="Views\Admin\OrderListDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

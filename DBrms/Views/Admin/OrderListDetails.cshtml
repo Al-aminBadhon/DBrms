@@ -4,7 +4,7 @@
 
 @{
     ViewBag.Title = "OrderListDetails";
-    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>OrderListDetails</h2>
@@ -28,7 +28,10 @@
             @Html.DisplayNameFor(model => model.First().Cart.Total)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().Cart.Date)
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Picture)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Cart.Details)
@@ -44,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.Food.Name)
             </td>
             <td>
-              <img src="@item.Food.Image" height="100" width="200"/>
+                <img src="@item.Food.Image" height="100" width="200" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
@@ -53,10 +56,13 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @(item.Price * item.Quantity)
+                @(item.Price*item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cart.Date)
+                @Html.DisplayFor(modelItem => item.Food.Restaurant.Name)
+            </td>
+            <td>
+                <img src="@item.Food.Restaurant.Picture" height="100" width="200" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cart.Details)
@@ -70,3 +76,5 @@
     }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("OrderListDetails", new { page }))

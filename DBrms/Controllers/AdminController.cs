@@ -635,7 +635,25 @@ namespace DBrms.Controllers
             return RedirectToAction("ManageCustomer");
         }
 
+        public ActionResult OrderList(int? page)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
 
+            return View(db.Carts.ToList().ToPagedList(page ?? 1,5));
+        }
+
+        public ActionResult OrderListDetails(int? id, int? page)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            var foodlist = db.FoodCarts.Where(x => x.CartId == id).ToList().ToPagedList(page ?? 1, 5);
+            return View(foodlist);
+        }
        
     }
 }

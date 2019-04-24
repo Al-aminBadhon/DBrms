@@ -18,7 +18,7 @@ namespace DBrms.Controllers
         // GET: Website
         public ActionResult Index()
         {
-            List<Slider> sliders = db.Sliders.ToList();
+            List<Slider> sliders = db.Sliders.Where(x=> x.IsActive == true).ToList();
             ViewBag.Sliders = sliders;
 
             List<Review> reviews = db.Reviews.Where(x => x.IsActive == true).ToList();
@@ -428,7 +428,7 @@ namespace DBrms.Controllers
                 kartForSave.CustomerId = id;
                 kartForSave.Total = cart.Sum(a => (a.Food.Price * a.Quantity));
                 kartForSave.Date = DateTime.Now;
-                kartForSave.Details = name + "\n" + number + "\n" + landmark + "\n" + city;
+                kartForSave.Details = "Name\n"+name + "Number\n" + number + "Location\n" + landmark + "City\n" + city;
                 db.Carts.Add(kartForSave);
                 db.SaveChanges();
                 var dataRetrieve = db.Carts.Where(x => x.CustomerId == id).OrderByDescending(x => x.CartId).FirstOrDefault();
