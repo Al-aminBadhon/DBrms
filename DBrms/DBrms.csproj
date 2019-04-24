@@ -2770,6 +2770,7 @@
     <Content Include="Views\Customer\OrderListDetails.cshtml" />
     <Content Include="Views\Admin\OrderList.cshtml" />
     <Content Include="Views\Admin\OrderListDetails.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

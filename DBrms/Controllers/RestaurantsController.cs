@@ -227,7 +227,28 @@ namespace DBrms.Controllers
 
         }
 
+        public ActionResult RestaurantOrderList(int? id, int? page)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            id = Convert.ToInt32(Session["RestaurantsId"]);
 
+            return View(db.FoodCarts.Where(x=> x.Food.RestaurantId == id).ToList().ToPagedList(page ??1,5));
+        }
+
+        public ActionResult RestaurantOrderListDetails(int? id, int? page)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id).ToList();
+
+            return View(foodlist);
+
+        }
 
 
     }

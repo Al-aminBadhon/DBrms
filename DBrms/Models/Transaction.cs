@@ -15,10 +15,12 @@ namespace DBrms.Models
     public partial class Transaction
     {
         public int TransactionId { get; set; }
-        public int OrderId { get; set; }
+        public int CartId { get; set; }
         public System.DateTime Date { get; set; }
         public double PaidAmount { get; set; }
+        public Nullable<int> RestaurantId { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

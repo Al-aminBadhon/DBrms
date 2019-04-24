@@ -103,17 +103,17 @@ namespace DBrms.Controllers
             //Logic for Discount
             //Logic for Discount
 
-            if (discount == "5%" && range == null)
+            if (discount == "5" && range == null)
             {
                 var discount1 = db.Restaurants.Where(x => x.Discount.StartsWith("5")).ToList().ToPagedList(page ?? 1, 3);
                 return View(discount1);
             }
-            if (discount == "10%" && range == null)
+            if (discount == "10" && range == null)
             {
                 var discount2 = db.Restaurants.Where(x => x.Discount.Contains("10")).ToList().ToPagedList(page ?? 1, 3);
                 return View(discount2);
             }
-            if (discount == "15%" && range == null)
+            if (discount == "15" && range == null)
             {
                 var discount3 = db.Restaurants.Where(x => x.Discount.Contains("15")).ToList().ToPagedList(page ?? 1, 3);
                 return View(discount3);

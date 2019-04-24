@@ -19,6 +19,7 @@ namespace DBrms.Models
         {
             this.Foods = new HashSet<Food>();
             this.Reviews = new HashSet<Review>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public int RestaurantId { get; set; }
@@ -43,5 +44,7 @@ namespace DBrms.Models
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

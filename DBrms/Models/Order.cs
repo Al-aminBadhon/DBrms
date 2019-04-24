@@ -14,12 +14,6 @@ namespace DBrms.Models
     
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.Transactions = new HashSet<Transaction>();
-        }
-    
         public int OrderId { get; set; }
         public int RestaurantId { get; set; }
         public int CustomerId { get; set; }
@@ -29,7 +23,5 @@ namespace DBrms.Models
         public double Total { get; set; }
     
         public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }
