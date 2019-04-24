@@ -72,8 +72,19 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             id = Convert.ToInt32(Session["CustomerId"]);
-            return View(db.FoodCarts.Where(x=> x.Cart.CustomerId == id).ToList().ToPagedList(page ??1,5));
+            return View(db.Carts.Where(x=> x.CustomerId == id).ToList().ToPagedList(page ??1,5));
 
+        }
+
+        public ActionResult OrderListDetails(int? id, int? page)
+        {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var foodlist = db.FoodCarts.Where(x => x.CartId == id).ToList().ToPagedList(page ?? 1, 5);
+            return View(foodlist);
         }
         public ActionResult CustomerReviewList(int? id, int? page)
         {

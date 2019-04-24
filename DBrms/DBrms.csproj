@@ -2763,6 +2763,7 @@
     <Content Include="Views\Admin\TopReviewEdit.cshtml" />
     <Content Include="Views\Restaurants\FoodReviewList.cshtml" />
     <Content Include="Views\Customer\CustomerOrderList.cshtml" />
+    <Content Include="Views\Customer\OrderListDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

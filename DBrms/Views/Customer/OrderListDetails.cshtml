@@ -1,0 +1,66 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.FoodCart>
+
+@{
+    ViewBag.Title = "OrderListDetails";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>OrderListDetails</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Food.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Food.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Cart.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Cart.Details)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.Name)
+            </td>
+            <td>
+              <img src="@item.Food.Image" height="100" width="200"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.Details)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.FoodCartId })
+            </td>
+        </tr>
+    }
+
+</table>

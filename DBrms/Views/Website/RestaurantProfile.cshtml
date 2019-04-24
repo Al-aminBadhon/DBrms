@@ -273,34 +273,6 @@
                                 <a style="border:groove; border-color:cadetblue; background-color:darkturquoise; padding-left:10px; padding-right:10px; color:black; " href="@Url.Action("Buy", "Website", new { id = item.FoodId })">Add To Cart</a>
                             </td>
 
-                            @*<form action="@Url.Action("RestaurantProfile","Website")" method="post">
-                                    <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId"/>
-                                    <input type="hidden" id="Quantity" name="Quantity" value="1"/>
-                                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId"/>
-                                    <input style="background-color:dodgerblue; height:40px; width:200px; " type="submit" name="submit" value="Add to cart" />
-                                    <a href="../Website/AddToCart?id=@item.">Add to cart</a>
-                                </form>*@
-
-
-
-
-
-                            @*<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                    <form action="#" method="post">
-                                        <fieldset>
-                                            <input type="hidden" name="cmd" value="_cart" />
-                                            <input type="hidden" name="add" value="1" />
-                                            <input type="hidden" name="business" value=" " />
-                                            <input type="hidden" name="item_name" value="@item.Name" />
-                                            <input type="hidden" name="amount" value="@item.Price" />
-                                            <input type="hidden" name="discount_amount" value="0.00" />
-                                            <input type="hidden" name="currency_code" value="USD" />
-                                            <input type="hidden" name="return" value=" " />
-                                            <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Add to cart" class="button btn" />
-                                        </fieldset>
-                                    </form>
-                                </div>*@
                         </div>
                     </div>
                 </div>

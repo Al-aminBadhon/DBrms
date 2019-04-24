@@ -212,6 +212,7 @@ namespace DBrms.Controllers
             {
                 return HttpNotFound();
             }
+            
 
 
 
@@ -245,25 +246,6 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-
-            //Cart cart = new Cart();
-            //FoodCart foodCart = new FoodCart();
-
-            //if (Session["CustomerId"] != null)
-            //{
-            //   int id = Convert.ToInt32(Session["CustomerId"]);
-            //    cart.CustomerId = id;
-            //    cart.RestaurantId = RestaurantId;
-            //    foodCart.FoodId = FoodId;
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
-
-
-
-
             return View();
         }
 
@@ -457,8 +439,9 @@ namespace DBrms.Controllers
                     foodCart.FoodId = item.Food.FoodId;
                     foodCart.Price = item.Food.Price * foodCart.Quantity;
                     db.FoodCarts.Add(foodCart);
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+                
 
                 return RedirectToAction("Index","Customer");
             }
