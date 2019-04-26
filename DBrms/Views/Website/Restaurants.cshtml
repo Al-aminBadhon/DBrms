@@ -120,11 +120,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                                 <div>
 
-                                    <table style="width:50%">
+                                    <table style="width:100%">
 
 
                                         <tr>
-                                            <td class="far fa-hand-point-right mr-2"> | Popular Menu</td>
+                                            <td class="far fa-hand-point-right mr-3"> | Popular Menu</td>
                                             <td>@item.PopularMenu</td>
 
                                         </tr>
@@ -170,7 +170,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     }
                 }
-                <div> <center> @Html.PagedListPager(Model, page => Url.Action("Restaurants", new { page }))</center></a></div>
+                <h5 style="padding-left:300px">  @Html.PagedListPager(Model, page => Url.Action("Restaurants", new { page }))</h5>
 
             </div>
 
@@ -294,55 +294,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!-- -----------------------------reviews-------------------------- -->
                 <!-- -----------------------------reviews-------------------------- -->
 
-                <div class="customer-rev border-bottom left-side py-2">
-                    <h3 class="agileits-sear-head mb-3">Customer Review</h3>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>5.0</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>4.0</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half"></i>
-                                <span>3.5</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>3.0</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half"></i>
-                                <span>2.5</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+              
                 <!-- //reviews -->
                 <!-- best seller -->
                 <div class="f-grid py-2">

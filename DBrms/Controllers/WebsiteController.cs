@@ -124,7 +124,7 @@ namespace DBrms.Controllers
 
 
 
-            var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1, 3);
+            var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1, 5);
             ViewBag.Restaurants = restaurants;
 
             return View(restaurants);
@@ -187,7 +187,7 @@ namespace DBrms.Controllers
                 var location11 = db.Restaurants.Where(x => x.LocationId == 11).ToList().ToPagedList(page ?? 1, 3);
                 return View(location11);
             }
-            var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1, 3);
+            var restaurants = db.Restaurants.ToList().ToPagedList(page ?? 1, 5);
             ViewBag.Restaurants = restaurants;
             return View(restaurants);
         }
