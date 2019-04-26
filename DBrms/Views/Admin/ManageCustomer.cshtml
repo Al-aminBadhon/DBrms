@@ -7,27 +7,28 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Manage Customer</h2>
-
+<h2>Manage Customers</h2>
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find Customer...." name="search" required>
+    <input type="submit" value="Search">
+</form>
 <p>
     @Html.ActionLink("Create New Customer", "CustomerAdd")
 </p>
 <table class="table">
     <tr>
-        <th  style="width:100px">
+        <th  style=" padding-left:150px; width:250px;">
             @Html.DisplayNameFor(model => model.First().Name)
         </th>
-        <th  style="width:100px">
+        <th  style="width:150px">
             @Html.DisplayNameFor(model => model.First().Address)
         </th>
-        <th  style="width:380px">
+        <th  style="width:250px">
             @Html.DisplayNameFor(model => model.First().Image)
         </th>
         <th  style="width:100px">
             @Html.DisplayNameFor(model => model.First().Phone)
         </th>
-        
-        
         <th style="width:100px">
             @Html.DisplayNameFor(model => model.First().Username)
         </th>
@@ -42,14 +43,14 @@
     using (Html.BeginForm("CustomerDelete", "Admin", new { id = item.CustomerId }))
     {
     <tr>
-        <td>
+        <td style=" padding-left:150px;">
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-           <img src="@item.Image" height="200" width="350"/>
+           <img src="@item.Image" height="120" width="200"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Phone)
@@ -73,4 +74,4 @@
 
 </table>
 
-@Html.PagedListPager(Model, page=> Url.Action("ManageCustomer", new { page }))
+<h6 style="padding-left:150px">@Html.PagedListPager(Model, page => Url.Action("ManageCustomer", new { page }))</h6>

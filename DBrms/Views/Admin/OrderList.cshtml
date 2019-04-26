@@ -8,23 +8,26 @@
 }
 
 <h2>Order List</h2>
-
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find  Customer name...." name="search" required="">
+    <input type="submit" value="Search">
+</form>
 
 <table class="table">
     <tr>
-        <th>
+        <th style=" padding-left:150px; width:250px;">
             @Html.DisplayNameFor(model => model.First().Customer.Name)
         </th>
-        <th>
+        <th style="width:220px;">
             @Html.DisplayNameFor(model => model.First().Customer.Image)
         </th>
-        <th>
+        <th style="width:100px;">
             @Html.DisplayNameFor(model => model.First().Date)
         </th>
-        <th>
+        <th style="width:100px;">
             @Html.DisplayNameFor(model => model.First().Total)
         </th>
-        <th>
+        <th style="width:250px;">
             @Html.DisplayNameFor(model => model.First().Details)
         </th>
 
@@ -33,7 +36,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style=" padding-left:150px;">
             @Html.DisplayFor(modelItem => item.Customer.Name)
         </td>
         <td>

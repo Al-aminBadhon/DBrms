@@ -10,19 +10,22 @@
 
 <h2>Top Review</h2>
 
-
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find Customer name...." name="search" required="">
+    <input type="submit" value="Search">
+</form>
 <table class="table">
     <tr>
-        <th style="width:100px">
+        <th style="width:100px; padding-left:80px;">
            Customer @Html.DisplayNameFor(model => model.First().Customer.Name)
         </th>
-        <th style="width:200px">
+        <th style="width:170px">
             @Html.DisplayNameFor(model => model.First().Customer.Image)
         </th>
         <th style="width:100px">
             Restaurant @Html.DisplayNameFor(model => model.First().Restaurant.Name)
         </th>
-        <th style="width:200px">
+        <th style="width:170px">
             @Html.DisplayNameFor(model => model.First().Restaurant.Picture)
         </th>
         <th style="width:300px">
@@ -32,8 +35,8 @@
             @Html.DisplayNameFor(model => model.First().Rating)
         </th>
 
-        <th style="width:100px">
-        <th>
+        <th style="width:50px">
+        
             @Html.DisplayNameFor(model => model.First().IsActive)
         </th>
 
@@ -42,7 +45,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style=" padding-left:80px;">
             @Html.DisplayFor(modelItem => item.Customer.Name)
         </td>
         <td>
@@ -52,21 +55,58 @@
             @Html.DisplayFor(modelItem => item.Restaurant.Name)
         </td>
         <td>
-            <img src="@item.Restaurant.Picture" height="100" width="150" />
+            <img src="@item.Restaurant.Picture" height="100" width="160" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Rating)
+            @{
+
+                for (int i = 1; i <= item.Rating; i++)
+                {
+                    <a>
+                        <img src="~/Image/Star-Full.png" height="15" width="15" />
+                    </a>
+                }
+
+                var fau1 = item.Rating % 1;
+                if (fau1 == .5)
+                {
+                    <a>
+                        <img src="~/Image/Star half.png" height="15" width="15" />
+                    </a>
+                }
+
+
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
+            @{
+                if (item.IsActive == true)
+                {
+                    <p>
+                        <img src="~/Image/tik sign.png" height="30" width="30" />
+                    </p>
+                }
+                if (item.IsActive == null)
+                {
+                    <p>
+                        <img src="~/Image/pending.png" height="30" width="50" />
+                    </p>
+                }
+                if (item.IsActive == false)
+                {
+                    <p>
+                        <img src="~/Image/Cross.png" height="30" width="30" />
+                    </p>
+                }
+            }
         </td>
 
        
         <td>
-            @Html.ActionLink("Edit", "TopReviewEdit", new { id = item.ReviewId }) |
+            @Html.ActionLink("Change", "TopReviewEdit", new { id = item.ReviewId }) 
           
         </td>
     </tr>
@@ -74,4 +114,4 @@
 
 </table>
 
-@Html.PagedListPager(Model, page=> Url.Action("TopReview", new { page }))
+<h6 style="padding-left:80px">@Html.PagedListPager(Model, page => Url.Action("TopReview", new { page }))</h6>

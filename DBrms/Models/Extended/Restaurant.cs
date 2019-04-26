@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -31,6 +32,7 @@ namespace DBrms.Models.Extended
         [Required]
         public string PopularMenu { get; set; }
         [Required]
+        [DisplayName("Cost Range")]
         public string CostPerOrder { get; set; }
         [Required]
         public string Time { get; set; }

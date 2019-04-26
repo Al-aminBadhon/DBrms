@@ -10,70 +10,78 @@
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Food.Name)
+
+        <th style="width:100px; padding-left:100px">
+           Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
         </th>
-        <th>
+        <th style="width:100px">
+           Menu @Html.DisplayNameFor(model => model.Food.Name)
+        </th>
+        <th style="width:100px">
             @Html.DisplayNameFor(model => model.Food.Image)
         </th>
-        <th>
+        <th style="width:50px">
             @Html.DisplayNameFor(model => model.Quantity)
         </th>
-        <th>
+        <th style="width:50px">
             @Html.DisplayNameFor(model => model.Price)
         </th>
 
-        <th>
+        <th style="width:50px">
             @Html.DisplayNameFor(model => model.Food.Restaurant.Discount)
         </th>
-        <th>
+        <th style="width:50px">
             Discounted @Html.DisplayNameFor(model => model.Price)
         </th>
-        <th>
+        <th style="width:50px">
             @Html.DisplayNameFor(model => model.Cart.Total)
         </th>
-        <th>
+        <th style="width:150px">
             @Html.DisplayNameFor(model => model.Cart.Details)
         </th>
 
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Food.Name)
-        </td>
-        <td>
-            <img src="@item.Food.Image" height="100" width="200" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th style="padding-left:100px">
+                @Html.DisplayFor(model => item.Cart.Customer.Name)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.Name)
+            </td>
+            <td>
+                <img src="@item.Food.Image" height="80" width="150" />
+            </td>
+            <td>
+                <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
 
-        <td>
+            <td>
 
-            @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
-        </td>
-        <td>
-            <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
-        </td>
-        <td>
-            @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )*item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cart.Details)
-        </td>
+                @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
+            </td>
+            <td>
+                <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
+            </td>
+            <td>
+                @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.Details)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.FoodCartId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.FoodCartId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.FoodCartId })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FoodCartId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FoodCartId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FoodCartId })
+            </td>
+        </tr>
+    }
 
 </table>

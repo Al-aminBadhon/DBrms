@@ -9,14 +9,17 @@
 }
 
 <h2>Trading Restaurant</h2>
-
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find Restaurant...." name="search" required="">
+    <input type="submit" value="Search">
+</form>
 
 <table class="table">
     <tr>
-        <th style="width:100px">
+        <th style=" padding-left:150px; width:250px;">
             @Html.DisplayNameFor(model => model.First().Name)
         </th>
-        <th style="width:300px">
+        <th style="width:270px">
             @Html.DisplayNameFor(model => model.First().Picture)
         </th>
         <th style="width:100px">
@@ -28,32 +31,52 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            <img src="@item.Picture" height="200" width="400" />
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style=" padding-left:150px;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@item.Picture" height="120" width="250" />
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "TradingRestaurantEdit", new { id = item.RestaurantId})
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                @{
+                    if (item.IsActive == true)
+                    {
+                        <p>
+                            <img src="~/Image/tik sign.png" height="30" width="30" />
+                        </p>
+                    }
+                    if (item.IsActive == null)
+                    {
+                        <p>
+                            <img src="~/Image/pending.png" height="30" width="80" />
+                        </p>
+                    }
+                    if (item.IsActive == false)
+                    {
+                        <p>
+                            <img src="~/Image/Cross.png" height="30" width="30" />
+                        </p>
+                    }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Change", "TradingRestaurantEdit", new { id = item.RestaurantId })
 
-           
-        </td>
 
-    </tr>
-}
+            </td>
+
+        </tr>
+    }
 
 </table>
 
 
 
-@Html.PagedListPager(Model, page=> Url.Action("TradingRestaurant", new { page }))
+<h6 style="padding-left:150px">@Html.PagedListPager(Model, page => Url.Action("TradingRestaurant", new { page })) </h6>

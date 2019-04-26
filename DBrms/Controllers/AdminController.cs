@@ -25,12 +25,16 @@ namespace DBrms.Controllers
             return View();
         }
 
-        public ActionResult Slider(int? page)
+        public ActionResult Slider(int? page, string search)
         {
 
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
+            }
+            if(search != null)
+            {
+                return View(db.Sliders.Where(x=> x.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
             }
 
             return View(db.Sliders.ToList().ToPagedList(page ?? 1, 3));
@@ -58,8 +62,9 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-
-            String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+            if (ImageFile != null)
+            {
+                String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
             String extension = Path.GetExtension(ImageFile.FileName);
             filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
             slider.Image = "/Image/" + filename;
@@ -67,8 +72,7 @@ namespace DBrms.Controllers
             ImageFile.SaveAs(filename);
             
             
-            if (ModelState.IsValid)
-            {
+            
               
                 db.Sliders.Add(slider);
                 db.SaveChanges();
@@ -108,7 +112,7 @@ namespace DBrms.Controllers
         }
 
         [HttpPost]
-        public ActionResult SliderEdit([Bind(Include = "SliderId,Name,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
+        public ActionResult SliderEdit([Bind(Include = "SliderId,Name,Image,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
@@ -160,12 +164,16 @@ namespace DBrms.Controllers
 
             return View();
         }
-        public ActionResult Newspanel(int? page)
+        public ActionResult Newspanel(int? page, string search)
         {
 
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
+            }
+            if(search != null)
+            {
+                return View(db.Magazines.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
 
             return View(db.Magazines.ToList().ToPagedList(page ?? 1, 3));
@@ -207,14 +215,19 @@ namespace DBrms.Controllers
 
 
 
-        public ActionResult TradingRestaurant(int? page)
+        public ActionResult TradingRestaurant(int? page, string search)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
+            if (search != null)
+            {
+                return View(db.Restaurants.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+            }
+            return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 5));
 
-            return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 3));
+         
         }
 
 
@@ -253,12 +266,17 @@ namespace DBrms.Controllers
 
 
 
-        public ActionResult Review(int? page)
+        public ActionResult Review(int? page, string search)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
+            if(search != null)
+            {
+                return View(db.Reviews.Where(x=> x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
+            }
+            
 
             return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -325,8 +343,16 @@ namespace DBrms.Controllers
         }
 
        
-        public ActionResult TopReview(int? page)
+        public ActionResult TopReview(int? page,string search)
         {
+            if(Session["UserId"] == null)
+            {
+                return RedirectToAction("Index","Login");
+            }
+            if (search != null)
+            {
+                return View(db.Reviews.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+            }
             return View(db.Reviews.ToList().ToPagedList(page ?? 1,5));
         }
         [HttpGet]
@@ -361,16 +387,19 @@ namespace DBrms.Controllers
             }
             return View();
         }
+      
 
-
-
-        public ActionResult Magazine(int? page)
+        public ActionResult Magazine(int? page, string search)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            return View(db.Magazines.ToList().ToPagedList(page ?? 1, 3));
+            if(search != null)
+            {
+                return View(db.Magazines.Where(x=> x.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
+            }
+            return View(db.Magazines.ToList().ToPagedList(page ?? 1, 5));
         }
 
         [HttpGet]
@@ -402,6 +431,36 @@ namespace DBrms.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult MagazineDelete(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Magazine magazine = db.Magazines.Find(id);
+            if (magazine == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MagazineDelete(int id)
+        {
+            Magazine magazine = db.Magazines.Find(id);
+            db.Magazines.Remove(magazine);
+            db.SaveChanges();
+            return RedirectToAction("Magazine");
+        }
+
+
         public ActionResult ManageRestaurant(int? page, string search)
         {
             if (Session["UserId"] == null)
@@ -410,7 +469,7 @@ namespace DBrms.Controllers
             }
             if (search != null)
             {
-                return View(db.Restaurants.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
+                return View(db.Restaurants.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
             return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -441,7 +500,7 @@ namespace DBrms.Controllers
             Restaurant restaurant = db.Restaurants.Find(id);
             db.Restaurants.Remove(restaurant);
             db.SaveChanges();
-            return RedirectToAction("ManageRsetaurant");
+            return RedirectToAction("ManageRestaurant");
         }
 
 
@@ -527,13 +586,17 @@ namespace DBrms.Controllers
             return View();
         }
 
-        public ActionResult ManageCustomer(int? page)
+        public ActionResult ManageCustomer(int? page, string search)
         {
             if (Session["UserId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            return View(db.Customers.ToList().ToPagedList(page ?? 1, 3));
+            if (search != null)
+            {
+                return View(db.Customers.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+            }
+            return View(db.Customers.ToList().ToPagedList(page ?? 1, 5));
         }
 
 
@@ -629,8 +692,8 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult CustomerDelete(int id)
         {
-            Restaurant restaurant = db.Restaurants.Find(id);
-            db.Restaurants.Remove(restaurant);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("ManageCustomer");
         }

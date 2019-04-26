@@ -16,16 +16,16 @@
 <p style="font-size:20px">
     @Html.ActionLink("Add Restaurant", "RestaurantAdd")
 </p>
-<table class="table">
+<table class="table" >
     <tr>
-        <th style="width:100px;">
+        <th style=" padding-left:150px; width:250px;">
             @Html.DisplayNameFor(model => model.First().Name)
         </th>
         <th style="width:150px">
             @Html.DisplayNameFor(model => model.First().Address)
         </th>
 
-        <th style="width:400px">
+        <th style="width:270px">
             @Html.DisplayNameFor(model => model.First().Picture)
         </th>
         <th  style="width:100px">
@@ -39,7 +39,7 @@
         using (Html.BeginForm("RestaurantDelete", "Admin", new { id = item.RestaurantId }))
         {
             <tr>
-                <td >
+                <td style="padding-left:150px">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
@@ -47,7 +47,7 @@
                 </td>
 
                 <td>
-                    <img src="@item.Picture" height="200" width="360">
+                    <img src="@item.Picture" height="120" width="250">
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Location.Name)
@@ -65,4 +65,5 @@
     }
 
 </table>
-@Html.PagedListPager(Model, page => Url.Action("ManageRestaurant", new { page }))
+
+<h6 style="padding-left:150px">@Html.PagedListPager(Model, page => Url.Action("ManageRestaurant", new { page }))</h6>
