@@ -1,0 +1,103 @@
+﻿@model DBrms.Models.ReviewFood
+
+@{
+    ViewBag.Title = "TopReviewFoodEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>TopReviewFoodEdit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ReviewFood</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ReviewFoodId)
+
+    @Html.HiddenFor(model => model.FoodId)
+    @Html.HiddenFor(model => model.CustomerId)
+    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.RatingFood)
+
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.Name, "Customer name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(modelItem => Model.Customer.Name)
+            @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer.Image, "Customer picture", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <img src="@Model.Customer.Image" height="80" width="120">
+            @Html.ValidationMessageFor(model => model.Customer.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food.Restaurant.Name, "Restaurant name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(modelItem => Model.Food.Restaurant.Name)
+            @Html.ValidationMessageFor(model => model.Food.Restaurant.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food.Name, "Food name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(modelItem => Model.Food.Name)
+            @Html.ValidationMessageFor(model => model.Food.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food.Image, "Food picture", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <img src="@Model.Food.Image" height="60" width="120">
+            @Html.ValidationMessageFor(model => model.Food.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-5">
+            @Html.DisplayFor(modelItem => Model.Description)
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RatingFood, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-5" style="width:500px">
+            @Html.DisplayFor(modelItem => Model.RatingFood)
+            @Html.ValidationMessageFor(model => model.RatingFood, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsActive)
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

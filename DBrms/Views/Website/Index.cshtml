@@ -189,7 +189,7 @@
                                     <div>
                                         <img src=@item.Customer.Image height="30" width="50">
                                         <a>
-                                            @item.Customer.Name -  @item.Rating
+                                            @item.Customer.Name -  
                                             @{
 
                                                 for (int i = 1; i <= item.Rating; i++)
@@ -215,6 +215,64 @@
                                     <div class="item-info-product text-center border-top mt-4">
                                         <h4 class="pt-1">
                                             <a href="~/Website/RestaurantProfile/@item.RestaurantsId">@item.Restaurant.Name</a>
+                                        </h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Top Reviews of Food</h3>
+                    <div class="row">
+
+
+                        @foreach (var item in ViewBag.ReviewFoods)
+                        {
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <img src=@item.Food.Image height="150" width="250">
+
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="~/Website/RestaurantProfile/@item.Food.RestaurantId" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <img src=@item.Customer.Image height="30" width="50">
+                                        <a>
+                                            @item.Customer.Name -  
+                                            @{
+
+                                                for (int i = 1; i <= item.RatingFood; i++)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star-Full.png" height="15" width="15" />
+                                                    </a>
+                                                }
+
+                                                var fau1 = item.RatingFood % 1;
+                                                if (fau1 == .5)
+                                                {
+                                                    <a>
+                                                        <img src="~/Image/Star half.png" height="15" width="15" />
+                                                    </a>
+                                                }
+
+
+                                            }
+                                        </a>
+                                        <p>@item.Description</p>
+                                    </div>
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="~/Website/RestaurantProfile/@item.Food.RestaurantId">@item.Food.Name</a>
                                         </h4>
 
                                     </div>

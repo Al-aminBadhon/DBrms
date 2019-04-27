@@ -30,7 +30,8 @@ namespace DBrms.Controllers
             List<Restaurant> restaurants = db.Restaurants.Where(x => x.IsActive == true).ToList();
             ViewBag.Restaurants = restaurants;
 
-
+            List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.IsActive == true).ToList();
+            ViewBag.ReviewFoods = reviewFoods;
 
             return View();
         }
@@ -438,6 +439,7 @@ namespace DBrms.Controllers
                     foodCart.Quantity = item.Quantity;
                     foodCart.FoodId = item.Food.FoodId;
                     foodCart.Price = item.Food.Price;
+                    foodCart.Total = (item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity;
                     db.FoodCarts.Add(foodCart);
                     db.SaveChanges();
                 }

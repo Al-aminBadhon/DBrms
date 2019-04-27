@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DBrms.Models.FoodCart>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.FoodCart>
 
 @{
     ViewBag.Title = "RestaurantCashOnDelivary";
@@ -7,38 +9,36 @@
 
 <h2>RestaurantCashOnDelivary</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th style="width:100px; padding-left:100px">
-            Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
+            Customer @Html.DisplayNameFor(model => model.First().Cart.Customer.Name)
         </th>
         <th style="width:100px">
-            Menu @Html.DisplayNameFor(model => model.Food.Name)
+            Menu @Html.DisplayNameFor(model => model.First().Food.Name)
         </th>
         <th style="width:100px">
-            @Html.DisplayNameFor(model => model.Food.Image)
+            @Html.DisplayNameFor(model => model.First().Food.Image)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.DisplayNameFor(model => model.First().Quantity)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.First().Price)
         </th>
 
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Food.Restaurant.Discount)
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
         </th>
         <th style="width:50px">
-            Discounted @Html.DisplayNameFor(model => model.Price)
+            Discounted @Html.DisplayNameFor(model => model.First().Price)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Cart.Total)
+            @Html.DisplayNameFor(model => model.First().Total)
         </th>
         <th style="width:150px">
-            @Html.DisplayNameFor(model => model.Cart.Details)
+            @Html.DisplayNameFor(model => model.First().Cart.Details)
         </th>
         <th style="width:100px">
 
@@ -75,7 +75,7 @@
                 <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
             </td>
             <td>
-                @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+                @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cart.Details)
@@ -127,11 +127,11 @@
                                 <form class="contact" name="contact" action="@Url.Action("RestaurantCashOnDelivary")" method="post">
 
                                     <label>Food Payable amount</label>
-                                    <p> @Html.DisplayFor(modelItem => item.Price) tk    </p>
+                                    <p> @(item.Cart.Total) tk    </p>
                                     <label>Payment get</label>
                                     <div>
                                         <input type="text" id="PaidAmount" name="PaidAmount" required />
-
+                                    
                                     </div>
                                     <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
                                     <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
@@ -160,3 +160,4 @@
 </table>
 
 
+@Html.PagedListPager(Model, page=>Url.Action("RestaurantCashOnDelivary",new { page }))

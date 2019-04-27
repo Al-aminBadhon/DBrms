@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.CustomerId, "Customer picture", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Customer.Name, "Customer picture", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <img src="@Model.Customer.Image" height="100" width="150">
             @Html.ValidationMessageFor(model => model.Customer.Image, "", new { @class = "text-danger" })

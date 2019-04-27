@@ -50,8 +50,9 @@
           <Property Name="CartId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="PaidAmount" Type="float" />
           <Property Name="IsConfirm" Type="bit" />
+          <Property Name="PaidAmount" Type="float" />
+          <Property Name="Total" Type="float" />
         </EntityType>
         <EntityType Name="FoodOrder">
           <Key>
@@ -499,6 +500,7 @@
           <NavigationProperty Name="Cart" Relationship="Self.FK_FoodCart_Cart" FromRole="FoodCart" ToRole="Cart" />
           <NavigationProperty Name="Food" Relationship="Self.FK_FoodCart_Food" FromRole="FoodCart" ToRole="Food" />
           <Property Name="IsConfirm" Type="Boolean" />
+          <Property Name="Total" Type="Double" />
         </EntityType>
         <EntityType Name="FoodOrder">
           <Key>
@@ -945,6 +947,7 @@
           <EntitySetMapping Name="FoodCarts">
             <EntityTypeMapping TypeName="dbrmsModel.FoodCart">
               <MappingFragment StoreEntitySet="FoodCart">
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
                 <ScalarProperty Name="FoodCartId" ColumnName="FoodCartId" />
                 <ScalarProperty Name="FoodId" ColumnName="FoodId" />

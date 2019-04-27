@@ -116,6 +116,8 @@
                                 <th>Product Name</th>
                                 <th>Restaurant Name</th>
                                 <th>Price</th>
+                                <th>Discount</th>
+                                <th>New Price</th>
                                 <th>Sub Total</th>
                                 <th>Remove</th>
                             </tr>
@@ -135,7 +137,7 @@
                                         <td class="invert"></td>
                                         <td >
                                             <a>
-                                                <img src="@item.Food.Image" height="100" width="200" >
+                                                <img src="@item.Food.Image" height="60" width="120" >
                                             </a>
                                         </td>
                                         <td class="invert">
@@ -144,7 +146,7 @@
 
 
 
-                                                    <button class="entry value-plus active" onclick="Pluse()"></button>
+                                                    <button class="entry value-plus active" onclick="Pluse()" style="background-size:5px"></button>
                                                     <input style="color:black" class="entry value" type="number" id="myNumber" value="@item.Quantity">
                                                     <button class="entry value-minus" onclick="Minus()"></button>
 
@@ -155,7 +157,9 @@
                                         <td class="invert">@item.Food.Name</td>
                                         <td class="invert">@item.Food.Restaurant.Name</td>
                                         <td class="invert">@item.Food.Price</td>
-                                        <td class="invert">@(item.Food.Price * item.Quantity)</td>
+                                        <td class="invert">@item.Food.Restaurant.Discount %</td>
+                                        <td class="invert"> @(item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) ) tk</td>
+                                        <td class="invert">@(item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)* item.Quantity ) tk </td>
                                         <td class="invert">
                                             <div class="rem">
                                                 <a href="@Url.Action("Remove", "Website", new { id = item.Food.FoodId })">Remove</a>

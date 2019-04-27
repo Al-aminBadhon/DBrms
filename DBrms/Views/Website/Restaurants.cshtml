@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             <div class="col-lg-7 single-right-left simpleCart_shelfItem">
                                 <h3 class="mb-3">
-                                    <b><i>@item.Name</i></b>    <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" />
+                                    <b><i><a href="~/website/RestaurantProfile/@item.RestaurantId">@item.Name</a></i></b>    <img src="~/Image/chef-restaurant-logo-publicdomainvectors.png" height="50" width="50" />
 
                                     <p><b> @Html.DisplayFor(modelItem => item.Location.Name)</b> - <img src="~/Image/Location.png" height="20" width="20" /></p>
 
@@ -186,7 +186,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <input type="submit" value=" ">
 
 
-
+                        <p style="color:lightcoral">Chose option from below and click search</p>
                         <!-- price Range search -->
                         <!-- price Range search -->
 
@@ -220,13 +220,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <ul>
 
                                 <li>
-                                    @Html.RadioButton("discount", "5%") 5% Discount
+                                    @Html.RadioButton("discount", "5") 5% Discount
                                 </li>
                                 <li>
-                                    @Html.RadioButton("discount", "10%") 10% Discount
+                                    @Html.RadioButton("discount", "10") 10% Discount
                                 </li>
                                 <li>
-                                    @Html.RadioButton("discount", "15%") 15% Discount
+                                    @Html.RadioButton("discount", "15") 15% Discount
                                 </li>
 
                             </ul>

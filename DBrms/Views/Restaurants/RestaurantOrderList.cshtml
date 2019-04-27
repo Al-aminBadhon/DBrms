@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DBrms.Models.FoodCart>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.FoodCart>
 
 @{
     ViewBag.Title = "RestaurantOrderList";
@@ -12,35 +14,35 @@
     <tr>
 
         <th style="width:100px; padding-left:100px">
-           Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
+           Customer @Html.DisplayNameFor(model => model.First().Cart.Customer.Name)
         </th>
         <th style="width:100px">
-           Menu @Html.DisplayNameFor(model => model.Food.Name)
+           Menu @Html.DisplayNameFor(model => model.First().Food.Name)
         </th>
         <th style="width:100px">
-            @Html.DisplayNameFor(model => model.Food.Image)
+            @Html.DisplayNameFor(model => model.First().Food.Image)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Quantity)
+            @Html.DisplayNameFor(model => model.First().Quantity)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.First().Price)
         </th>
 
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Food.Restaurant.Discount)
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
         </th>
         <th style="width:50px">
-            Discounted @Html.DisplayNameFor(model => model.Price)
+            Discounted @Html.DisplayNameFor(model => model.First().Price)
         </th>
         <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Cart.Total)
+            @Html.DisplayNameFor(model => model.First().Cart.Total)
         </th>
         <th style="width:150px">
-            @Html.DisplayNameFor(model => model.Cart.Details)
+            @Html.DisplayNameFor(model => model.First().Cart.Details)
         </th>
         <th style="width:100px">
-            @Html.DisplayNameFor(model => model.IsConfirm)
+            @Html.DisplayNameFor(model => model.First().IsConfirm)
         </th>
 
         <th></th>
@@ -97,3 +99,5 @@
     }
 
 </table>
+
+<h6> @Html.PagedListPager(Model, page=> Url.Action("RestaurantOrderList", new { page }))</h6>

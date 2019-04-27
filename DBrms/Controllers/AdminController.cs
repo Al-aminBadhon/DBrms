@@ -387,7 +387,95 @@ namespace DBrms.Controllers
             }
             return View();
         }
-      
+
+        public ActionResult ReviewFood(int? page, string search)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (search != null)
+            {
+                return View(db.ReviewFoods.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+            }
+
+
+            return View(db.ReviewFoods.ToList().ToPagedList(page ?? 1, 5));
+        }
+
+        [HttpGet]
+        public ActionResult ReviewFoodDelete(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            if (reviewFood == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReviewFoodDelete(int id)
+        {
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            db.ReviewFoods.Remove(reviewFood);
+            db.SaveChanges();
+            return RedirectToAction("ReviewFood");
+        }
+
+        public ActionResult TopReviewFood(int? page, string search)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (search != null)
+            {
+                return View(db.ReviewFoods.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+            }
+            return View(db.ReviewFoods.ToList().ToPagedList(page ?? 1, 5));
+        }
+        [HttpGet]
+        public ActionResult TopReviewFoodEdit(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            if (reviewFood == null)
+            {
+                return HttpNotFound();
+            }
+            return View(reviewFood);
+
+        }
+        [HttpPost]
+        public ActionResult TopReviewFoodEdit([Bind(Include = "ReviewFoodId,FoodId,CustomerId,Description,RatingFood,IsActive")] ReviewFood reviewFood)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(reviewFood).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("TopReviewFood");
+            }
+            return View();
+        }
 
         public ActionResult Magazine(int? page, string search)
         {

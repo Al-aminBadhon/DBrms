@@ -21,6 +21,7 @@ namespace DBrms.Models
         public double Price { get; set; }
         public Nullable<double> PaidAmount { get; set; }
         public Nullable<bool> IsConfirm { get; set; }
+        public Nullable<double> Total { get; set; }
     
         public virtual Cart Cart { get; set; }
         public virtual Food Food { get; set; }

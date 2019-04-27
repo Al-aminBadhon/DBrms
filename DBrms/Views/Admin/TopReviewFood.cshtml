@@ -1,0 +1,131 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<DBrms.Models.ReviewFood>
+
+@{
+    ViewBag.Title = "TopReviewFood";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>TopReviewFood</h2>
+
+<form action="" method="post" style="padding-left:800px">
+    <input type="search" placeholder="Find Customer name...." name="search" required="">
+    <input type="submit" value="Search">
+</form>
+<table class="table">
+    <tr>
+        <th style=" padding-left:100px; width:200px;">
+            Customer
+            @Html.DisplayNameFor(model => model.First().Customer.Name)
+        </th>
+        <th style="width:150px">
+            Customer
+            @Html.DisplayNameFor(model => model.First().Customer.Image)
+        </th>
+        <th style="width:100px">
+            Restaurant
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Name)
+        </th>
+        <th style="width:100px">
+            Menu
+            @Html.DisplayNameFor(model => model.First().Food.Name)
+        </th>
+        <th style="width:150px">
+            Menu
+            @Html.DisplayNameFor(model => model.First().Food.Image)
+        </th>
+        <th style="width:250px">
+            @Html.DisplayNameFor(model => model.First().Description)
+        </th>
+        <th style="width:120px">
+            @Html.DisplayNameFor(model => model.First().RatingFood)
+        </th>
+        <th style="width:50px">
+
+            @Html.DisplayNameFor(model => model.First().IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+    <tr>
+
+        <td style=" padding-left:100px;">
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            <img src="@item.Customer.Image" height="80" width="120" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Food.Restaurant.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Food.Name)
+        </td>
+        <td>
+            <img src="@item.Food.Image" height="60" width="120" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @{
+
+                for (int i = 1; i <= item.RatingFood; i++)
+                {
+                    <a>
+                        <img src="~/Image/Star-Full.png" height="15" width="15" />
+                    </a>
+                }
+
+                var fau1 = item.RatingFood % 1;
+                if (fau1 == .5)
+                {
+                    <a>
+                        <img src="~/Image/Star half.png" height="15" width="15" />
+                    </a>
+                }
+
+
+            }
+
+        </td>
+        <td>
+            @{
+                if (item.IsActive == true)
+                {
+                    <p>
+                        <img src="~/Image/tik sign.png" height="30" width="30" />
+                    </p>
+                }
+                if (item.IsActive == null)
+                {
+                    <p>
+                        <img src="~/Image/pending.png" height="30" width="50" />
+                    </p>
+                }
+                if (item.IsActive == false)
+                {
+                    <p>
+                        <img src="~/Image/Cross.png" height="30" width="30" />
+                    </p>
+                }
+            }
+        </td>
+        <td>
+
+
+            @Html.ActionLink("Change", "TopReviewFoodEdit", new { id = item.ReviewFoodId })
+        </td>
+
+    </tr>
+
+    }
+
+</table>
+
+<h6 style="padding-left:80px">@Html.PagedListPager(Model, page => Url.Action("TopReviewFood", new { page }))</h6>

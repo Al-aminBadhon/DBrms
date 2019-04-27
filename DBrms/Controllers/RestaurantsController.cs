@@ -279,20 +279,22 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             id = Convert.ToInt32(Session["RestaurantsId"]);
-            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == true).ToList();
+            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == true).ToList().ToPagedList(page ?? 1,5);
 
             return View(foodlist);
 
         }
 
         [HttpPost]
-        public ActionResult RestaurantCashOnDelivary([Bind(Include ="FoodCartId,CartId,FoodId,Quantity,Price,IsConfirm")]FoodCart foodCart, float PaidAmount, int CartId, int RestaurantId, float Price,int FoodCartId, int Quantity)
+        public ActionResult RestaurantCashOnDelivary([Bind(Include = "FoodCartId,CartId,FoodId,Quantity,PaidAmount,Price")]FoodCart foodCart, float PaidAmount, int CartId, int RestaurantId, bool IsConfirm)
         {
            
             Transaction transaction = new Transaction();
          
                
                 foodCart.PaidAmount = PaidAmount;
+            foodCart.IsConfirm = IsConfirm;
+          
                 db.FoodCarts.Add(foodCart);
                 db.Entry(foodCart).State = EntityState.Modified;
                 db.SaveChanges();
