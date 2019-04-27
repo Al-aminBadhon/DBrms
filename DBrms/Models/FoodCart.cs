@@ -20,6 +20,7 @@ namespace DBrms.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
         public Nullable<double> PaidAmount { get; set; }
+        public Nullable<bool> IsConfirm { get; set; }
     
         public virtual Cart Cart { get; set; }
         public virtual Food Food { get; set; }

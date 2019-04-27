@@ -235,16 +235,65 @@ namespace DBrms.Controllers
             }
             id = Convert.ToInt32(Session["RestaurantsId"]);
 
-            return View(db.FoodCarts.Where(x=> x.Food.RestaurantId == id).ToList().ToPagedList(page ??1,5));
+            return View(db.FoodCarts.Where(x=> x.Food.RestaurantId == id && x.IsConfirm == null).ToList().ToPagedList(page ??1,5));
         }
 
-        public ActionResult RestaurantOrderListDetails(int? id, int? page)
+        [HttpGet]
+        public ActionResult RestaurantOrderListEdit(int? id, int? page)
         {
             if (Session["RestaurantsId"] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
-            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id).ToList();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            FoodCart foodCart = db.FoodCarts.Find(id);
+            if (foodCart == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(foodCart);
+        }
+
+        [HttpPost]
+        public ActionResult RestaurantOrderListEdit([Bind(Include ="FoodCartId,FoodId,CartId,Quantity,Price,IsConfirm")] FoodCart foodCart)
+        {
+         if(ModelState.IsValid)
+            {
+                db.Entry(foodCart).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("RestaurantOrderList");
+            }
+
+            return View();
+        }
+
+        public ActionResult RestaurantCashOnDelivary(int? id, int? page)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == true).ToList();
+
+            return View(foodlist);
+
+        }
+
+
+        public ActionResult RestaurantRejectedOrderList(int? id, int? page)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            id = Convert.ToInt32(Session["RestaurantsId"]);
+            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == false).ToList();
 
             return View(foodlist);
 

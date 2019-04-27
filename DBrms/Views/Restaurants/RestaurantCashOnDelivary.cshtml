@@ -1,0 +1,149 @@
+﻿@model IEnumerable<DBrms.Models.FoodCart>
+
+@{
+    ViewBag.Title = "RestaurantCashOnDelivary";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>RestaurantCashOnDelivary</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th style="width:100px; padding-left:100px">
+            Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
+        </th>
+        <th style="width:100px">
+            Menu @Html.DisplayNameFor(model => model.Food.Name)
+        </th>
+        <th style="width:100px">
+            @Html.DisplayNameFor(model => model.Food.Image)
+        </th>
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.Food.Restaurant.Discount)
+        </th>
+        <th style="width:50px">
+            Discounted @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.Cart.Total)
+        </th>
+        <th style="width:150px">
+            @Html.DisplayNameFor(model => model.Cart.Details)
+        </th>
+        <th style="width:100px">
+
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th style="padding-left:100px">
+                @Html.DisplayFor(model => item.Cart.Customer.Name)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.Name)
+            </td>
+            <td>
+                <img src="@item.Food.Image" height="80" width="150" />
+            </td>
+            <td>
+                <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+            <td>
+
+                @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
+            </td>
+            <td>
+                <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
+            </td>
+            <td>
+                @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.Details)
+            </td>
+            <td>
+                @{
+                    if (item.IsConfirm == null)
+                    {
+                        <p>
+                            <img src="~/Image/pending.png" height="40" width="80" />
+                        </p>
+                    }
+                    if (item.IsConfirm == true)
+                    {
+                        <p>
+                            <img src="~/Image/approve.jpg" height="40" width="80" />
+                        </p>
+                    }
+                }
+
+            </td>
+            <td>
+                @{
+                    if (item.PaidAmount == null)
+                    {
+                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
+                            Payment
+                        </button>
+                    }
+                    else
+                    {
+                        <p>
+                            <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60"/>
+                        </p>
+                    }
+                }
+
+            </td>
+        </tr>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="background:#CE3536; color:black">
+                    <div class="modal-header">
+                        <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="contact" name="contact" action="#" method="post">
+
+                            <label>Food Payable amount</label>
+                            <p> @Html.DisplayFor(modelItem => item.Price)</p>
+                            <label>Payment get</label>
+                            <div>
+                                <input type="text" id="PaidAmount" name="PaidAmount" required />
+                            </div>
+                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
+                                Payment
+                            </button>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</table>
+

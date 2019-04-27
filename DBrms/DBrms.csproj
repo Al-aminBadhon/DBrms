@@ -2409,18 +2409,22 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\2831_computer-wallpaper-hd.jpg" />
+    <Content Include="Image\approve.jpg" />
     <Content Include="Image\bKash.png" />
     <Content Include="Image\cancel.png" />
     <Content Include="Image\cart.png" />
     <Content Include="Image\cart1.png" />
     <Content Include="Image\chef-restaurant-logo-publicdomainvectors.png" />
+    <Content Include="Image\Confirmed.jpg" />
     <Content Include="Image\Cross.png" />
     <Content Include="Image\images.png" />
     <Content Include="Image\Location.png" />
     <Content Include="Image\login-background.jpg" />
     <Content Include="Image\maxresdefault.jpg" />
+    <Content Include="Image\paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" />
     <Content Include="Image\pending.png" />
     <Content Include="Image\pizzahut.jpg" />
+    <Content Include="Image\Reject.jpg" />
     <Content Include="Image\setting-clipart-gear-system-settings-md.png" />
     <Content Include="Image\Star half.png" />
     <Content Include="Image\Star-Full.png" />
@@ -2771,6 +2775,9 @@
     <Content Include="Views\Admin\OrderList.cshtml" />
     <Content Include="Views\Admin\OrderListDetails.cshtml" />
     <Content Include="Views\Restaurants\RestaurantOrderList.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantCashOnDelivary.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantOrderListEdit.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantRejectedOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

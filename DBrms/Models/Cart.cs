@@ -26,6 +26,7 @@ namespace DBrms.Models
         public System.DateTime Date { get; set; }
         public double Total { get; set; }
         public string Details { get; set; }
+        public string Discount { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

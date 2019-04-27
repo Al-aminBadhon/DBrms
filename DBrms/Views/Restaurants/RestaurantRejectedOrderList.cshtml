@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<DBrms.Models.FoodCart>
 
 @{
-    ViewBag.Title = "RestaurantOrderList";
+    ViewBag.Title = "RestaurantRejectedOrderList";
     Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
 }
 
-<h2>Restaurant Order List</h2>
+<h2>Rejected Order List</h2>
 
 
 <table class="table">
     <tr>
 
         <th style="width:100px; padding-left:100px">
-           Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
+            Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
         </th>
         <th style="width:100px">
-           Menu @Html.DisplayNameFor(model => model.Food.Name)
+            Menu @Html.DisplayNameFor(model => model.Food.Name)
         </th>
         <th style="width:100px">
             @Html.DisplayNameFor(model => model.Food.Image)
@@ -40,7 +40,7 @@
             @Html.DisplayNameFor(model => model.Cart.Details)
         </th>
         <th style="width:100px">
-            @Html.DisplayNameFor(model => model.IsConfirm)
+
         </th>
 
         <th></th>
@@ -80,19 +80,21 @@
             </td>
             <td>
                 @{
-                    if(item.IsConfirm == null)
+                    if (item.IsConfirm == null)
                     {
-                <p>
-                    <img src="~/Image/pending.png" height="40" width="80"/>
-                </p>
+                        <p>
+                            <img src="~/Image/pending.png" height="40" width="80" />
+                        </p>
                     }
-                } 
+                    if (item.IsConfirm == false)
+                    {
+                        <p>
+                            <img src="~/Image/Reject.jpg" height="40" width="80" />
+                        </p>
+                    }
+                }
             </td>
 
-            <td>
-                @Html.ActionLink("Change", "RestaurantOrderListEdit", new { id = item.FoodCartId }) 
-              
-            </td>
         </tr>
     }
 

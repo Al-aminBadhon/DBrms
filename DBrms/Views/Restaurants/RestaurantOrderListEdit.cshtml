@@ -1,0 +1,88 @@
+﻿@model DBrms.Models.FoodCart
+
+@{
+    ViewBag.Title = "RestaurantOrderListEdit";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>RestaurantOrderListEdit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>FoodCart</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" id="FoodCartId" name="FoodCartId" value="@Model.FoodCartId"/>
+    <input type="hidden" id="CartId" name="CartId" value="@Model.CartId"/>
+    <input type="hidden" id="FoodId" name="FoodId" value="@Model.FoodId"/>
+    <input type="hidden" id="Quantity" name="Quantity" value="@Model.Quantity"/>
+    <input type="hidden" id="Price" name="Price" value="@Model.Price"/>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cart.Customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Cart.Customer.Name, new { htmlAttributes = new { @class = "form-control" } })
+           
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Food.Name, new { htmlAttributes = new { @class = "form-control" } })
+           
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Food.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <img src="@Model.Food.Image" height="60" width="120" />
+         
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+         
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+          
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cart.Total, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+           
+          
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsConfirm, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsConfirm)
+                @Html.ValidationMessageFor(model => model.IsConfirm, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
