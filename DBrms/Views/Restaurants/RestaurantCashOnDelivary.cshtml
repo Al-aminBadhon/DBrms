@@ -7,10 +7,11 @@
 
 <h2>RestaurantCashOnDelivary</h2>
 
-
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
-
         <th style="width:100px; padding-left:100px">
             Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
         </th>
@@ -44,6 +45,7 @@
         </th>
 
         <th></th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -91,59 +93,70 @@
                         <p>
                             <img src="~/Image/approve.jpg" height="40" width="80" />
                         </p>
+
                     }
                 }
 
             </td>
             <td>
                 @{
-                    if (item.PaidAmount == null)
+                    if (item.PaidAmount != null)
+                    {
+                        <p>
+                            <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60" />
+                        </p>
+
+                    }
+                    else
                     {
                         <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
                             Payment
                         </button>
                     }
-                    else
-                    {
-                        <p>
-                            <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60"/>
-                        </p>
-                    }
                 }
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background:#CE3536; color:black">
+                            <div class="modal-header">
+                                <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="contact" name="contact" action="@Url.Action("RestaurantCashOnDelivary")" method="post">
+
+                                    <label>Food Payable amount</label>
+                                    <p> @Html.DisplayFor(modelItem => item.Price) tk    </p>
+                                    <label>Payment get</label>
+                                    <div>
+                                        <input type="text" id="PaidAmount" name="PaidAmount" required />
+
+                                    </div>
+                                    <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
+                                    <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
+                                    <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
+                                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@item.Food.RestaurantId" />
+                                    <input type="hidden" id="Price" name="Price" value="@item.Food.Price" />
+                                    <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
+                                    <input type="hidden" id="IsConfirm" name="IsConfirm" value="@item.IsConfirm" />
+                                    <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
+                                        Submit
+                                    </button>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </td>
         </tr>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background:#CE3536; color:black">
-                    <div class="modal-header">
-                        <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="contact" name="contact" action="#" method="post">
-
-                            <label>Food Payable amount</label>
-                            <p> @Html.DisplayFor(modelItem => item.Price)</p>
-                            <label>Payment get</label>
-                            <div>
-                                <input type="text" id="PaidAmount" name="PaidAmount" required />
-                            </div>
-                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
-                                Payment
-                            </button>
-                        </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     }
 
 </table>
+
 

@@ -18,7 +18,7 @@ namespace DBrms.Controllers
         // GET: Website
         public ActionResult Index()
         {
-            List<Slider> sliders = db.Sliders.Where(x=> x.IsActive == true).ToList();
+            List<Slider> sliders = db.Sliders.Where(x => x.IsActive == true).ToList();
             ViewBag.Sliders = sliders;
 
             List<Review> reviews = db.Reviews.Where(x => x.IsActive == true).ToList();
@@ -212,7 +212,7 @@ namespace DBrms.Controllers
             {
                 return HttpNotFound();
             }
-            
+
 
 
 
@@ -428,7 +428,7 @@ namespace DBrms.Controllers
                 kartForSave.CustomerId = id;
                 kartForSave.Total = cart.Sum(a => (a.Food.Price * a.Quantity));
                 kartForSave.Date = DateTime.Now;
-                kartForSave.Details = "Name\n"+name + "Number\n" + number + "Location\n" + landmark + "City\n" + city;
+                kartForSave.Details = "Name\n" + name + "Number\n" + number + "Location\n" + landmark + "City\n" + city;
                 db.Carts.Add(kartForSave);
                 db.SaveChanges();
                 var dataRetrieve = db.Carts.Where(x => x.CustomerId == id).OrderByDescending(x => x.CartId).FirstOrDefault();
@@ -437,15 +437,15 @@ namespace DBrms.Controllers
                     foodCart.CartId = dataRetrieve.CartId;
                     foodCart.Quantity = item.Quantity;
                     foodCart.FoodId = item.Food.FoodId;
-                    foodCart.Price = item.Food.Price * foodCart.Quantity;
+                    foodCart.Price = item.Food.Price;
                     db.FoodCarts.Add(foodCart);
                     db.SaveChanges();
                 }
-                
 
-                return RedirectToAction("Index","Customer");
+
+                return RedirectToAction("Index", "Customer");
             }
-            
+
         }
 
 
@@ -491,8 +491,7 @@ namespace DBrms.Controllers
             return RedirectToAction("Checkout");
 
         }
-
-
+       
 
 
 

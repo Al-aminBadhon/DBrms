@@ -271,7 +271,7 @@ namespace DBrms.Controllers
 
             return View();
         }
-
+        [HttpGet]
         public ActionResult RestaurantCashOnDelivary(int? id, int? page)
         {
             if (Session["RestaurantsId"] == null)
@@ -283,6 +283,30 @@ namespace DBrms.Controllers
 
             return View(foodlist);
 
+        }
+
+        [HttpPost]
+        public ActionResult RestaurantCashOnDelivary([Bind(Include ="FoodCartId,CartId,FoodId,Quantity,Price,IsConfirm")]FoodCart foodCart, float PaidAmount, int CartId, int RestaurantId, float Price,int FoodCartId, int Quantity)
+        {
+           
+            Transaction transaction = new Transaction();
+         
+               
+                foodCart.PaidAmount = PaidAmount;
+                db.FoodCarts.Add(foodCart);
+                db.Entry(foodCart).State = EntityState.Modified;
+                db.SaveChanges();
+                transaction.RestaurantId = RestaurantId;
+                transaction.PaidAmount = PaidAmount;
+                transaction.Date = DateTime.Now;
+                transaction.CartId = CartId;
+                db.Transactions.Add(transaction);
+                db.SaveChanges();
+           
+
+
+
+            return View();
         }
 
 
