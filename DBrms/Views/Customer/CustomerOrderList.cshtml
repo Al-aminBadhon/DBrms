@@ -12,13 +12,13 @@
 
 <table class="table">
     <tr>
-        <th>
+        <th style=" padding-left:200px; width:250px;">
             @Html.DisplayNameFor(model => model.First().Date)
         </th>
-        <th>
+        <th style="width:100px;">
             @Html.DisplayNameFor(model => model.First().Total)
         </th>
-        <th>
+        <th style="width:400px;">
             @Html.DisplayNameFor(model => model.First().Details)
         </th>
       
@@ -27,7 +27,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style=" padding-left:200px; width:300px;">
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
@@ -38,9 +38,9 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CartId }) |
-            @Html.ActionLink("Details", "OrderListDetails", new { id=item.CartId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CartId })
+        
+            @Html.ActionLink("Details", "OrderListDetails", new { id=item.CartId }) 
+       
         </td>
     </tr>
 }

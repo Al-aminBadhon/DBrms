@@ -2781,6 +2781,7 @@
     <Content Include="Views\Admin\ReviewFood.cshtml" />
     <Content Include="Views\Admin\TopReviewFood.cshtml" />
     <Content Include="Views\Admin\TopReviewFoodEdit.cshtml" />
+    <Content Include="Views\Customer\CustomerFoodReviewList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

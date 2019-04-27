@@ -1,0 +1,104 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.ReviewFood>
+
+@{
+    ViewBag.Title = "CustomerFoodReviewList";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h2>CustomerFoodReviewList</h2>
+
+
+
+<table class="table">
+    <tr>
+
+        <th style="width:150px; padding-left:80px">
+            Restaurant @Html.DisplayNameFor(model => model.First().Food.Restaurant.Name)
+        </th>
+        <th style="width:120px">
+            Restaurant @Html.DisplayNameFor(model => model.First().Food.Image)
+        </th>
+        <th style="width:100px">
+            Restaurant @Html.DisplayNameFor(model => model.First().Food.Restaurant.Address)
+        </th>
+        <th style="width:100px">
+            Food @Html.DisplayNameFor(model => model.First().Food.Name)
+        </th>
+        <th style="width:120px">
+            Food @Html.DisplayNameFor(model => model.First().Food.Image)
+        </th>
+        <th style="width:160px">
+            @Html.DisplayNameFor(model => model.First().Description)
+        </th>
+        <th style="width:120px">
+            @Html.DisplayNameFor(model => model.First().RatingFood)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count == 0)
+    {
+        <center><p style="font-size:50px; color:crimson"> No review yet</p></center>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            using (Html.BeginForm("CustomerFoodReviewDelete", "Customer", new { id = item.ReviewFoodId }))
+            {
+                <tr>
+
+
+                    <td style="padding-left:80px">
+                        @Html.DisplayFor(modelItem => item.Food.Restaurant.Name)
+                    </td>
+                    <td>
+                        <img src="@item.Food.Restaurant.Picture" height="80" width="120" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Food.Restaurant.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Food.Name)
+                    </td>
+                    <td>
+                        <img src="@item.Food.Image" height="60" width="120" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @{
+
+                            for (int i = 1; i <= item.RatingFood; i++)
+                            {
+                                <a>
+                                    <img src="~/Image/Star-Full.png" height="15" width="15" />
+                                </a>
+                            }
+
+                            var fau1 = item.RatingFood % 1;
+                            if (fau1 == .5)
+                            {
+                                <a>
+                                    <img src="~/Image/Star half.png" height="15" width="15" />
+                                </a>
+                                }
+                            }
+                    </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ReviewFoodId }) |
+
+                            <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete??')" />
+                        </td>
+                        
+
+                    </tr>
+                }
+            }
+        }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("CustomerFoodReviewList", new { page }))

@@ -97,6 +97,17 @@ namespace DBrms.Controllers
             return View(db.Reviews.Where(x => x.CustomerId == id).ToList().ToPagedList(page ?? 1, 5));
 
         }
+        public ActionResult CustomerFoodReviewList(int? id, int? page)
+        {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            id = Convert.ToInt32(Session["CustomerId"]);
+
+            return View(db.ReviewFoods.Where(x => x.CustomerId == id).ToList().ToPagedList(page ?? 1, 5));
+
+        }
 
         public ActionResult OrderDelete()
         {
@@ -138,6 +149,36 @@ namespace DBrms.Controllers
             db.Reviews.Remove(review);
             db.SaveChanges();
             return RedirectToAction("CustomerReviewList");
+        }
+        [HttpGet]
+        public ActionResult CustomerFoodReviewDelete(int? id)
+        {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            if (reviewFood == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CustomerFoodReviewDelete(int id)
+        {
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            db.ReviewFoods.Remove(reviewFood);
+            db.SaveChanges();
+            return RedirectToAction("CustomerFoodReviewList");
         }
 
 
