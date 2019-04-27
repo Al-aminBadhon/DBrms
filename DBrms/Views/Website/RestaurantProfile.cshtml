@@ -298,17 +298,17 @@
 
                         <img src="~/Image/images.png" height="30" width="30" />
                         <p style="font-size:30px">
-                            @item.Customer.Name  - @item.Rating
+                            @item.Customer.Name
 
                             @{
-                                
-                                    for (int i = 1; i <= item.Rating; i++)
-                                    {
-                                        <a>
-                                            <img src="~/Image/Star-Full.png" height="30" width="30" />
-                                        </a>
-                                    }
-                                
+
+                                for (int i = 1; i <= item.Rating; i++)
+                                {
+                                    <a>
+                                        <img src="~/Image/Star-Full.png" height="30" width="30" />
+                                    </a>
+                                }
+
                                 var fau1 = item.Rating % 1;
                                 if (fau1 == .5)
                                 {
@@ -320,8 +320,10 @@
 
                             }
                         </p>
-
+                        <div>
+                            <p> @item.Date</p>
                         </div>
+                    </div>
                     
                         <div style="padding-left:100px">
 

@@ -140,6 +140,7 @@
           <Property Name="RestaurantsId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Rating" Type="float" />
         </EntityType>
@@ -151,6 +152,7 @@
           <Property Name="FoodId" Type="int" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
           <Property Name="RatingFood" Type="float" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
@@ -601,6 +603,7 @@
           <Property Name="Rating" Type="Double" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Review_Customer" FromRole="Review" ToRole="Customer" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ReviewFood">
           <Key>
@@ -614,6 +617,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_ReviewFood_Customer" FromRole="ReviewFood" ToRole="Customer" />
           <NavigationProperty Name="Food" Relationship="Self.FK_ReviewFood_Food" FromRole="ReviewFood" ToRole="Food" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Slider">
           <Key>
@@ -1046,6 +1050,7 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="dbrmsModel.Review">
               <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
                 <ScalarProperty Name="RestaurantsId" ColumnName="RestaurantsId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -1058,6 +1063,7 @@
           <EntitySetMapping Name="ReviewFoods">
             <EntityTypeMapping TypeName="dbrmsModel.ReviewFood">
               <MappingFragment StoreEntitySet="ReviewFood">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ReviewFoodId" ColumnName="ReviewFoodId" />
                 <ScalarProperty Name="FoodId" ColumnName="FoodId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />

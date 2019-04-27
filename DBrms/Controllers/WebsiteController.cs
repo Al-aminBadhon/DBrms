@@ -234,6 +234,7 @@ namespace DBrms.Controllers
                 review.Rating = Convert.ToDouble(Rating);
                 review.RestaurantsId = RestaurantId;
                 review.Description = Description;
+                review.Date = DateTime.Now;
 
                 if (ModelState.IsValid)
                 {
@@ -283,6 +284,7 @@ namespace DBrms.Controllers
                 reviewFood.RatingFood = Convert.ToDouble(RatingFood);
                 reviewFood.FoodId = FoodId;
                 reviewFood.Description = Description;
+                reviewFood.Date = DateTime.Now;
 
                 if (ModelState.IsValid)
                 {

@@ -20,6 +20,7 @@ namespace DBrms.Models
         public string Description { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<double> Rating { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant { get; set; }
