@@ -41,47 +41,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
 <style>
-        .mySlides {
-            display: none;
-        }
-    </style>
+    .mySlides {
+        display: none;
+    }
+</style>
 
-    <div class="carousel slide">
-        @foreach (var item in ViewBag.Sliders)
-        {
-            <div class="carousel-inner">
-                <img class="mySlides" src="@item.Image" style="width:1350px; height:450px">
+<div class="carousel slide">
+    @foreach (var item in ViewBag.Sliders)
+    {
+        <div class="carousel-inner">
+            <img class="mySlides" src="@item.Image" style="width:1350px; height:450px">
 
-              <div class="">
+            <div class="">
 
-              </div>
             </div>
-        }
-        <button class="carousel-control-prev" role="button" onclick="plusDivs(-1)">&#10094;</button>
-        <button class="carousel-control-next" onclick="plusDivs(1)">&#10095;</button>
-    </div>
+        </div>
+    }
+    <button class="carousel-control-prev" role="button" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="carousel-control-next" onclick="plusDivs(1)">&#10095;</button>
+</div>
 
-    <script>
-        var slideIndex = 1;
-        showDivs(slideIndex);
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
 
-        function plusDivs(n) {
-            showDivs(slideIndex += n);
-        }
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
 
-        function showDivs(n) {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            if (n > x.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = x.length }
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            x[slideIndex - 1].style.display = "block";
-          
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
         }
-    </script>
-    
+        x[slideIndex - 1].style.display = "block";
+
+    }
+</script>
+
 
 
 
@@ -100,6 +100,105 @@
             <div class="wrapper">
 
 
+                <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Popular Restaurants</h3>
+                    <div class="row">
+                        @foreach (var item in ViewBag.Restaurants)
+                        {
+                            <div class="col-md-4 product-men mt-5">
+                                <div class="men-pro-item simpleCart_shelfItem">
+                                    <div class="men-thumb-item text-center">
+                                        <img src=@item.Picture height="150" width="250">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                <a href="~/Website/RestaurantProfile/@item.RestaurantId" class="link-product-add-cart">Quick View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item-info-product text-center border-top mt-4">
+                                        <h4 class="pt-1">
+                                            <a href="~/Website/RestaurantProfile/@item.RestaurantId">@item.Name</a>
+                                        </h4>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!-- second section """"""Trending Restaurants""""""""""""End"""""""""""" -->
+                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                    <h3 class="heading-tittle text-center font-italic">Pick your Location</h3>
+                    <div class="row">
+                        <div class="w3l-range" style="padding-left:100px">
+                            <ul>
+                                <li class="my-4">
+
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Uttara", "RestaurantsLocation", new { id = "Uttara" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Mirpur", "RestaurantsLocation", new { id = "Mirpur" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Dhanmondi", "RestaurantsLocation", new { id = "Dhanmondi" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("300 Feet", "RestaurantsLocation", new { id = "300 Feet" }, null)
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                        <div class="w3l-range" style="padding-left:200px">
+                            <ul>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Banani", "RestaurantsLocation", new { id = "Banani" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Basundhara R area", "RestaurantsLocation", new { id = "Basundhara R area" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Mohammad Pur", "RestaurantsLocation", new { id = "Mohammad Pur" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Gulsan-1", "RestaurantsLocation", new { id = "Gulsan-1" }, null)
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="w3l-range" style="padding-left:200px">
+                            <ul>
+
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Gulsan-2", "RestaurantsLocation", new { id = "Gulsan-2" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Jamuna Future Park", "RestaurantsLocation", new { id = "Jamuna Future Park" }, null)
+                                </li>
+                                <li class="my-4">
+                                    <img src="~/Image/Location.png" height="40" width="40" />
+                                    @Html.ActionLink("Basundhara City", "RestaurantsLocation", new { id = "Basundhara City" }, null)
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- first section """""NewsPanel Start""""" -->
                 <!-- ***************************************** -->
@@ -136,36 +235,6 @@
                     </div>
                 </div>
                 <!-- first section """""NewsPanel End""""" -->
-                <!-- second section """"""Trending Restaurants""""""""""""Start"""""""""""" -->
-                <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-                    <h3 class="heading-tittle text-center font-italic">Popular Restaurants</h3>
-                    <div class="row">
-                        @foreach (var item in ViewBag.Restaurants)
-                        {
-                            <div class="col-md-4 product-men mt-5">
-                                <div class="men-pro-item simpleCart_shelfItem">
-                                    <div class="men-thumb-item text-center">
-                                        <img src=@item.Picture height="150" width="250">
-                                        <div class="men-cart-pro">
-                                            <div class="inner-men-cart-pro">
-                                                <a href="~/Website/RestaurantProfile/@item.RestaurantId" class="link-product-add-cart">Quick View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-info-product text-center border-top mt-4">
-                                        <h4 class="pt-1">
-                                            <a href="~/Website/RestaurantProfile/@item.RestaurantId">@item.Name</a>
-                                        </h4>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                    </div>
-                </div>
-                <!-- second section """"""Trending Restaurants""""""""""""End"""""""""""" -->
                 <!-- third section -->
                 <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
                     <h3 class="heading-tittle text-center font-italic">Top Reviews</h3>
@@ -189,7 +258,7 @@
                                     <div>
                                         <img src=@item.Customer.Image height="30" width="50">
                                         <a>
-                                            @item.Customer.Name -  
+                                            @item.Customer.Name -
                                             @{
 
                                                 for (int i = 1; i <= item.Rating; i++)
@@ -247,7 +316,7 @@
                                     <div>
                                         <img src=@item.Customer.Image height="30" width="50">
                                         <a>
-                                            @item.Customer.Name -  
+                                            @item.Customer.Name -
                                             @{
 
                                                 for (int i = 1; i <= item.RatingFood; i++)
@@ -283,9 +352,7 @@
 
                     </div>
                 </div>
-                <!-- //third section -->
-                <!-- fourth section -->
-                <!-- //fourth section -->
+
             </div>
 
             <!-- //product left -->
