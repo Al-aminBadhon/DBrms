@@ -135,9 +135,9 @@
                                 {
                                     <tr class="rem1">
                                         <td class="invert"></td>
-                                        <td >
+                                        <td>
                                             <a>
-                                                <img src="@item.Food.Image" height="60" width="120" >
+                                                <img src="@item.Food.Image" height="60" width="120">
                                             </a>
                                         </td>
                                         <td class="invert">
@@ -159,7 +159,7 @@
                                         <td class="invert">@item.Food.Price</td>
                                         <td class="invert">@item.Food.Restaurant.Discount %</td>
                                         <td class="invert"> @(item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) ) tk</td>
-                                        <td class="invert">@(item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)* item.Quantity ) tk </td>
+                                        <td class="invert">@(item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) * item.Quantity ) tk </td>
                                         <td class="invert">
                                             <div class="rem">
                                                 <a href="@Url.Action("Remove", "Website", new { id = item.Food.FoodId })">Remove</a>
@@ -185,7 +185,7 @@
                                         @total
                                     </td>
                                 </tr>
-                            }
+                                            }
 
                         </tbody>
 
@@ -222,7 +222,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                     @*<div class="controls form-group">
                                             <select class="option-w3ls">
                                                 <option>Select Address type</option>
@@ -233,7 +233,16 @@
                                             </select>
                                         </div>*@
                                 </div>
-                                <button class="submit check_out btn">Cash on Delivery</button>
+                                @{ 
+                                    if (Session["cart"] == null)
+                                    {
+                                <label class="submit check_out btn" style="background-color:aqua">Cash on Delivery </label>
+                                    }
+                                    else
+                                    {
+                                             <button class="submit check_out btn">Cash on Delivery</button>
+                                        }
+                                    }
                             </div>
                         </div>
                     </form>
@@ -247,15 +256,26 @@
                     @*Pop-up botton*@
 
 
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning">
-                        Click for Payment
-                    </button>
-
-
 
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container">
+        @{
+            if (Session["cart"] == null)
+            {
+        <label  class="btn btn-lg btn-warning">Click for Payment </label>
+            }
+            else
+            {
+                <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning">
+                    Click for Payment
+                </button>
+            }
+        }
+
+
     </div>
     <!-- //checkout page -->
     <!-- footer -->

@@ -52,9 +52,9 @@
             @Html.DisplayFor(modelItem => item.Details)
         </td>
 
-        <td>
-            @Html.ActionLink("Details", "OrderListDetails", new { id = item.CartId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.CartId })
+        <td style="font-size:18px">
+            @Html.ActionLink("Details", "OrderListDetails", new { id = item.CartId }) 
+           
         </td>
     </tr>
 }
