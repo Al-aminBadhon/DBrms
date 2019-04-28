@@ -38,6 +38,9 @@ namespace DBrms.Controllers
             List<FoodCart> foodDelivered = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.PaidAmount != null).ToList();
             ViewBag.FoodDelivered = foodDelivered.Count();
 
+            List<Food> foods = db.Foods.Where(x => x.RestaurantId == id).ToList();
+            ViewBag.FoddsTotal = foods.Count();
+
 
 
             List<Review> reviewstoday = new List<Review>();
@@ -333,7 +336,7 @@ namespace DBrms.Controllers
         {
          if(ModelState.IsValid)
             {
-                db.Entry(foodCart).State = EntityState.Modified;
+                db.Entry(foodCart).State = EntityState.Modified;    
                 db.SaveChanges();
                 return RedirectToAction("RestaurantOrderList");
             }

@@ -90,27 +90,29 @@
                                     <img src="~/Image/pending.png" height="40" width="80" />
                                 </p>
                             }
-                            if (item.IsConfirm == true)
+                            if (item.IsConfirm == true && item.PaidAmount == null)
                             {
                                 <p>
                                     <img src="~/Image/approve.jpg" height="40" width="80" />
                                 </p>
 
                             }
+                            if (item.IsConfirm == true && item.PaidAmount != null)
+                            {
+                                <p>
+                                    <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60" />
+                                </p>
+                            }
                         }
 
                     </td>
                     <td>
                         @{
-                            if (item.PaidAmount != null)
+                            if (item.PaidAmount == null)
                             {
-                                <p>
-                                    <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60" />
-                                </p>
+                                
 
-                            }
-                            else
-                            {
+                           
                                 <button type="button" data-toggle="modal" data-target="#exampleModal-@slNoforManagePayment" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
                                     Payment
                                 </button>

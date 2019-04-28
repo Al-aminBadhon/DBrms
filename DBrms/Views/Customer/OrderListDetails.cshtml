@@ -74,14 +74,8 @@
             </td>
             <td>
                 @{
-                    if (item.IsConfirm == null)
-                    {
-                        <p>
 
-                            <img src="~/Image/pending.png" height="40" width="80" />
-                        </p>
-                    }
-                    if (item.IsConfirm == true)
+                    if (item.IsConfirm == true && item.PaidAmount == null)
                     {
                         <p>
 
@@ -93,22 +87,34 @@
                         <p> <img src="~/Image/Reject.jpg" height="40" width="80" /></p>
 
                     }
-                }
-            </td>
-            <td>
-                @{
-                    if (item.PaidAmount != null && item.IsConfirm ==true)
+
+                    if (item.PaidAmount != null && item.IsConfirm == true)
                     { <p>
                             <img src="~/Image/Delivered.jpg" height="40" width="80" />
                         </p>
                     }
-                    if(item.IsConfirm == null)
+                    if (item.IsConfirm == null)
                     {
-                        <p style="font-size:15px"> @Html.ActionLink("Cancel Order", "OrderDelete", new { id = item.FoodCartId })</p>
+                        <form class="contact" name="contact" action="@Url.Action("OrderListDetails")" method="post">
+
+
+
+                            <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
+                            <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
+                            <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
+
+                            <input type="hidden" id="Price" name="Price" value="@item.Price" />
+                            <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
+                            <input type="hidden" id="IsConfirm" name="IsConfirm" value="false" />
+                            <input type="hidden" id="PaidAmount" name="PaidAmount" value="@item.PaidAmount" />
+                            <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
+                                Cancel Order
+                            </button>
+                        </form>
                     }
                 }
-
             </td>
+           
         </tr>
     }
 

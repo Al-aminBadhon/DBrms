@@ -877,7 +877,7 @@ namespace DBrms.Controllers
 
             return View(db.Carts.ToList().ToPagedList(page ?? 1,5));
         }
-
+        [HttpGet]
         public ActionResult OrderListDetails(int? id, int? page)
         {
             if (Session["UserId"] == null)
@@ -886,6 +886,18 @@ namespace DBrms.Controllers
             }
             var foodlist = db.FoodCarts.Where(x => x.CartId == id).ToList().ToPagedList(page ?? 1, 5);
             return View(foodlist);
+        }
+
+        [HttpPost]
+        public ActionResult OrderListDetails([Bind(Include = "FoodCartId,FoodId,CartId,Quantity,Price,PaidAmount,IsConfirm")] FoodCart foodCart)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(foodCart).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("OrderListDetails");
+            }
+            return View();
         }
        
     }
