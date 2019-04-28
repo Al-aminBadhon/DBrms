@@ -445,7 +445,7 @@ namespace DBrms.Controllers
                     db.FoodCarts.Add(foodCart);
                     db.SaveChanges();
                 }
-
+                Session["Cart"] = null;
 
                 return RedirectToAction("Index", "Customer");
             }
@@ -474,31 +474,6 @@ namespace DBrms.Controllers
                     return i;
             return -1;
         }
-
-
-        [HttpGet]
-        public ActionResult Order()
-        {
-
-            List<Item> cart = (List<Item>)Session["cart"];
-            Session["cart"] = cart;
-            FoodOrder ord = new FoodOrder();
-            //for(int i = 0; i < cart.Count(); i++)
-            //   {
-            //       db.FoodOrders.Add(cart.IndexOf());
-            //   }
-
-
-
-
-
-            return RedirectToAction("Checkout");
-
-        }
-       
-
-
-
-
+        
     }
 }

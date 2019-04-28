@@ -1,101 +1,108 @@
-﻿@model IEnumerable<DBrms.Models.FoodCart>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DBrms.Models.FoodCart>
 
 @{
     ViewBag.Title = "RestaurantRejectedOrderList";
     Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
 }
 
-<h2>Rejected Order List</h2>
 
 
-<table class="table">
-    <tr>
-
-        <th style="width:100px; padding-left:100px">
-            Customer @Html.DisplayNameFor(model => model.Cart.Customer.Name)
-        </th>
-        <th style="width:100px">
-            Menu @Html.DisplayNameFor(model => model.Food.Name)
-        </th>
-        <th style="width:100px">
-            @Html.DisplayNameFor(model => model.Food.Image)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Food.Restaurant.Discount)
-        </th>
-        <th style="width:50px">
-            Discounted @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.Cart.Total)
-        </th>
-        <th style="width:150px">
-            @Html.DisplayNameFor(model => model.Cart.Details)
-        </th>
-        <th style="width:100px">
-
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<input type="button" onclick="printDiv('printableArea')" value="Print" />
+<div id="printableArea">
+    <h2>Rejected Order List</h2>
+    <table class="table">
         <tr>
-            <th style="padding-left:100px">
-                @Html.DisplayFor(model => item.Cart.Customer.Name)
+
+            <th style="width:100px; padding-left:100px">
+                Customer @Html.DisplayNameFor(model => model.First().Cart.Customer.Name)
             </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Food.Name)
-            </td>
-            <td>
-                <img src="@item.Food.Image" height="80" width="150" />
-            </td>
-            <td>
-                <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
+            <th style="width:100px">
+                Menu @Html.DisplayNameFor(model => model.First().Food.Name)
+            </th>
+            <th style="width:100px">
+                @Html.DisplayNameFor(model => model.First().Food.Image)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Quantity)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Price)
+            </th>
 
-            <td>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
+            </th>
+            <th style="width:50px">
+                Discounted @Html.DisplayNameFor(model => model.First().Price)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Cart.Total)
+            </th>
+            <th style="width:150px">
+                @Html.DisplayNameFor(model => model.First().Cart.Details)
+            </th>
+            <th style="width:100px">
 
-                @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
-            </td>
-            <td>
-                <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
-            </td>
-            <td>
-                @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cart.Details)
-            </td>
-            <td>
-                @{
-                    if (item.IsConfirm == null)
-                    {
-                        <p>
-                            <img src="~/Image/pending.png" height="40" width="80" />
-                        </p>
-                    }
-                    if (item.IsConfirm == false)
-                    {
-                        <p>
-                            <img src="~/Image/Reject.jpg" height="40" width="80" />
-                        </p>
-                    }
-                }
-            </td>
+            </th>
 
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th style="padding-left:100px">
+                    @Html.DisplayFor(model => item.Cart.Customer.Name)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Food.Name)
+                </td>
+                <td>
+                    <img src="@item.Food.Image" height="80" width="150" />
+                </td>
+                <td>
+                    <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
+                </td>
+                <td>
+                    <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
+                </td>
+                <td>
+                    @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cart.Details)
+                </td>
+                <td>
+                    @{
+                        if (item.IsConfirm == null)
+                        {
+                            <p>
+                                <img src="~/Image/pending.png" height="40" width="80" />
+                            </p>
+                        }
+                        if (item.IsConfirm == false)
+                        {
+                            <p>
+                                <img src="~/Image/Reject.jpg" height="40" width="80" />
+                            </p>
+                        }
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+
+<h6> @Html.PagedListPager(Model, page => Url.Action("RestaurantRejectedOrderList", new { page }))</h6>

@@ -96,8 +96,18 @@
                 }
             </td>
             <td>
+                @{
+                    if (item.PaidAmount != null && item.IsConfirm ==true)
+                    { <p>
+                            <img src="~/Image/Delivered.jpg" height="40" width="80" />
+                        </p>
+                    }
+                    if(item.IsConfirm == null)
+                    {
+                        <p style="font-size:15px"> @Html.ActionLink("Cancel Order", "OrderDelete", new { id = item.FoodCartId })</p>
+                    }
+                }
 
-                <p style="font-size:15px"> @Html.ActionLink("Cancel Order", "OrderDelete", new { id = item.FoodCartId })</p>
             </td>
         </tr>
     }

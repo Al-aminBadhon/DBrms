@@ -6,158 +6,158 @@
     ViewBag.Title = "RestaurantCashOnDelivary";
     Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
 }
+<input type="button" onclick="printDiv('printableArea')" value="Print" />
+<div id="printableArea">
+    <h2>Restaurant Cash On Delivary List</h2>
 
-<h2>RestaurantCashOnDelivary</h2>
-
-
-<table class="table">
-    <tr>
-        <th style="width:100px; padding-left:100px">
-            Customer @Html.DisplayNameFor(model => model.First().Cart.Customer.Name)
-        </th>
-        <th style="width:100px">
-            Menu @Html.DisplayNameFor(model => model.First().Food.Name)
-        </th>
-        <th style="width:100px">
-            @Html.DisplayNameFor(model => model.First().Food.Image)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.First().Quantity)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.First().Price)
-        </th>
-
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
-        </th>
-        <th style="width:50px">
-            Discounted @Html.DisplayNameFor(model => model.First().Price)
-        </th>
-        <th style="width:50px">
-            @Html.DisplayNameFor(model => model.First().Total)
-        </th>
-        <th style="width:150px">
-            @Html.DisplayNameFor(model => model.First().Cart.Details)
-        </th>
-        <th style="width:100px">
-
-        </th>
-
-        <th></th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <th style="padding-left:100px">
-                @Html.DisplayFor(model => item.Cart.Customer.Name)
+            <th style="width:100px; padding-left:100px">
+                Customer @Html.DisplayNameFor(model => model.First().Cart.Customer.Name)
             </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Food.Name)
-            </td>
-            <td>
-                <img src="@item.Food.Image" height="80" width="150" />
-            </td>
-            <td>
-                <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
+            <th style="width:100px">
+                Menu @Html.DisplayNameFor(model => model.First().Food.Name)
+            </th>
+            <th style="width:100px">
+                @Html.DisplayNameFor(model => model.First().Food.Image)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Quantity)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Price)
+            </th>
 
-            <td>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
+            </th>
+            <th style="width:50px">
+                Discounted @Html.DisplayNameFor(model => model.First().Price)
+            </th>
+            <th style="width:50px">
+                @Html.DisplayNameFor(model => model.First().Total)
+            </th>
+            <th style="width:150px">
+                @Html.DisplayNameFor(model => model.First().Cart.Details)
+            </th>
+            <th style="width:100px">
 
-                @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
-            </td>
-            <td>
-                <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cart.Details)
-            </td>
-            <td>
-                @{
-                    if (item.IsConfirm == null)
-                    {
-                        <p>
-                            <img src="~/Image/pending.png" height="40" width="80" />
-                        </p>
-                    }
-                    if (item.IsConfirm == true)
-                    {
-                        <p>
-                            <img src="~/Image/approve.jpg" height="40" width="80" />
-                        </p>
+            </th>
 
-                    }
-                }
+            <th></th>
 
-            </td>
-            <td>
-                @{
-                    if (item.PaidAmount != null)
-                    {
-                        <p>
-                            <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60" />
-                        </p>
+        </tr>
+        @{var slNoforManagePayment = 0;
 
-                    }
-                    else
-                    {
-                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
-                            Payment
-                        </button>
-                    }
-                }
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="background:#CE3536; color:black">
-                            <div class="modal-header">
-                                <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+            foreach (var item in Model)
+            {
+                slNoforManagePayment = slNoforManagePayment + 1;
+                <tr>
+                    <th style="padding-left:100px">
+                        @Html.DisplayFor(model => item.Cart.Customer.Name)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Food.Name)
+                    </td>
+                    <td>
+                        <img src="@item.Food.Image" height="80" width="150" />
+                    </td>
+                    <td>
+                        <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                    <td>
+
+                        @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
+                    </td>
+                    <td>
+                        <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
+                    </td>
+                    <td>
+                        @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cart.Details)
+                    </td>
+                    <td>
+                        @{
+                            if (item.IsConfirm == null)
+                            {
+                                <p>
+                                    <img src="~/Image/pending.png" height="40" width="80" />
+                                </p>
+                            }
+                            if (item.IsConfirm == true)
+                            {
+                                <p>
+                                    <img src="~/Image/approve.jpg" height="40" width="80" />
+                                </p>
+
+                            }
+                        }
+
+                    </td>
+                    <td>
+                        @{
+                            if (item.PaidAmount != null)
+                            {
+                                <p>
+                                    <img src="~/Image/paid-blue-3d-realistic-square-isolated-button-EBKM8T.jpg" height="30" width="60" />
+                                </p>
+
+                            }
+                            else
+                            {
+                                <button type="button" data-toggle="modal" data-target="#exampleModal-@slNoforManagePayment" class="btn btn-lg btn-warning" style="width:100px; font-size:15px">
+                                    Payment
                                 </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="contact" name="contact" action="@Url.Action("RestaurantCashOnDelivary")" method="post">
-
-                                    <label>Food Payable amount</label>
-                                    <p> @(item.Cart.Total) tk    </p>
-                                    <label>Payment get</label>
-                                    <div>
-                                        <input type="text" id="PaidAmount" name="PaidAmount" required />
-                                    
+                            }
+                        }
+                        <div class="modal fade" id="exampleModal-@slNoforManagePayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="background:#a36f5d; color:black">
+                                    <div class="modal-header">
+                                        <center><h1 class="modal-title" id="exampleModalLabel">Payment System</h1></center>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
-                                    <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
-                                    <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
-                                    <input type="hidden" id="RestaurantId" name="RestaurantId" value="@item.Food.RestaurantId" />
-                                    <input type="hidden" id="Price" name="Price" value="@item.Food.Price" />
-                                    <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
-                                    <input type="hidden" id="IsConfirm" name="IsConfirm" value="@item.IsConfirm" />
-                                    <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
-                                        Submit
-                                    </button>
-                                </form>
+                                    <div class="modal-body">
+                                        <form class="contact" name="contact" action="@Url.Action("RestaurantCashOnDelivary")" method="post">
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                            <label>Food Payable amount</label>
+                                            <p>@((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity) tk    </p>
+
+
+                                            <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
+                                            <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
+                                            <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
+                                            <input type="hidden" id="RestaurantId" name="RestaurantId" value="@item.Food.RestaurantId" />
+                                            <input type="hidden" id="Price" name="Price" value="@item.Food.Price" />
+                                            <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
+                                            <input type="hidden" id="IsConfirm" name="IsConfirm" value="true" />
+                                            <input type="hidden" id="PaidAmount" name="PaidAmount" value="@((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)" />
+                                            <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
+                                                PAY
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-            </td>
-        </tr>
-    }
+                    </td>
+                </tr>
+            } }
 
-</table>
+    </table>
+</div>
 
-
-@Html.PagedListPager(Model, page=>Url.Action("RestaurantCashOnDelivary",new { page }))
+@Html.PagedListPager(Model, page => Url.Action("RestaurantCashOnDelivary", new { page }))

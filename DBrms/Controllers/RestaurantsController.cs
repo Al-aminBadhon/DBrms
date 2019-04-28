@@ -27,9 +27,47 @@ namespace DBrms.Controllers
             id = Convert.ToInt32(Session["RestaurantsId"]);
 
             List<Review> reviews = db.Reviews.Where(x => x.RestaurantsId == id).ToList();
-            ViewBag.Reivews = reviews.Count();
+            ViewBag.ReivewAll = reviews.Count();
 
-           return View();
+            List<ReviewFood> reviewFoods = db.ReviewFoods.Where(x => x.Food.RestaurantId == id).ToList();
+            ViewBag.ReivewFoodAll = reviewFoods.Count();
+
+            List<FoodCart> foodCarts = db.FoodCarts.Where(x => x.Food.RestaurantId == id).ToList();
+            ViewBag.FoodCarts = foodCarts.Count();
+
+            List<FoodCart> foodDelivered = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.PaidAmount != null).ToList();
+            ViewBag.FoodDelivered = foodDelivered.Count();
+
+            List<FoodCart> foodCartsToday  = new List<FoodCart>();
+
+            List<Review> reviewstoday = new List<Review>();
+         
+           
+
+            foreach(var item in db.Reviews)
+            {
+                var datetoday = item.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if(day==DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    reviewstoday.Add(item);
+                }
+            }
+            ViewBag.ReivewToday = reviewstoday.Count();
+
+            foreach (var item1 in db.FoodCarts.Where(x=> x.Food.RestaurantId== id))
+            {
+                var datetoday = item1.Cart.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if(day==DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    foodCartsToday.Add(item1);
+                }
+            }
+            ViewBag.FoodCartsToday = foodCartsToday.Count();
+            return View();
         }
 
 
@@ -286,14 +324,14 @@ namespace DBrms.Controllers
         }
 
         [HttpPost]
-        public ActionResult RestaurantCashOnDelivary([Bind(Include = "FoodCartId,CartId,FoodId,Quantity,PaidAmount,Price")]FoodCart foodCart, float PaidAmount, int CartId, int RestaurantId, bool IsConfirm)
+        public ActionResult RestaurantCashOnDelivary([Bind(Include = "FoodCartId,CartId,FoodId,Quantity,PaidAmount,Price,IsConfirm")]FoodCart foodCart, float PaidAmount, int CartId, int RestaurantId)
         {
            
             Transaction transaction = new Transaction();
-         
+           
                
                 foodCart.PaidAmount = PaidAmount;
-            foodCart.IsConfirm = IsConfirm;
+           
           
                 db.FoodCarts.Add(foodCart);
                 db.Entry(foodCart).State = EntityState.Modified;
@@ -308,7 +346,7 @@ namespace DBrms.Controllers
 
 
 
-            return View();
+            return RedirectToAction("RestaurantCashOnDelivary");
         }
 
 
@@ -319,7 +357,7 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             id = Convert.ToInt32(Session["RestaurantsId"]);
-            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == false).ToList();
+            var foodlist = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.IsConfirm == false).ToList().ToPagedList(page ?? 1,5);
 
             return View(foodlist);
 

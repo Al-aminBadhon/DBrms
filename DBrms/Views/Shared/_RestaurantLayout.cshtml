@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
+    <title>Restaurant Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -34,23 +34,21 @@
         <header class="main-header">
             <!-- Logo -->
             <a href="~/Restaurants/Index" class="logo">
-                Home
+                Main Dashboard 
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
-                <!-- Navbar Right Menu -->
                
+                <!-- Navbar Right Menu -->
+
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                <!-- Sidebar user panel -->  
+                <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
                         <img src="~/Image/setting-clipart-gear-system-settings-md.png" class="img-circle" alt="User Image">
@@ -60,7 +58,7 @@
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-             
+
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
@@ -97,7 +95,7 @@
 
                 </ul>
             </section>
-            @Html.ActionLink("LogOut","LogOut","Login");
+            @Html.ActionLink("LogOut", "LogOut", "Login");
             <!-- /.sidebar -->
         </aside>
         <!-- Content Wrapper. Contains page content -->
@@ -112,7 +110,7 @@
                 </center>
                 <ol class="breadcrumb">
                     <li><a style="font-size:25px;" href="~/Website/Index"><i class="fa fa-dashboard"></i> Website</a></li>
-                  
+
                 </ol>
             </section>
             <!-- Main content -->
@@ -161,5 +159,19 @@
     <script src="~/Content/dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/Content/dist/js/demo.js"></script>
+    <script>
+    
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+
 </body>
 </html>

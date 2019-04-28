@@ -75,7 +75,8 @@
                 <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
             </td>
             <td>
-                @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+               @item.Total
+                @*@((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cart.Details)
