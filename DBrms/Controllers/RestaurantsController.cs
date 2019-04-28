@@ -38,13 +38,10 @@ namespace DBrms.Controllers
             List<FoodCart> foodDelivered = db.FoodCarts.Where(x => x.Food.RestaurantId == id && x.PaidAmount != null).ToList();
             ViewBag.FoodDelivered = foodDelivered.Count();
 
-            List<FoodCart> foodCartsToday  = new List<FoodCart>();
+
 
             List<Review> reviewstoday = new List<Review>();
-         
-           
-
-            foreach(var item in db.Reviews)
+            foreach (var item in db.Reviews.Where(x => x.RestaurantsId == id))
             {
                 var datetoday = item.Date;
                 DateTime daydate = Convert.ToDateTime(datetoday);
@@ -56,7 +53,24 @@ namespace DBrms.Controllers
             }
             ViewBag.ReivewToday = reviewstoday.Count();
 
-            foreach (var item1 in db.FoodCarts.Where(x=> x.Food.RestaurantId== id))
+
+            List<ReviewFood> reviewFoodsToday = new List<ReviewFood>();
+            foreach (var item in db.ReviewFoods.Where(x => x.Food.RestaurantId == id))
+            {
+                var datetoday = item.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if (day == DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    reviewFoodsToday.Add(item);
+                }
+            }
+            ViewBag.ReivewFoodsToday = reviewFoodsToday.Count();
+
+
+
+            List<FoodCart> foodCartsToday = new List<FoodCart>();
+            foreach (var item1 in db.FoodCarts.Where(x=> x.Food.RestaurantId== id ))
             {
                 var datetoday = item1.Cart.Date;
                 DateTime daydate = Convert.ToDateTime(datetoday);
@@ -67,6 +81,23 @@ namespace DBrms.Controllers
                 }
             }
             ViewBag.FoodCartsToday = foodCartsToday.Count();
+
+
+            List<FoodCart> foodDeliveredToday = new List<FoodCart>();
+            foreach (var item in db.FoodCarts.Where(x=> x.Food.RestaurantId== id && x.PaidAmount != null))
+            {
+                var datetoday = item.Cart.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if(day==DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    foodDeliveredToday.Add(item);
+                }
+            }
+            ViewBag.FoodDeliveredToday = foodDeliveredToday.Count();
+
+            
+            
             return View();
         }
 

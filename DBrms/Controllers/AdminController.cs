@@ -22,6 +22,88 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index","Login");
             }
+
+
+            List<Review> reviews = db.Reviews.ToList();
+            ViewBag.ReivewAll = reviews.Count();
+
+            List<ReviewFood> reviewFoods = db.ReviewFoods.ToList();
+            ViewBag.ReivewFoodAll = reviewFoods.Count();
+
+            List<FoodCart> foodCarts = db.FoodCarts.ToList();
+            ViewBag.FoodCarts = foodCarts.Count();
+
+            List<FoodCart> foodDelivered = db.FoodCarts.Where(x => x.PaidAmount != null).ToList();
+            ViewBag.FoodDelivered = foodDelivered.Count();
+
+            List<Customer> customers = db.Customers.ToList();
+            ViewBag.TotalCustomers = customers.Count();
+
+            List<Restaurant> restaurants = db.Restaurants.ToList();
+            ViewBag.TotalRestaurants = restaurants.Count();
+
+            List<Magazine> magazines = db.Magazines.ToList();
+            ViewBag.MagazinesAll = magazines.Count();
+
+
+
+            List<Review> reviewstoday = new List<Review>();
+            foreach (var item in db.Reviews)
+            {
+                var datetoday = item.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if (day == DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    reviewstoday.Add(item);
+                }
+            }
+            ViewBag.ReivewToday = reviewstoday.Count();
+
+
+            List<ReviewFood> reviewFoodsToday = new List<ReviewFood>();
+            foreach (var item in db.ReviewFoods)
+            {
+                var datetoday = item.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if (day == DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    reviewFoodsToday.Add(item);
+                }
+            }
+            ViewBag.ReivewFoodsToday = reviewFoodsToday.Count();
+
+
+
+            List<FoodCart> foodCartsToday = new List<FoodCart>();
+            foreach (var item1 in db.FoodCarts)
+            {
+                var datetoday = item1.Cart.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if (day == DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    foodCartsToday.Add(item1);
+                }
+            }
+            ViewBag.FoodCartsToday = foodCartsToday.Count();
+
+
+            List<FoodCart> foodDeliveredToday = new List<FoodCart>();
+            foreach (var item in db.FoodCarts.Where(x => x.PaidAmount != null))
+            {
+                var datetoday = item.Cart.Date;
+                DateTime daydate = Convert.ToDateTime(datetoday);
+                string day = daydate.Date.ToString("yyyy-MM-dd");
+                if (day == DateTime.Now.Date.ToString("yyyy-MM-dd"))
+                {
+                    foodDeliveredToday.Add(item);
+                }
+            }
+            ViewBag.FoodDeliveredToday = foodDeliveredToday.Count();
+
+
             return View();
         }
 
