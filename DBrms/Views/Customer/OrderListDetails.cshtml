@@ -24,6 +24,12 @@
         <th style="width:60px;">
             @Html.DisplayNameFor(model => model.First().Price)
         </th>
+        <th style="width:50px">
+            @Html.DisplayNameFor(model => model.First().Food.Restaurant.Discount)
+        </th>
+        <th style="width:50px">
+            Discounted @Html.DisplayNameFor(model => model.First().Price)
+        </th>
         <th style="width:60px;">
             @Html.DisplayNameFor(model => model.First().Cart.Total)
         </th>
@@ -45,77 +51,84 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td style=" padding-left:80px;">
-                @Html.DisplayFor(modelItem => item.Food.Name)
-            </td>
-            <td>
-                <img src="@item.Food.Image" height="60" width="120" />
-            </td>
+    <tr>
+        <td style=" padding-left:80px;">
+            @Html.DisplayFor(modelItem => item.Food.Name)
+        </td>
+        <td>
+            <img src="@item.Food.Image" height="60" width="120" />
+        </td>
 
-            <td>
-                <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
-            </td>
+        <td>
+            <center> @Html.DisplayFor(modelItem => item.Quantity)</center>
+        </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @(item.Price * item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Food.Restaurant.Name)
-            </td>
-            <td>
-                <img src="@item.Food.Restaurant.Picture" height="60" width="120" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cart.Details)
-            </td>
-            <td>
-                @{
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
 
-                    if (item.IsConfirm == true && item.PaidAmount == null)
-                    {
-                        <p>
+            @Html.DisplayFor(model => item.Food.Restaurant.Discount) %
+        </td>
+        <td>
+            <p>@(item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount) )</p>
+        </td>
+        <td>
+            @((item.Price - (item.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Food.Restaurant.Name)
+        </td>
+        <td>
+            <img src="@item.Food.Restaurant.Picture" height="60" width="120" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cart.Details)
+        </td>
+        <td>
+            @{
 
-                            <img src="~/Image/approve.jpg" height="40" width="80" />
-                        </p>
-                    }
-                    if (item.IsConfirm == false)
-                    {
-                        <p> <img src="~/Image/Reject.jpg" height="40" width="80" /></p>
+                if (item.IsConfirm == true && item.PaidAmount == null)
+                {
+                    <p>
 
-                    }
-
-                    if (item.PaidAmount != null && item.IsConfirm == true)
-                    { <p>
-                            <img src="~/Image/Delivered.jpg" height="40" width="80" />
-                        </p>
-                    }
-                    if (item.IsConfirm == null)
-                    {
-                        <form class="contact" name="contact" action="@Url.Action("OrderListDetails")" method="post">
-
-
-
-                            <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
-                            <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
-                            <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
-
-                            <input type="hidden" id="Price" name="Price" value="@item.Price" />
-                            <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
-                            <input type="hidden" id="IsConfirm" name="IsConfirm" value="false" />
-                            <input type="hidden" id="PaidAmount" name="PaidAmount" value="@item.PaidAmount" />
-                            <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
-                                Cancel Order
-                            </button>
-                        </form>
-                    }
+                        <img src="~/Image/approve.jpg" height="40" width="80" />
+                    </p>
                 }
-            </td>
-           
-        </tr>
+                if (item.IsConfirm == false)
+                {
+                    <p> <img src="~/Image/Reject.jpg" height="40" width="80" /></p>
+
+                }
+
+                if (item.PaidAmount != null && item.IsConfirm == true)
+                { <p>
+                        <img src="~/Image/Delivered.jpg" height="40" width="80" />
+                    </p>
+                }
+                if (item.IsConfirm == null)
+                {
+                    <form class="contact" name="contact" action="@Url.Action("OrderListDetails")" method="post">
+
+
+
+                        <input type="hidden" id="FoodId" name="FoodId" value="@item.FoodId" />
+                        <input type="hidden" id="FoodCartId" name="FoodCartId" value="@item.FoodCartId" />
+                        <input type="hidden" id="CartId" name="CartId" value="@item.CartId" />
+
+                        <input type="hidden" id="Price" name="Price" value="@item.Price" />
+                        <input type="hidden" id="Quantity" name="Quantity" value="@item.Quantity" />
+                        <input type="hidden" id="IsConfirm" name="IsConfirm" value="false" />
+                        <input type="hidden" id="PaidAmount" name="PaidAmount" value="@item.PaidAmount" />
+                        <button style="width:100px; font-size:15px; background-color:#4CAF50; border-radius:4px; height:40px; border-color:forestgreen ">
+                            Cancel Order
+                        </button>
+                    </form>
+                }
+            }
+        </td>
+
+    </tr>
     }
 
 </table>

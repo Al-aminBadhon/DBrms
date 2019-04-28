@@ -429,7 +429,8 @@ namespace DBrms.Controllers
 
                 Item tempcart = cart.FirstOrDefault();
                 kartForSave.CustomerId = id;
-                kartForSave.Total = cart.Sum(a => (a.Food.Price * a.Quantity));
+            
+                kartForSave.Total = cart.Sum(a => (a.Food.Price - (a.Food.Price / 100) * Convert.ToInt32(a.Food.Restaurant.Discount)) * a.Quantity);
                 kartForSave.Date = DateTime.Now;
                 kartForSave.Details = "Name\n" + name + "Number\n" + number + "Location\n" + landmark + "City\n" + city;
                 db.Carts.Add(kartForSave);

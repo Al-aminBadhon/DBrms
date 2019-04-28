@@ -180,9 +180,9 @@
                                     <td>
                                         @{
                                             List<Item> cart = (List<Item>)Session["cart"];
-                                            var total = cart.Sum(item => item.Food.Price * item.Quantity);
+                                            var total = cart.Sum(item => (item.Food.Price - (item.Food.Price / 100) * Convert.ToInt32(item.Food.Restaurant.Discount)) * item.Quantity);
                                         }
-                                        @total
+                                        @total tk
                                     </td>
                                 </tr>
                                             }
