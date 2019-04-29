@@ -223,7 +223,7 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult RestaurantProfile(int RestaurantId, string Description, string Rating /*,int FoodId*/)
+        public ActionResult RestaurantProfile(int RestaurantId, string Description, string Rating )
         {
             Review review = new Review();
             if (Session["CustomerId"] != null)
@@ -231,7 +231,32 @@ namespace DBrms.Controllers
                 int id = Convert.ToInt32(Session["CustomerId"]);
                 review.CustomerId = id;
 
-                review.Rating = Convert.ToDouble(Rating);
+                if(Rating == "1")
+                {
+                    int rat = 1;
+                    review.Rating = rat;
+                }
+                if (Rating == "2")
+                {
+                    int rat = 2;
+                    review.Rating = rat;
+                }
+                if (Rating == "3")
+                {
+                    int rat = 3;
+                    review.Rating = rat;
+                }
+                if (Rating == "4")
+                {
+                    int rat = 4;
+                    review.Rating = rat;
+                }
+                if (Rating == "5")
+                {
+                    int rat = 5;
+                    review.Rating = rat;
+                }
+
                 review.RestaurantsId = RestaurantId;
                 review.Description = Description;
                 review.Date = DateTime.Now;
@@ -281,7 +306,31 @@ namespace DBrms.Controllers
                 int customerId = Convert.ToInt32(Session["CustomerId"]);
                 reviewFood.CustomerId = customerId;
 
-                reviewFood.RatingFood = Convert.ToDouble(RatingFood);
+                if (RatingFood == "1")
+                {
+                    int rat = 1;
+                    reviewFood.RatingFood = rat;
+                }
+                if (RatingFood == "2")
+                {
+                    int rat = 2;
+                    reviewFood.RatingFood = rat;
+                }
+                if (RatingFood == "3")
+                {
+                    int rat = 3;
+                    reviewFood.RatingFood = rat;
+                }
+                if (RatingFood == "4")
+                {
+                    int rat = 4;
+                    reviewFood.RatingFood = rat;
+                }
+                if (RatingFood == "5")
+                {
+                    int rat = 5;
+                    reviewFood.RatingFood = rat;
+                }
                 reviewFood.FoodId = FoodId;
                 reviewFood.Description = Description;
                 reviewFood.Date = DateTime.Now;

@@ -25,14 +25,14 @@ else
             <th style="width:120px">
                 Restaurant @Html.DisplayNameFor(model => model.First().Food.Image)
             </th>
-           
+
             <th style="width:100px">
                 Food @Html.DisplayNameFor(model => model.First().Food.Name)
             </th>
             <th style="width:120px">
                 Food @Html.DisplayNameFor(model => model.First().Food.Image)
             </th>
-            <th style="width:160px">
+            <th style="width:200px">
                 @Html.DisplayNameFor(model => model.First().Description)
             </th>
             <th style="width:100px">
@@ -57,13 +57,14 @@ else
                     <td>
                         <img src="@item.Food.Restaurant.Picture" height="80" width="120" />
                     </td>
-                   
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Food.Name)
                     </td>
                     <td>
                         <img src="@item.Food.Image" height="60" width="120" />
                     </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>

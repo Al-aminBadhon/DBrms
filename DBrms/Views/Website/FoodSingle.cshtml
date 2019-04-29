@@ -260,7 +260,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="hidden" id="FoodId" name="FoodId" value="@Model.FoodId" />
 
 
-                            <input type="text" name="RatingFood" class="form-control" required>
+                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                            <img src="~/Image/Star-Full.png" height="30" width="30" />
+                            <ul>
+                                @Html.RadioButton("ratingFood", "1") 1
+
+                                @Html.RadioButton("ratingFood", "2") 2
+
+                                @Html.RadioButton("ratingFood", "3") 3
+
+                                @Html.RadioButton("ratingFood", "4") 4
+                                @Html.RadioButton("ratingFood", "5") 5
+
+                            </ul>
                             <input type="text" style="width:80%; height:100px; background-color:lightgray" name="Description" class="form-control" placeholder="Write your opinion" required>
 
                             <input style="background-color:lightgreen; shape-outside:padding-box" type="submit" value="post" />
