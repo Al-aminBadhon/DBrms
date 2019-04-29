@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            <img src="@Model.Image" height="150" width="300"/>
+            <img src="@Model.Image" height="150" width="250"/>
         </dd>
 
         <dt>
@@ -45,7 +45,9 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<center>
+    <p style="font-size:20px">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) 
+
+    </p>
+</center>

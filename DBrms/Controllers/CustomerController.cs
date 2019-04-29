@@ -122,18 +122,23 @@ namespace DBrms.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var edit = db.Customers.Find(id);
-            if (edit == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(edit);
+            return View(customer);
         }
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerId,Name,Address,Image,Phone,Username,Password")] Customer customer)
         {
-            return View();
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details");
+            
         }
+        
+        
 
         public ActionResult CustomerOrderList(int? id,int? page)
         {
@@ -184,6 +189,45 @@ namespace DBrms.Controllers
             return View(db.Reviews.Where(x => x.CustomerId == id).ToList().ToPagedList(page ?? 1, 5));
 
         }
+
+
+        [HttpGet]
+        public ActionResult CustomerReviewListEdit(int? id)
+        {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Review review = db.Reviews.Find(id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View(review);
+        }
+        [HttpPost]
+        public ActionResult CustomerReviewListEdit([Bind(Include = "ReviewId,RestaurantsId,CustomerId,Date,Description,Rating")] Review review, string IsActive)
+        {
+            if (IsActive == "on")
+            {
+                review.IsActive = true;
+            }
+            else
+            {
+                review.IsActive = false;
+            }
+            db.Entry(review).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("CustomerReviewList");
+          
+        }
+
+
+
         public ActionResult CustomerFoodReviewList(int? id, int? page)
         {
             if (Session["CustomerId"] == null)
@@ -193,6 +237,42 @@ namespace DBrms.Controllers
             id = Convert.ToInt32(Session["CustomerId"]);
 
             return View(db.ReviewFoods.Where(x => x.CustomerId == id).ToList().ToPagedList(page ?? 1, 5));
+
+        }
+
+
+        [HttpGet]
+        public ActionResult CustomerFoodReviewListEdit(int? id)
+        {
+            if (Session["CustomerId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ReviewFood reviewFood = db.ReviewFoods.Find(id);
+            if (reviewFood == null)
+            {
+                return HttpNotFound();
+            }
+            return View(reviewFood);
+        }
+        [HttpPost]
+        public ActionResult CustomerFoodReviewListEdit([Bind(Include = "ReviewFoodId,FoodId,CustomerId,Date,Description,RatingFood")] ReviewFood reviewFood, string IsActive)
+        {
+            if (IsActive == "on")
+            {
+                reviewFood.IsActive = true;
+            }
+            else
+            {
+                reviewFood.IsActive = false;
+            }
+            db.Entry(reviewFood).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("CustomerFoodReviewList");
 
         }
 

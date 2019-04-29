@@ -758,10 +758,9 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password")] Restaurant restaurant, string IsActive, HttpPostedFileBase ImageFile)
+        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password")] Restaurant restaurant, string IsActive)
         {
-            if (ModelState.IsValid)
-            {
+            
 
                 if (IsActive=="on")
                 {
@@ -774,8 +773,7 @@ namespace DBrms.Controllers
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageRestaurant");
-            }
-            return View();
+          
         }
 
         public ActionResult ManageCustomer(int? page, string search)
