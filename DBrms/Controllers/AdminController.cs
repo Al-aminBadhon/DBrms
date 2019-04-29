@@ -45,7 +45,7 @@ namespace DBrms.Controllers
             List<Magazine> magazines = db.Magazines.ToList();
             ViewBag.MagazinesAll = magazines.Count();
 
-
+          
 
             List<Review> reviewstoday = new List<Review>();
             foreach (var item in db.Reviews)

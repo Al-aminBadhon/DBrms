@@ -7,44 +7,51 @@
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h2>Order List</h2>
 
 
-<table class="table">
-    <tr>
-        <th style=" padding-left:200px; width:250px;">
-            @Html.DisplayNameFor(model => model.First().Date)
-        </th>
-        <th style="width:100px;">
-            @Html.DisplayNameFor(model => model.First().Total)
-        </th>
-        <th style="width:400px;">
-            @Html.DisplayNameFor(model => model.First().Details)
-        </th>
-      
-        <th></th>
-    </tr>
+<input type="button" onclick="printDiv('printableArea')" value="Print" />
+<div id="printableArea">
 
-@foreach (var item in Model) {
-    <tr>
-        <td style=" padding-left:200px; width:300px;">
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total) tk
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
-        
-        <td>
-        
-            @Html.ActionLink("Details", "OrderListDetails", new { id=item.CartId }) 
-       
-        </td>
-    </tr>
-}
+    <h2>Order List</h2>
 
-</table>
 
-<h6> @Html.PagedListPager(Model, page=>Url.Action("CustomerOrderList", new { page }))</h6>
+    <table class="table">
+        <tr>
+            <th style=" padding-left:200px; width:250px;">
+                @Html.DisplayNameFor(model => model.First().Date)
+            </th>
+            <th style="width:100px;">
+                @Html.DisplayNameFor(model => model.First().Total)
+            </th>
+            <th style="width:400px;">
+                @Html.DisplayNameFor(model => model.First().Details)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style=" padding-left:200px; width:300px;">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total) tk
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Details", "OrderListDetails", new { id = item.CartId })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <h6> @Html.PagedListPager(Model, page => Url.Action("CustomerOrderList", new { page }))</h6>
+    </div>

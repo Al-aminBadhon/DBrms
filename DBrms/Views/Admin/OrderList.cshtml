@@ -6,60 +6,63 @@
     ViewBag.Title = "OrderList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<input type="button" onclick="printDiv('printableArea')" value="Print" />
+<div id="printableArea">
+    <h2>Order List</h2>
+    <form action="" method="post" style="padding-left:800px">
+        <input type="search" placeholder="Find  Customer name...." name="search" required="">
+        <input type="submit" value="Search">
+    </form>
 
-<h2>Order List</h2>
-<form action="" method="post" style="padding-left:800px">
-    <input type="search" placeholder="Find  Customer name...." name="search" required="">
-    <input type="submit" value="Search">
-</form>
+    <table class="table">
+        <tr>
+            <th style=" padding-left:150px; width:250px;">
+                @Html.DisplayNameFor(model => model.First().Customer.Name)
+            </th>
+            <th style="width:220px;">
+                @Html.DisplayNameFor(model => model.First().Customer.Image)
+            </th>
+            <th style="width:100px;">
+                @Html.DisplayNameFor(model => model.First().Date)
+            </th>
+            <th style="width:100px;">
+                @Html.DisplayNameFor(model => model.First().Total)
+            </th>
+            <th style="width:250px;">
+                @Html.DisplayNameFor(model => model.First().Details)
+            </th>
 
-<table class="table">
-    <tr>
-        <th style=" padding-left:150px; width:250px;">
-            @Html.DisplayNameFor(model => model.First().Customer.Name)
-        </th>
-        <th style="width:220px;">
-            @Html.DisplayNameFor(model => model.First().Customer.Image)
-        </th>
-        <th style="width:100px;">
-            @Html.DisplayNameFor(model => model.First().Date)
-        </th>
-        <th style="width:100px;">
-            @Html.DisplayNameFor(model => model.First().Total)
-        </th>
-        <th style="width:250px;">
-            @Html.DisplayNameFor(model => model.First().Details)
-        </th>
+            <th></th>
+        </tr>
 
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style=" padding-left:150px;">
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    <img src="@item.Customer.Image" height="100" width="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total) Taka
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td style=" padding-left:150px;">
-            @Html.DisplayFor(modelItem => item.Customer.Name)
-        </td>
-        <td>
-            <img src="@item.Customer.Image" height="100" width="200"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total) Taka
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
+                <td style="font-size:18px">
+                    @Html.ActionLink("Details", "OrderListDetails", new { id = item.CartId })
 
-        <td style="font-size:18px">
-            @Html.ActionLink("Details", "OrderListDetails", new { id = item.CartId }) 
-           
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+        }
 
-</table>
- 
+    </table>
 
-@Html.PagedListPager(Model, page=> Url.Action("OrderList", new { page }))
+
+    @Html.PagedListPager(Model, page => Url.Action("OrderList", new { page }))
+    </div>

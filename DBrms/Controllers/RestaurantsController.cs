@@ -116,12 +116,12 @@ namespace DBrms.Controllers
 
             if (search != null)
             {
-                return View(db.Foods.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 3));
+                return View(db.Foods.Where(x => x.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
 
 
 
-            return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1, 3));
+            return View(db.Foods.Where(x => x.RestaurantId == id).ToList().ToPagedList(page ?? 1, 5));
 
 
         }

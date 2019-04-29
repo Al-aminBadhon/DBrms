@@ -11,144 +11,146 @@
         <h4 style="color:blue; font-size:30px;"><text> Welcome Restaurant admin "@Session["username"].ToString()" </text></h4>
     </center>
 }
+<input type="button" onclick="printDiv('printableArea')" value="Print" />
+<div id="printableArea">
+    <center><h2>Overall Details</h2></center>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.FoodCarts</h3>
+                    <p><b>Total Orders</b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
 
-<center><h2>Overall Details</h2></center>
-<div class="row">
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>@ViewBag.FoodCarts</h3>
-                <p><b>Total Orders</b></p>
             </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-
         </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>@ViewBag.ReivewAll<sup style="font-size: 20px"></sup></h3>
-                <p><b>Total Restaurant Review  </b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.ReivewAll<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Total Restaurant Review  </b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
 
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>@ViewBag.ReivewFoodAll<sup style="font-size: 20px"></sup></h3>
-                <p><b>Total Food Review  </b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.ReivewFoodAll<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Total Food Review  </b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
 
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>@ViewBag.FoodDelivered<sup style="font-size: 20px"></sup></h3>
-                <p><b>Total Delivered Food</b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-ios-cart-outline"></i>
-            </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.FoodDelivered<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Total Delivered Food</b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-cart-outline"></i>
+                </div>
 
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-green">
-            <div class="inner">
-                <h3>@ViewBag.FoddsTotal<sup style="font-size: 20px"></sup></h3>
-                <p><b>Total Food menu you have</b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-ios-cart-outline"></i>
-            </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@ViewBag.FoddsTotal<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Total Food menu you have</b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-cart-outline"></i>
+                </div>
 
+            </div>
         </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
     </div>
-   
-    <!-- ./col -->
-    <!-- ./col -->
+
+
+
+
+    <center><h2>Todays Details</h2></center>
+
+
+
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@ViewBag.FoodCartsToday</b></h3>
+                    <p><b>Today's Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@ViewBag.ReivewToday<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Today's Restaurant Reviews  </b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@ViewBag.ReivewFoodsToday<sup style="font-size: 20px"></sup></h3>
+                    <p><b>Today's Food Reviews </b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3> @ViewBag.FoodDeliveredToday <sup style="font-size: 20px"></sup></h3>
+                    <p><b>Today's Delivered Food</b></p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-ios-cart-outline"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ./col -->
+        <!-- ./col -->
+    </div>
+
+
 </div>
-
-
-
-
-<center><h2>Todays Details</h2></center>
-
-
-
-<div class="row">
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>@ViewBag.FoodCartsToday</b></h3>
-                <p><b>Today's Orders</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-bag"></i>
-            </div>
-
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>@ViewBag.ReivewToday<sup style="font-size: 20px"></sup></h3>
-                <p><b>Today's Restaurant Reviews  </b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-
-        </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3>@ViewBag.ReivewFoodsToday<sup style="font-size: 20px"></sup></h3>
-                <p><b>Today's Food Reviews </b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-
-        </div>
-    </div>
-    <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-aqua">
-            <div class="inner">
-                <h3> @ViewBag.FoodDeliveredToday <sup style="font-size: 20px"></sup></h3>
-                <p><b>Today's Delivered Food</b></p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-ios-cart-outline"></i>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- ./col -->
-    <!-- ./col -->
-</div>
-
-
