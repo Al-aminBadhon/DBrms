@@ -18,9 +18,9 @@ namespace DBrms.Controllers
 
         public ActionResult Index()
         {
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
 
 
@@ -114,9 +114,9 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            if(search != null)
+            if (search != null)
             {
-                return View(db.Sliders.Where(x=> x.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
+                return View(db.Sliders.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
 
             return View(db.Sliders.ToList().ToPagedList(page ?? 1, 3));
@@ -147,15 +147,15 @@ namespace DBrms.Controllers
             if (ImageFile != null)
             {
                 String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-            String extension = Path.GetExtension(ImageFile.FileName);
-            filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            slider.Image = "/Image/" + filename;
-            filename = Path.Combine(Server.MapPath("/Image/"), filename);
-            ImageFile.SaveAs(filename);
-            
-            
-            
-              
+                String extension = Path.GetExtension(ImageFile.FileName);
+                filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+                slider.Image = "/Image/" + filename;
+                filename = Path.Combine(Server.MapPath("/Image/"), filename);
+                ImageFile.SaveAs(filename);
+
+
+
+
                 db.Sliders.Add(slider);
                 db.SaveChanges();
 
@@ -184,13 +184,13 @@ namespace DBrms.Controllers
 
             var edit = db.Sliders.Find(id);
 
-            if(edit == null)
+            if (edit == null)
             {
 
                 return HttpNotFound();
             }
 
-                return View(edit);
+            return View(edit);
         }
 
         [HttpPost]
@@ -253,7 +253,7 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            if(search != null)
+            if (search != null)
             {
                 return View(db.Magazines.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
@@ -309,7 +309,7 @@ namespace DBrms.Controllers
             }
             return View(db.Restaurants.ToList().ToPagedList(page ?? 1, 5));
 
-         
+
         }
 
 
@@ -354,11 +354,11 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            if(search != null)
+            if (search != null)
             {
-                return View(db.Reviews.Where(x=> x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
+                return View(db.Reviews.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
-            
+
 
             return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -424,18 +424,18 @@ namespace DBrms.Controllers
             return RedirectToAction("Review");
         }
 
-       
-        public ActionResult TopReview(int? page,string search)
+
+        public ActionResult TopReview(int? page, string search)
         {
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
             if (search != null)
             {
                 return View(db.Reviews.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
-            return View(db.Reviews.ToList().ToPagedList(page ?? 1,5));
+            return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
         }
         [HttpGet]
         public ActionResult TopReviewEdit(int? id)
@@ -565,9 +565,9 @@ namespace DBrms.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            if(search != null)
+            if (search != null)
             {
-                return View(db.Magazines.Where(x=> x.Name.Contains(search)).ToList().ToPagedList(page ?? 1,5));
+                return View(db.Magazines.Where(x => x.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
             }
             return View(db.Magazines.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -684,6 +684,8 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            List<Location> locations = db.Locations.ToList();
+            ViewBag.Locations = locations;
 
             return View();
         }
@@ -691,32 +693,17 @@ namespace DBrms.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RestaurantAdd([Bind(Include = "RestaurantId,Name,Address,Phone,picture,LocationId,CostPerOrder,Cuisine,Username,Password")] Restaurant restaurant, HttpPostedFileBase ImageFile, int? LocationId)
         {
-            //int er = 0;
-            //if (LocationId == null)
-            //{
-            //    er++;
 
-            //}
-            //if (er > 0)
-            //{
-            //    return View("Index");
-            //}
             String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
             String extension = Path.GetExtension(ImageFile.FileName);
             fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
             restaurant.Picture = "/Image/" + fileName;
             fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
             ImageFile.SaveAs(fileName);
-
-            if (ModelState.IsValid)
-            {
-                db.Restaurants.Add(restaurant);
-                db.SaveChanges();
-                ModelState.Clear();
-                return RedirectToAction("ManageRsetaurant");
-
-            }
-            return View();
+            db.Restaurants.Add(restaurant);
+            db.SaveChanges();
+            ModelState.Clear();
+            return RedirectToAction("ManageRestaurant");
         }
 
 
@@ -743,12 +730,25 @@ namespace DBrms.Controllers
 
         }
         [HttpPost]
-        public ActionResult ManageRestaurantEdit([Bind(Include = "Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
+        public ActionResult ManageRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password")] Restaurant restaurant, string IsActive, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
-                //Restaurant res = db.Restaurants.FirstOrDefault(x=> x.RestaurantId == restaurant.RestaurantId);
-                //res.IsActive = restaurant.IsActive;
+
+                if (IsActive=="on")
+                {
+                    restaurant.IsActive = true;
+                }
+                else
+                {
+                    restaurant.IsActive = false;
+                }
+                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                String extension = Path.GetExtension(ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                restaurant.Picture = "/Image/" + fileName;
+                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
+                ImageFile.SaveAs(fileName);
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageRestaurant");
@@ -875,7 +875,7 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View(db.Carts.ToList().ToPagedList(page ?? 1,5));
+            return View(db.Carts.ToList().ToPagedList(page ?? 1, 5));
         }
         [HttpGet]
         public ActionResult OrderListDetails(int? id, int? page)
@@ -899,6 +899,6 @@ namespace DBrms.Controllers
             }
             return View();
         }
-       
+
     }
 }
