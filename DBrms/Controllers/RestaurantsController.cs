@@ -140,9 +140,7 @@ namespace DBrms.Controllers
         public ActionResult MenuAdd([Bind(Include = "Name,Image,Price,Details")] Food food, HttpPostedFileBase ImageFile)
         {
 
-
-            if (ImageFile != null)
-            {
+            
 
                 String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
@@ -157,8 +155,7 @@ namespace DBrms.Controllers
                 ModelState.Clear();
                 return RedirectToAction("Menu");
 
-            }
-            return View();
+           
         }
         [HttpGet]
         public ActionResult MenuEdit(int? id)
@@ -172,26 +169,52 @@ namespace DBrms.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            var menuedit = db.Foods.Find(id);
-            if (menuedit == null)
+            Food food = db.Foods.Find(id);
+            if (food == null)
             {
                 return HttpNotFound();
             }
-            return View(menuedit);
+            return View(food);
         }
         [HttpPost]
-        public ActionResult MenuEdit([Bind(Include = "Name,Image,Price,Details")]Food food, HttpPostedFileBase ImageFile)
+        public ActionResult MenuEdit([Bind(Include = "FoodId,RestaurantId,Name,Image,Price,Details")]Food food)
         {
-            if (ModelState.IsValid)
-            {
+           
                 db.Entry(food).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Menu");
+          
+        }
+
+
+        [HttpGet]
+        public ActionResult MenuDelete(int? id)
+        {
+            if (Session["RestaurantsId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            Food food = db.Foods.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
             return View();
         }
 
+        [HttpPost]
+        public ActionResult MenuDelete(int id)
+        {
+            Food food = db.Foods.Find(id);
+            db.Foods.Remove(food);
+            db.SaveChanges();
+            return RedirectToAction("Menu");
+        }
 
 
         public ActionResult PopularMenu()
