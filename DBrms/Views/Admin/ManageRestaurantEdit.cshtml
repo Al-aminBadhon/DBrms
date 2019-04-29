@@ -5,21 +5,22 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <link rel="stylesheet" href="~/Content/Login/dist/css/site.min.css">
-<h2>ManageRestaurantEdit</h2>
+<h2>Restaurant Edit</h2>
 <div class="container-fluid" style="font-size:13px;">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Restaurant</h4>
+           
             <hr />
            
 
             <input type="hidden" id="RestaurantId" name="RestaurantId" value="@Model.RestaurantId" />
 
-            <input type="checkbox" id="IsActive" name="IsActive"  checked="@Model.IsActive"    style=" visibility:hidden"/>
+            <input type="checkbox" id="IsActive" name="IsActive" value="@Model.IsActive"    style=" visibility:hidden"/>
             <input type="hidden" id="Picture" name="Picture" value="@Model.Picture" />
+            <input type="hidden" id="LocationId" name="LocationId" value="@Model.LocationId" />
 
 
             <div class="form-group">
@@ -48,13 +49,10 @@
                 <div class="col-md-5">
                     <img src="@Model.Picture" height="150" width="250" />
                   
-                        <p>
-                            <b> Chose another Picture</b>
-
-                        </p>
+                       
                  
-                    <input type="hidden" id="ImageFile" name="ImageFile"  value="@Model.Picture"/>
-                    <input type="file" id="ImageFile" name="ImageFile"  />
+                  
+              
                 </div>
             </div>
 

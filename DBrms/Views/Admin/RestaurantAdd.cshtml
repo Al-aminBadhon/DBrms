@@ -10,9 +10,9 @@
 
 
 
-<h2>RestaurantAdd</h2>
+<h2>Restaurant Add</h2>
 
-<div class="container-fluid" style="font-size:13px;">
+<div class="container-fluid" style="font-size:13px">
     @using (Html.BeginForm("RestaurantAdd", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -71,7 +71,7 @@
                 <div class="col-md-5">
                     <input class="form-control" type="text" name="CostPerOrder" required />
                   
-                    <label>Example "199-200"</label>
+                    <label>Example "100-199"</label>
                 </div>
             </div>
 

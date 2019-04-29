@@ -9,7 +9,7 @@
 
 <h2>Magazine</h2>
 <form action="" method="post" style="padding-left:800px">
-    <input type="search" placeholder="Find Restaurant...." name="search" required="">
+    <input type="search" placeholder="Find Magazine...." name="search" required="">
     <input type="submit" value="Search">
 </form>
 <p style="font-size:20px">
@@ -44,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.Details)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MagazineId }) |
+                    @Html.ActionLink("Edit", "MagazineEdit", new { id = item.MagazineId }) |
 
                     <input type="submit" value="Delete" onclick="return confirm('Are you sure, You want to delete?')" />
                 </td>

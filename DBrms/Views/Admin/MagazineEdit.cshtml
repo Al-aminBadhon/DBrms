@@ -1,11 +1,12 @@
-﻿@model DBrms.Models.Slider
+﻿@model DBrms.Models.Magazine
 
 @{
-    ViewBag.Title = "SliderEdit";
+    ViewBag.Title = "MagazineEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>SliderEdit</h2>
+<h2>Magazine Edit</h2>
+
 <link rel="stylesheet" href="~/Content/Login/dist/css/site.min.css">
 
 <div class="container-fluid" style="font-size:13px;">
@@ -14,12 +15,12 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Slider</h4>
+
             <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
             <input type="hidden" id="Image" name="Image" value="@Model.Image" />
-            <input type="hidden" id="SliderId" name="SliderId" value="@Model.SliderId" />
+            <input type="hidden" id="MagazineId" name="MagazineId" value="@Model.MagazineId" />
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -31,27 +32,18 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    <img src="@Model.Image" height="100" width="200" />
-                  
+                    <img src="@Model.Image" height="150" width="250" />
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Details, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    <input class="form-control" type="text" name="Name" required value="@Model.Details" />
+                    <input class="form-control" type="text" name="Details" required value="@Model.Details" />
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsActive)
-                      
-                    </div>
-                </div>
-            </div>
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -61,6 +53,6 @@
         </div>
     }
 </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

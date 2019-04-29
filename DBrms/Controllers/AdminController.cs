@@ -356,7 +356,7 @@ namespace DBrms.Controllers
             }
             if (search != null)
             {
-                return View(db.Reviews.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+                return View(db.Reviews.Where(x => x.Customer.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
 
 
@@ -433,7 +433,7 @@ namespace DBrms.Controllers
             }
             if (search != null)
             {
-                return View(db.Reviews.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+                return View(db.Reviews.Where(x => x.Customer.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
             return View(db.Reviews.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -478,7 +478,7 @@ namespace DBrms.Controllers
             }
             if (search != null)
             {
-                return View(db.ReviewFoods.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+                return View(db.ReviewFoods.Where(x => x.Customer.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
 
 
@@ -522,7 +522,7 @@ namespace DBrms.Controllers
             }
             if (search != null)
             {
-                return View(db.ReviewFoods.Where(x => x.Customer.Name.Contains(search)).ToList().ToPagedList(page ?? 1, 5));
+                return View(db.ReviewFoods.Where(x => x.Customer.Name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 5));
             }
             return View(db.ReviewFoods.ToList().ToPagedList(page ?? 1, 5));
         }
@@ -582,10 +582,9 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult MagazineAdd([Bind(Include = "Name,Image,Details")] Magazine magazine, HttpPostedFileBase ImageFile)
+        public ActionResult MagazineAdd([Bind(Include = "MagazineId,Name,Image,Details")] Magazine magazine, HttpPostedFileBase ImageFile)
         {
-            if (ImageFile != null)
-            {
+           
                 String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
@@ -597,9 +596,38 @@ namespace DBrms.Controllers
                 db.SaveChanges();
                 ModelState.Clear();
                 return RedirectToAction("Magazine");
-            }
-            return View();
+         
         }
+
+
+        [HttpGet]
+        public ActionResult MagazineEdit(int? id)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Magazine magazine = db.Magazines.Find(id);
+            if (magazine == null)
+            {
+                return HttpNotFound();
+            }
+            return View(magazine);
+        }
+
+        [HttpPost]
+        public ActionResult MagazineEdit([Bind(Include = "MagazineId,Name,Image,Details")] Magazine magazine)
+        {
+            db.Entry(magazine).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Magazine");
+        }
+
 
         [HttpGet]
         public ActionResult MagazineDelete(int? id)
@@ -630,7 +658,7 @@ namespace DBrms.Controllers
             return RedirectToAction("Magazine");
         }
 
-
+        
         public ActionResult ManageRestaurant(int? page, string search)
         {
             if (Session["UserId"] == null)
@@ -743,12 +771,6 @@ namespace DBrms.Controllers
                 {
                     restaurant.IsActive = false;
                 }
-                String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-                String extension = Path.GetExtension(ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                restaurant.Picture = "/Image/" + fileName;
-                fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
-                ImageFile.SaveAs(fileName);
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageRestaurant");
@@ -780,10 +802,9 @@ namespace DBrms.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CustomerAdd([Bind(Include = "Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
+        public ActionResult CustomerAdd([Bind(Include = "CustomerId,Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
         {
-            if (ImageFile != null)
-            {
+          
                 String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
@@ -795,8 +816,6 @@ namespace DBrms.Controllers
                 db.SaveChanges();
                 ModelState.Clear();
                 return RedirectToAction("ManageCustomer");
-            }
-            return View();
         }
 
         [HttpGet]
@@ -819,24 +838,12 @@ namespace DBrms.Controllers
             return View(customer);
         }
         [HttpPost]
-        public ActionResult CustomerEdit([Bind(Include = "CustomerId,Name,Address,Image,Phone,Username,Password")] Customer customer, HttpPostedFileBase ImageFile)
+        public ActionResult CustomerEdit([Bind(Include = "CustomerId,Name,Address,Image,Phone,Username,Password")] Customer customer)
         {
-            String fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-            String extension = Path.GetExtension(ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            customer.Image = "/Image/" + fileName;
-            fileName = Path.Combine(Server.MapPath("/Image/"), fileName);
-            ImageFile.SaveAs(fileName);
-
-            if (ModelState.IsValid)
-            {
-                //Restaurant res = db.Restaurants.FirstOrDefault(x=> x.RestaurantId == restaurant.RestaurantId);
-                //res.IsActive = restaurant.IsActive;
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ManageCustomer");
-            }
-            return View();
+           
         }
 
         [HttpGet]

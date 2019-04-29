@@ -258,22 +258,11 @@ namespace DBrms.Controllers
             return View(edit);
         }
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,Location,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,UserName,Password")] Restaurant restaurant, HttpPostedFileBase ImageFile)
+        public ActionResult Edit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,UserName,Password")] Restaurant restaurant)
         {
-            //String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-            //String extension = Path.GetExtension(ImageFile.FileName);
-            //filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            //restaurant.Picture = "/Image/" + filename;
-            //filename = Path.Combine(Server.MapPath("/Image/"), filename);
-            //ImageFile.SaveAs(filename);
-            if (ModelState.IsValid)
-            {
-
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details");
-            }
-            return View();
         }
 
         public ActionResult RestaurantReviewList(int? id, int? page)
