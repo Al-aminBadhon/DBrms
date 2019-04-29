@@ -11,14 +11,17 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class ReviewFood
     {
         public int ReviewFoodId { get; set; }
         public int FoodId { get; set; }
         public int CustomerId { get; set; }
         public string Description { get; set; }
+        [DisplayName("Rating")]
         public double RatingFood { get; set; }
+        [DisplayName("Active")]
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
     

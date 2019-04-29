@@ -11,13 +11,15 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Magazine
     {
         public int MagazineId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string Details { get; set; }
+        [DisplayName("Active")]
         public Nullable<bool> IsActive { get; set; }
     }
 }

@@ -144,8 +144,7 @@ namespace DBrms.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            if (ImageFile != null)
-            {
+           
                 String filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
                 String extension = Path.GetExtension(ImageFile.FileName);
                 filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
@@ -163,8 +162,7 @@ namespace DBrms.Controllers
                 return RedirectToAction("Slider");
 
 
-            }
-            return View();
+          
         }
 
 
@@ -194,16 +192,14 @@ namespace DBrms.Controllers
         }
 
         [HttpPost]
-        public ActionResult SliderEdit([Bind(Include = "SliderId,Name,Image,Details,IsActive")] Slider slider, HttpPostedFileBase ImageFile)
+        public ActionResult SliderEdit([Bind(Include = "SliderId,Name,Image,Details,IsActive")] Slider slider)
         {
-            if (ModelState.IsValid)
-            {
+           
 
                 db.Entry(slider).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Slider");
-            }
-            return View();
+          
 
         }
 
@@ -285,14 +281,12 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult NewspanelEdit([Bind(Include = "MagazineId,Name,Image,Details,IsActive")] Magazine newspanel)
         {
-            if (ModelState.IsValid)
-            {
+            
 
                 db.Entry(newspanel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Newspanel");
-            }
-            return View();
+          
         }
 
 
@@ -336,14 +330,12 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult TradingRestaurantEdit([Bind(Include = "RestaurantId,Name,Address,Phone,Picture,LocationId,PopularMenu,CostPerOrder,Time,Cuisine,Extra,Discount,Username,Password,IsActive")] Restaurant restaurant)
         {
-            if (ModelState.IsValid)
-            {
+          
 
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("TradingRestaurant");
-            }
-            return View();
+           
         }
 
 
@@ -386,14 +378,12 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult ReviewEdit([Bind(Include = "RestaurantId,CustomerId,Description")] Review review)
         {
-            if (ModelState.IsValid)
-            {
+           
 
                 db.Entry(review).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Review");
-            }
-            return View();
+           
         }
         [HttpGet]
         public ActionResult ReviewDelete(int? id)
@@ -460,14 +450,10 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult TopReviewEdit([Bind(Include = "ReviewId,RestaurantsId,CustomerId,Description,Rating,IsActive")] Review review)
         {
-            if (ModelState.IsValid)
-            {
-
                 db.Entry(review).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("TopReview");
-            }
-            return View();
+        
         }
 
         public ActionResult ReviewFood(int? page, string search)
@@ -549,14 +535,10 @@ namespace DBrms.Controllers
         [HttpPost]
         public ActionResult TopReviewFoodEdit([Bind(Include = "ReviewFoodId,FoodId,CustomerId,Description,RatingFood,IsActive")] ReviewFood reviewFood)
         {
-            if (ModelState.IsValid)
-            {
-
                 db.Entry(reviewFood).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("TopReviewFood");
-            }
-            return View();
+           
         }
 
         public ActionResult Magazine(int? page, string search)

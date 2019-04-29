@@ -11,7 +11,8 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class FoodCart
     {
         public int FoodCartId { get; set; }
@@ -20,6 +21,7 @@ namespace DBrms.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
         public Nullable<double> PaidAmount { get; set; }
+        [DisplayName("Confirm")]
         public Nullable<bool> IsConfirm { get; set; }
         public Nullable<double> Total { get; set; }
     

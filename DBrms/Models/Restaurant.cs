@@ -11,7 +11,8 @@ namespace DBrms.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Restaurant
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,6 +30,7 @@ namespace DBrms.Models
         public string Picture { get; set; }
         public Nullable<int> LocationId { get; set; }
         public string PopularMenu { get; set; }
+        [DisplayName("Cost Range")]
         public string CostPerOrder { get; set; }
         public string Time { get; set; }
         public string Cuisine { get; set; }
@@ -36,6 +38,7 @@ namespace DBrms.Models
         public string Discount { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        [DisplayName("Active")]
         public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
